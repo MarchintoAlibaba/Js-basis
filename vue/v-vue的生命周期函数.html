@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-vue的生命周期函数</title>
+	</head>
+	<body>
+		<div id="app">
+			<div ref="aa">32123131</div>
+			<!-- <div ref="aa"></div>
+			<div ref="aa"></div>
+			<div ref="aa"></div>
+			<div ref="aa"></div> -->
+		</div>
+	</body>
+	<script type="text/javascript">
+		// vue的生命周期函数就是vue实列在某一时间点会自动执行的函数(常见的有八个vue生命周期函数)
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				test:"aa"
+			},
+			template:"<div>{{test}}</div>",
+			methods:{
+				aa:function(){
+					alert(1)
+				}
+			},
+			beforeCreate:function(){  //在实列化之后,数据读取之前执行
+				console.log("beforecreate");
+			},
+			created:function(){   //在实列化之后,数据和方法读取之后执行
+				// this.aa(); 
+				console.log("created");
+			},
+			beforeMount:function(){  //在有模板,但是模板未渲染之前（即数据即将挂载在模板之前）被调用
+				console.log("beforeMount");
+			},
+			mounted:function(){  //数据在被渲染到模板之后执行
+				console.log("mounted");
+				var dd=this.$refs.aa
+				console.log(dd)
+			},
+			beforeDestroy:function(){ //当实列化被销毁之前执行
+				console.log("beforeDestroy");
+			},
+			destroyed:function(){  //当实列化被销毁之后执行
+				console.log("destroyed");
+			},
+			beforeUpdate:function(){  //在被渲染在模板上的数据发生改变之前执行
+				console.log("beforeUpdate")
+			},
+			updated:function(){ //在被渲染在模板上的数据发生改变之后执行
+				console.log("updated")
+			}
+		});
+	</script>
+</html>

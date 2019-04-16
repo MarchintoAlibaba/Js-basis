@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>flex布局深入</title>
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin:0px;
+		}
+		.flex{
+			width:600px;
+			display: flex;
+			height:100px;
+			flex-wrap:wrap;
+			background:pink;
+			flex-direction:column;
+			justify-content:space-around;
+			align-items:baseline;
+		}
+		.item{
+			width:200px;
+			height:30px;
+			background: black;
+		}
+		.flexone{
+			order:1;
+			flex-grow:1;
+		}
+		.flextwo{
+			order:3;
+			flex-grow:1;
+		}
+		.flexthree{
+			order:2;
+			flex-grow:1;
+		}
+		.flexfour{
+			order:4;
+			flex-grow:2;
+		}
+	</style>
+</head>
+<body>
+<div class="flex">
+	<div class="item flexone">1</div>
+	<div class="item flextwo">2</div>
+	<div class="item flexthree">3</div>
+	<div class="item flexfour">4</div>
+</div>
+</body>
+</html>

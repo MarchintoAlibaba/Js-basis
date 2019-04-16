@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>canvas</title>
+		<style>
+			#aa{
+				position:absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="cc"></div>
+			<div class="cc"></div>
+			<div v-for="item of alldata" ref="buleball" class="bb">{{item.aa}}</div>
+			<canvas id="aa" ref="myCanvas" width="500px" height="500px"></canvas>
+		</div>
+	</body>
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			mounted(){
+				var myCanvas =this.$refs.myCanvas//初始化
+				var context = myCanvas.getContext("2d");
+				// myCanvas.height = tbody.clientHeight; 
+				var blueBalls = this.$refs['buleball'];
+				console.log(blueBalls[1])
+				 if(blueBalls){
+					console.log(blueBalls[0].innerHTML)
+					for(var i=0;i<blueBalls.length;i++){
+						// 获取蓝球的坐标x轴和y轴
+						if(blueBalls[i].innerHTML==='10'){
+
+							var x = blueBalls[i].offsetLeft;
+							var y = blueBalls[i].offsetTop;
+
+							// 如果i=0,代表的是第一行, 那就是作为线条的起点
+							if(i==0){
+								// 将笔触移动到该位置上
+								context.moveTo(x,y);
+
+							}else{
+								// 开始对每一个篮球进行前后连线
+								context.lineTo(x,y)
+							}
+						}
+					}
+				}
+				context.strokeStyle = "blue"; 
+						//设置线条的宽度
+				context.lineWidth = 1;
+
+				// var point1 = { left: 172, top: 276 };//第一个点
+				// var point2 = { left: 254, top: 236 };//第二个点
+				// ctx.beginPath();
+				// ctx.moveTo(point1.left, point1.top);//起始位置
+				// ctx.lineTo(point2.left, point2.top);//停止位置
+				
+
+				context.stroke();
+				this.duixiang()
+				},
+				methods:{
+					duixiang(){
+						var duixiang=document.getElementsByClassName('bb');
+						var cc=document.getElementsByClassName('cc')[0];
+						console.log(duixiang.length)
+						console.log(typeof(duixiang))
+						console.log(cc)
+					}
+				},
+				data:{
+					alldata:[{
+						aa:10
+					},{
+						aa:34
+					},{
+						aa:34
+					},{
+						aa:10
+					}]
+				}
+			})
+	</script>
+</html>

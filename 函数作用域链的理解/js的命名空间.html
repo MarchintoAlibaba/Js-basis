@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js的命名空间</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 命名空间是避免了变量的耦合
+	var initjindong=(function(){
+		var name="jindong"
+		function aa(){
+			console.log(name)
+		}
+		return function(){
+			aa()
+		}
+	}())
+</script>
+</html>https://github.com/MarchintoAlibaba/-.git

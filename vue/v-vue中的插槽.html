@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-vue中的插槽slot</title>
+	</head>
+	<body>
+		<div id="root">
+			<child :conter="contera">
+				<h2 class="header" slot="header">lee</h2>
+				<h1 class="footer" slot="footer">dell</h1>
+			</child>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		Vue.component('child',{
+			props:['conter'],
+			template:`<div>
+							<slot name="header"></slot>
+							<p>hello</p>
+							<li>{{conter}}</li>
+							<slot name='footer'>默认内容</slot>
+					 </div>`
+		})
+		var vm=new Vue({
+			el:"#root",
+			data:{
+				contera:"aaa"
+			}
+		})
+	</script>
+</html>

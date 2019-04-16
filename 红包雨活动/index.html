@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>红包活动</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.js"></script>
+</head>
+<body>
+<div id="app">
+	<div id="petalbox" @click="gethongbag">
+		
+	</div>
+	<div id="petalbox2">
+		<!-- <img class="petalboximg" src="img/2658965232.png"> -->
+		<div class="alldate" ref="alldate">
+			<div class="divfirst">
+				<p class="divfirstp">2019年2月4日12:00</p>
+				<p class="divfirstp">倒计时</p>
+				<ul>
+					<li>
+						<span>{{d}}</span>&thinsp;天
+					</li>
+					<li>
+						<span>{{h}}</span>&thinsp;时
+					</li>
+					<li>
+						<span>{{m}}</span>&thinsp;分
+					</li>
+					<li>
+						<span>{{s}}</span>&thinsp;秒
+					</li>
+				</ul>
+			</div>
+			<div class="divsecond">
+				<p class="divfirstp">2019年2月4日16:00</p>
+				<p class="divfirstp">倒计时</p>
+				<ul>
+					<li class="alldatefifth">
+						<span>{{dtwo}}</span>&thinsp;天
+					</li>
+					<li class="alldatesixth">
+						<span>{{htwo}}</span>&thinsp;时
+					</li>
+					<li class="alldateseventh">
+						<span>{{mtwo}}</span>&thinsp;分
+					</li>
+					<li class="alldateeightth">
+						<span>{{stwo}}</span>&thinsp;秒
+					</li>
+				</ul>
+			</div>
+			<div class="divthreeth">
+				<p class="divfirstp">2019年2月4日20:00</p>
+				<p class="divfirstp">倒计时</p>
+				<ul>
+					<li class="alldatefirst">
+						<span>{{dthree}}</span>&thinsp;天
+					</li>
+					<li class="alldatesecond">
+						<span>{{hthree}}</span>&thinsp;时
+					</li>
+					<li class="alldatethirth">
+						<span>{{mthree}}</span>&thinsp;分
+					</li>
+					<li class="alldatefourth">
+						<span>{{sthree}}</span>&thinsp;秒
+					</li>
+				</ul>
+			</div>
+			<div class="divfourth">
+				<p class="divfirstp">2019年2月5日00:00</p>
+				<p class="divfirstp">倒计时</p>
+				<ul>
+					<li class="alldatefifth">
+						<span>{{dfour}}</span>&thinsp;天
+					</li>
+					<li class="alldatesixth">
+						<span>{{hfour}}</span>&thinsp;时
+					</li>
+					<li class="alldateseventh">
+						<span>{{mfour}}</span>&thinsp;分
+					</li>
+					<li class="alldateeightth">
+						<span>{{sfour}}</span>&thinsp;秒
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="masking" v-show="masking">
+	      <div class="maskingimg">
+	      	<img width="100%" src="img/openbox.png">
+	      	<div class="maskingimgp">
+	      		<p class="maskingimgpp">恭喜本次您抢到了{{money}}元</p>
+	      		<div class="maskingimgbu" @click="clickbutton">确定</div>
+	      	</div> 
+	      </div>
+	    </div>
+	    <div class="maskingcc" v-show="maskingcca">
+	      <div class="maskingimgcc">{{conutdate}}</div>
+	    </div>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+var begininit=function() {
+
+        var NUMBER_OF_LEAVES = 80;
+
+        function init() {
+
+            var container = document.getElementById('petalbox');
+
+            try {
+
+                for (var i = 0;
+
+                     i < NUMBER_OF_LEAVES;
+
+                     i++) {
+
+                    container.appendChild(createALeaf());
+
+                }
+
+            }
+
+            catch(e) {
+
+            }
+
+        }
+
+        function randomInteger(low, high) {
+
+            return low + Math.floor(Math.random() * (high - low));
+
+        }
+
+        function randomFloat(low, high) {
+
+            return low + Math.random() * (high - low);
+
+        }
+
+        function pixelValue(value) {
+
+            return value + 'px';
+
+        }
+
+        function durationValue(value) {
+
+            return value + 's';
+
+        }
+
+        function createALeaf() {
+
+            var leafDiv = document.createElement('div');
+
+
+            var image = document.createElement('img');
+            if(document.body.clientWidth<800){
+            	image.style.width=50+"px"
+            }else{
+            	image.style.width=100+"px"
+            }
+            
+            image.src ='img/redbag'+ randomInteger(1, 10) + '.jpg';
+
+            leafDiv.style.top = pixelValue(randomInteger(-200, -100));
+
+            leafDiv.style.left = pixelValue(randomInteger(0, 1920));
+
+            var spinAnimationName = (Math.random() < 0.5) ? 'clockwiseSpin':'counterclockwiseSpinAndFlip';  
+
+            leafDiv.style.webkitAnimationName ='fade, drop';
+
+            leafDiv.style.animationName ='fade, drop';
+
+            image.style.webkitAnimationName = spinAnimationName;
+
+            image.style.animationName = spinAnimationName;
+
+            var fadeAndDropDuration = durationValue(randomFloat(1.2, 8.2));
+
+            var spinDuration = durationValue(randomFloat(3, 4));
+
+            leafDiv.style.webkitAnimationDuration = fadeAndDropDuration + ', ' + fadeAndDropDuration;
+
+            leafDiv.style.animationDuration = fadeAndDropDuration + ', ' + fadeAndDropDuration;
+
+            // 随机delay时间
+
+            var leafDelay = durationValue(randomFloat(0, 2));
+
+            leafDiv.style.webkitAnimationDelay = leafDelay + ', ' + leafDelay;
+
+            leafDiv.style.animationDelay = leafDelay + ', ' + leafDelay;
+
+            image.style.webkitAnimationDuration = spinDuration;
+
+            image.style.animationDuration = spinDuration;
+
+            leafDiv.appendChild(image);
+
+            return leafDiv;
+
+        }
+        // init();
+        init()
+
+    }
+
+// var petalbox=document.getElementById("petalbox");
+// console.log(petalbox)
+// petalbox.onclick=function(){
+// 	alert(9)
+// }
+// console.log(petalbox)
+// petalbox.onclick=function(ev){
+// 	alert(1)
+// 	var ev = ev || window.event;
+// 	var target = ev.target || ev.srcElement;
+// 	if(target.nodeName.toLowerCase() == 'div'){
+// 　 　　　　　　	alert(123);
+// 　　　　　　　  alert(target.innerHTML);
+// 　　　　}
+// }
+
+var app = new Vue({
+    el: '#app',
+    data:{
+    	d:'0',
+    	h:'0',
+    	m:'0',
+    	s:'0',
+    	dtwo:'0',
+    	htwo:'0',
+    	mtwo:'0',
+    	stwo:'0',
+    	dthree:'0',
+    	hthree:'0',
+    	mthree:'0',
+    	sthree:'0',
+    	dfour:'0',
+    	hfour:'0',
+    	mfour:'0',
+    	sfour:'0',
+    	masking:false,
+    	money:0,
+    	maskingcca:false,
+    	conutdate:8,
+    	timeer:'',
+    	timmertwo:'',
+    	timeerthree:'',
+    	onetime:true,
+    	onetimeb:true,
+    	onetimec:true,
+    	onetimed:true
+    },
+    mounted(){
+    	var This=this
+    	this.timmertwo=setInterval(function(){
+    		This.getdate()
+    	},1000)
+    },
+    methods:{
+    	clickbutton(){
+    		var This=this
+    		setTimeout(function(){
+    			This.masking=false
+    		},1000)
+    	},
+    	gethongbag(ev){
+    		var ev = ev || window.event;
+			var target = ev.target || ev.srcElement;
+			if(target.nodeName.toLowerCase() == 'img'){
+		　 　　　　　this.masking=true
+					this.getbigbox()
+					this.maskingcca=true
+					this.conutdatea()
+		　　　　}
+    	},
+    	conutdatea(){
+    		var This=this
+    		if(this.timeer){
+    			clearInterval(this.timeer)
+    		}
+    		this.timeer=setInterval(function(){
+    			This.conutdate-=1
+    			if(This.conutdate==0){
+    				clearTimeout(This.timeer)
+    				This.maskingcca=false
+    				This.conutdate=8
+    			}
+    			console.log(This.conutdate)
+    		},1000)
+    	},
+    	//领红包开始
+    	getbigbox(){
+          this.usercode=this.getQueryString("UserAccount")
+            // console.log(this.usercode)
+            if(this.usercode){
+            axios.post("http://10.10.35.35:20000/api/YCRedPackageRain/HoldRedPackageRainBonus",{
+              'Version': 'v1.0',
+              'SysCode': '002',
+              'UserAccount':this.usercode
+            }).then((response) => {
+               if(response.data.IsSuccessful===true){
+                this.money=response.data.Data
+                console.log(response.data.Data)
+              }else{
+              	this.$refs.alldate.style.zIndex=98
+              	this.money=0
+              	clearInterval(this.timeerthree)
+              	var This=this
+              	this.timmertwo=setInterval(function(){
+		    		This.getdate()
+		    	},1000)
+                alert(response.data.Message);
+              }
+            }).catch(function (error) {
+            　　alert(error);
+            });
+          }else{
+            alert("请登录用户名")
+          }
+        },
+    	//领红包结束
+    	//截取用户名开始
+    	getQueryString(name) {
+          var internet=location.href
+          let regs=/#\//
+          this.interneta=internet.replace(regs,'')
+          var reg = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+          var aaa=reg.exec(this.interneta)
+          if(aaa){
+            var r = this.interneta.substr(0).match(reg)[0];
+            var index=r.lastIndexOf("=");
+            r=r.substring(index+1,r.length);
+            if (r != null) {
+            return r;
+            }
+            return null;
+            }else{
+              return false
+            }
+        },
+    	//截取用户名结束
+    	//倒计时方法开始
+    	getdate(){
+	    	var date = new Date()
+		    var now = date.getTime()
+		    //实际时间
+		    // var time=1549252800000,timebig=1549253100000
+		    // var timetwo=1549267200000,timetwobig=1549267500000
+		    // var timethree=1549281600000,timethreebig=1549281900000
+		    // var timefour=1549296000000,timefourbig=1549296300000
+		    //测试时间
+		    var time=1549171200000,timebig=1549171500000
+		    var timetwo=1549171800000,timetwobig=1549172100000
+		    var timethree=1549172400000,timethreebig=1549172700000
+		    var timefour=1549173000000,timefourbig=1549173300000
+		    var difference = time - now,differencetwo=timetwo-now,differencethree=timethree-now,differencefour=timefour-now
+		    var differencebig=timebig-now,differencetwobig=timetwobig-now,differencethreebig=timethreebig-now,differencefourbig=timefourbig-now
+		    var d,h,m,s,dtwo,htwo,mtwo,stwo,dthree,hthree,mthree,sthree,dfour,hfour,mfour,sfour;
+		    if (difference>=0) {
+		      d = Math.floor(difference/1000/60/60/24);
+		      h = Math.floor(difference/1000/60/60%24);
+		      m = Math.floor(difference/1000/60%60);
+		      s = Math.floor(difference/1000%60);
+		      this.d = d,this.h = h,this.m = m,this.s =s;
+		    }else if(difference<0&&this.onetime==true&&differencebig>0){
+		    	this.onetime=false
+		    	var This=this
+		      clearInterval(this.timmertwo)
+		      begininit()
+		      this.$refs.alldate.style.zIndex=97
+		      this.timeerthree=setInterval(function(){
+		        	var petalboxbag=document.getElementById("petalbox")
+		        	petalboxbag.innerHTML=""
+		        	begininit()
+		        },5000)
+		      this.d=0;
+		      this.h=0;
+		      this.m=0;
+		      this.m=0;	
+		      setTimeout(function(){
+		      		This.$refs.alldate.style.zIndex=98
+		      		console.log("第一个时间结束")
+		      		clearInterval(This.timeerthree)
+			    	This.timmertwo=setInterval(function(){
+			    		This.getdate()
+			    	},1000)
+		      },300000)
+		    }
+		    if(differencetwo>=0){
+		      dtwo = Math.floor(differencetwo/1000/60/60/24);
+		      htwo = Math.floor(differencetwo/1000/60/60%24);
+		      mtwo = Math.floor(differencetwo/1000/60%60);
+		      stwo = Math.floor(differencetwo/1000%60);
+		      this.dtwo = dtwo,this.htwo = htwo,this.mtwo = mtwo,this.stwo =stwo;
+		    }else if(differencetwo<0&&this.onetimeb==true&&differencetwobig>0){
+		      this.onetimeb=false
+		      var This=this
+		      clearInterval(this.timmertwo)
+		      begininit()
+		      this.$refs.alldate.style.zIndex=97
+		      this.timeerthree=setInterval(function(){
+		        	var petalboxbag=document.getElementById("petalbox")
+		        	petalboxbag.innerHTML=""
+		        	begininit()
+		        },5000)
+		      this.dtwo=0;
+		      this.htwo=0;
+		      this.mtwo=0;
+		      this.stwo=0;
+		      setTimeout(function(){
+		      		This.$refs.alldate.style.zIndex=98
+		      		console.log("第二个时间结束")
+		      		clearInterval(This.timeerthree)
+			    	This.timmertwo=setInterval(function(){
+			    		This.getdate()
+			    	},1000)
+		      },300000)
+		    }
+		    if(differencethree>=0){
+		      dthree = Math.floor(differencethree/1000/60/60/24);
+		      hthree = Math.floor(differencethree/1000/60/60%24);
+		      mthree = Math.floor(differencethree/1000/60%60);
+		      sthree = Math.floor(differencethree/1000%60);
+		      this.dthree = dthree,this.hthree = hthree,this.mthree = mthree,this.sthree =sthree;
+		    }else if(differencethree<0&&this.onetimec==true&&differencethreebig>0){
+		    	this.onetimec=false
+		    	var This=this
+		      clearInterval(this.timmertwo)
+		      begininit()
+		      this.$refs.alldate.style.zIndex=97
+		      this.timeerthree=setInterval(function(){
+		        	var petalboxbag=document.getElementById("petalbox")
+		        	petalboxbag.innerHTML=""
+		        	begininit()
+		        },5000)
+		      this.dthree=0;
+		      this.hthree=0;
+		      this.mthree=0;
+		      this.sthree=0
+		      setTimeout(function(){
+		      		This.$refs.alldate.style.zIndex=98
+		      		console.log("第三个时间结束")
+		      		clearInterval(This.timeerthree)
+			    	This.timmertwo=setInterval(function(){
+			    		This.getdate()
+			    	},1000)
+		      },300000)
+		    }
+		    if(differencefour>=0){
+		      dfour = Math.floor(differencefour/1000/60/60/24);
+		      hfour = Math.floor(differencefour/1000/60/60%24);
+		      mfour = Math.floor(differencefour/1000/60%60);
+		      sfour = Math.floor(differencefour/1000%60);
+		      this.dfour = dfour,this.hfour = hfour,this.mfour = mfour,this.sfour =sfour;
+		    }else if(differencefour<0&&this.onetimed==true&&differencefourbig>0){
+		    	this.onetimed=false
+		    	var This=this
+		      clearInterval(this.timmertwo)
+		      begininit()
+		      this.$refs.alldate.style.zIndex=97
+		      this.timeerthree=setInterval(function(){
+		        	var petalboxbag=document.getElementById("petalbox")
+		        	petalboxbag.innerHTML=""
+		        	begininit()
+		        },5000)
+		      this.dfour=0;
+		      this.hfour=0;
+		      this.mfour=0;
+		      this.sfour=0;
+		      setTimeout(function(){
+		      		This.$refs.alldate.style.zIndex=98
+		      		console.log("第四个时间结束")
+		      		clearInterval(This.timeerthree)
+			    	This.timmertwo=setInterval(function(){
+			    		This.getdate()
+			    	},1000)
+		      },300000)
+		    }
+		    // var This = this;
+		    // settime= setInterval(function(){
+		    //     time-=1000
+		    //     console.log(time)
+		    // },1000);
+	    }
+	    //倒计时方法结束
+    }
+ })
+</script>
+</html>

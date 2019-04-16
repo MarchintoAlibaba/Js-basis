@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas跳跳球</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid black;margin:50px auto;display: block;">
+	您的浏览器不支持canvas，请更换你的浏览器
+</canvas>
+</body>
+<script type="text/javascript">
+	var canvas=document.getElementById("canvas")
+	var context=canvas.getContext("2d")
+	var canvaswidth=1024,canvasheight=768
+	canvas.width=canvaswidth;
+	canvas.height=canvasheight;
+	var jumpdata={x:512,y:100,r:20,g:2,vx:-4,vy:-10,color:"#005588"}
+	function update(){
+		jumpdata.x+=jumpdata.vx
+		jumpdata.y+=jumpdata.vy
+		jumpdata.vy+=jumpdata.g
+		if(jumpdata.y>=canvasheight-jumpdata.r){
+			jumpdata.y=canvasheight-jumpdata.r
+			jumpdata.vy=-jumpdata.vy*0.5
+		}
+	}
+	function render(){
+		context.clearRect(0,0,canvaswidth,canvasheight)
+		context.fillStyle=jumpdata.color
+		context.beginPath()
+		context.arc(jumpdata.x,jumpdata.y,jumpdata.r,0,2*Math.PI)
+		context.closePath()
+		context.fill()
+	}
+	setInterval(function(){
+		update()
+		render()
+	},40)
+</script>
+</html>

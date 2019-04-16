@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-局部组件做todo事件</title>
+		<style>
+			.ab{
+				width:2000px;
+				height:2000px;
+				background:url(music/4444.jpg) no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="ab">
+				ddddddddddddddddddddddddddddddddddddddddddd
+			</div>
+			<div id="ab">
+				<input type="text" name="" id="" value="" v-model="something" />
+				<button type="button" v-on:click="submit">提交</button>
+			</div>
+			<ul>
+				<todo-item v-bind:content="item" v-for="item in list"></todo-item>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var TodoItem={
+			props:["content"],
+			template:"<li>{{content}}</li>"
+		}
+		var app=new Vue({
+			el:'#app',
+			components:{
+				TodoItem:TodoItem
+			},
+			data:{
+				list:[],
+				something:' '
+			},
+			methods:{
+				submit:function(){
+					this.list.push(this.something);
+					this.something=' '
+					}
+				}
+		})
+	</script>
+</html>

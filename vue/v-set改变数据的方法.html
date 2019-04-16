@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-set改变数组类型和对象类型的数据</title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="item of list">{{item}}</li>
+				<li v-for="itema of info">{{itema}}</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				list:{
+					name:"wangxing",
+					age:32,
+					sex:"男"
+				},
+				info:[1,2,3,4,5,6]
+			},
+			methods:{
+				seet:function(){
+					Vue.set(this.list,"dress","beijing");
+				},
+				seeta:function(){
+					Vue.set(this.info,2,10)
+				}
+			},
+			mounted:function(){
+				this.seet();
+				console.log(this.list);
+				this.seeta();
+				console.log(this.info);	
+			}
+		})
+	</script>
+</html>

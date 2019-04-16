@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-子组件向父组件传值</title>
+	</head>
+	<body>
+		<div id="app">
+			<aa ref="aa" v-on:change="changea"></aa>
+			<aa ref="bb" v-on:change="changea"></aa>
+			<div class="">
+				{{total}}
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		 // 父子组件传值方式的不同 父传子是由父组件的属性的形式向子组件传值 子组件通过事件触发的方式向父组件传值
+		Vue.component("aa",{
+			data:function(){
+				return {
+					number:0
+				}
+			},
+			template:"<p @click='adddate'>{{number}}</p>",
+			methods:{
+				adddate:function(){
+					this.number++;
+					this.$emit('change');
+				}
+			}
+		});
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				total:0
+			},
+			methods:{
+				changea:function(){
+					// alert(1); 	
+					// console.log(this.$refs.aa)
+					this.total=this.$refs.aa.number+this.$refs.bb.number;
+				}
+			}
+		})
+	</script>
+</html>

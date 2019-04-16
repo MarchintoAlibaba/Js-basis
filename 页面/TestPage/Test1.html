@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <div>礼金余额<input type="text" id="Balance" /></div>
+    <div>历史总额<input type="text" id="HistoryCount" /></div>
+    <div>今日礼金<input type="text" id="TodayCount" /></div>
+    <div>本月礼金<input type="text" id="MonthCount" /></div>
+    <div>今日新增<input type="text" id="TodayNewFriend" /></div>
+    <div>好友总数<input type="text" id="FriendNum" /></div>
+
+    <script>
+        $(function () {
+            getjsdata();
+        });
+
+        //获取后台数据
+        function getjsdata() {
+            var jsonObj = {
+                'Version': 'v1.0',
+                'SysCode': 'S001',
+                'RequestUrl': location.href
+            };
+            $.ajax({
+                url: "http://localhost:60071/api/LiJinQuery/QueryPageData",
+                data: JSON.stringify(jsonObj),
+                type: "post",
+                dataType: "json",
+                success: function (RequestResult) {
+                    if (RequestResult.IsSuccessful) {
+                        var datajson = RequestResult.Data.DataJson;
+                        var data = $.parseJSON(datajson);
+
+
+                        $("#Balance").val(data.Balance);
+                        $("#HistoryCount").val(data.HistoryCount);
+                        $("#TodayCount").val(data.TodayCount);
+                        $("#MonthCount").val(data.MonthCount);
+                        $("#TodayNewFriend").val(data.TodayNewFriend);
+                        $("#FriendNum").val(data.FriendNum);
+                    }
+                    else {
+                        alert(RequestResult.Message);
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas划时间</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid gray;display: block;margin:50px auto;">你的浏览器不支持canvas，请更换浏览器</canvas>
+</body>
+<script type="text/javascript">
+	var digit =
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,1,1,0],
+            [0,1,1,0],
+            [0,0,0,0],
+            [0,0,0,0],
+            [0,1,1,0],
+            [0,1,1,0],
+            [0,0,0,0],
+            [0,0,0,0]
+        ]//:
+    ];
+var canvaswidth="1024"
+var canvasheight="768"
+var canvas=document.getElementById("canvas")
+var context=canvas.getContext("2d")
+canvas.width=canvaswidth
+canvas.height=canvasheight
+var dateshi,datefen,datemiao
+var smallringR=8
+var marginLeft=30
+var marginTop=80
+function daojishi(){
+    var bigtime=1550302824000,timenow=new Date(),timenowseconds=timenow.getTime(),chaseconds=parseInt((bigtime-timenowseconds)/1000)
+    if(chaseconds>0){
+        console.log(chaseconds)
+        dateshi=parseInt(chaseconds/3600)
+        datefen=parseInt((chaseconds/3600-dateshi)*60)
+        datemiao=chaseconds%60
+        console.log(chaseconds%3600)
+        console.log(dateshi+":"+datefen+":"+datemiao)
+    }
+}
+daojishi()
+
+// var smallringRx=2*j*(smallringR+1)+(smallringR+1) x轴方向上的值
+// var smallringRy=2*i*(smallringR+1)+(smallringR+1) y轴方向上的值
+// var dateshibefore=parseInt(dateshi/10)
+// var dateshiafter=parseInt(dateshi%10)
+function huatu(){
+    context.clearRect(0,0,canvaswidth,canvasheight);  
+    canvasyuan(marginLeft,marginTop,parseInt(dateshi/10))
+    canvasyuan(marginLeft+15*(smallringR+1),marginTop,parseInt(dateshi%10))
+    canvasyuan(marginLeft+30*(smallringR+1),marginTop,10)
+    canvasyuan(marginLeft+39*(smallringR+1),marginTop,parseInt(datefen/10))
+    canvasyuan(marginLeft+54*(smallringR+1),marginTop,parseInt(datefen%10))
+    canvasyuan(marginLeft+69*(smallringR+1),marginTop,10)
+    canvasyuan(marginLeft+78*(smallringR+1),marginTop,parseInt(datemiao/10))
+    canvasyuan(marginLeft+93*(smallringR+1),marginTop,parseInt(datemiao%10))
+    function canvasyuan(x,y,num){
+        context.fillStyle="rgb(0,102,153)";
+        for(let i=0;i<digit[num].length;i++){
+            for(let j=0;j<digit[num][i].length;j++){
+                if(digit[num][i][j]==1){
+                    context.beginPath()
+                    context.arc(x+(2*j*(smallringR+1)+(smallringR+1)),y+(2*i*(smallringR+1)+(smallringR+1)),smallringR,0,2*Math.PI)
+                    context.closePath()
+
+                    context.fill()
+                }
+            }
+        }
+    }
+    }
+setInterval(function(){
+    daojishi()
+    huatu()
+},1000)
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>函数自调用的由来</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	//函数自调用
+	(function(){
+		const a= 1;
+		console.log(a)
+	}())
+	//函数表达式
+	var atest=function (){
+		const c=3;
+		console.log(c)
+	}()
+	//函数申明
+	function test(){
+		const b=2
+		console.log(b)
+	};
+	//只有表达式才能被执行符号执行
+	// function test(){
+	// 	const b=2
+	// 	console.log(b)
+	// }()
+	// 这种函数申明后面跟执行符号就会报错
+	+function (){
+		console.log("运算符加上函数申明成了函数表达式")
+	}();
+	//所以（）也是运算符 所以有了函数自调用
+	(function (){
+		console.log("这就有了函数自调用")
+	}())
+</script>
+</html>

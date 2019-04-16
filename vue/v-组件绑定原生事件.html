@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-组件绑定原生事件</title>
+	</head>
+	<body>
+		<div id="app">
+			<aan v-on:click.native="click"></aan> <!-- 只有组件绑定了原生事件，父组件上的事件才可以执行 -->
+		</div>
+	</body><script type="text/javascript">
+		var aan={
+			template:"<div>1234</div>"
+		}
+		var vm=new Vue({
+			el:"#app",
+			components:{
+				aan:aan
+			},
+			methods:{
+				click:function(){
+					alert(1)
+				}
+			}
+		})
+	</script>
+</html>

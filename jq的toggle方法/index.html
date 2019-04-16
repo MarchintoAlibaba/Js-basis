@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jq的toggle方法</title>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin:0px;
+		}
+		.all{
+			width:100px;
+			height:100px;
+			background: gray;
+		}
+		.all ul li{
+			list-style: none;
+			padding:20px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+<div class="all">
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+</div>
+</body>
+<script>
+	$(document).ready(function(){
+		$(".all>ul>li").toggle(function(){
+			$(this).css({'height':'500px','background':'yellow'})
+			$(this).show().siblings().hide()
+		},
+		function(){
+			$(this).css({'height':'100px','background':'red'})
+			$(this).hide().siblings().show()
+		}
+		)
+	})
+</script>
+</html>

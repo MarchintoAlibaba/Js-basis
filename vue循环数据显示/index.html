@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.js"></script>
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin:0px;
+		}
+		#all{
+			width:500px;
+		}
+		.allheader{
+			width:250px;
+			height:30px;
+			float:left;
+		}
+		.allclick{
+			width:250px;
+			height:30px;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div  v-for="(item,index) of datalist">
+			<div class="allheader">{{item.header}}</div>
+			<div class="allclick" :class="item.click==1?'aa':'bb'" v-show="item.click==1">立即领取</div>
+			<div class="allclick" v-show="item.click==0">已领取</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var vm=new Vue({
+		el:"#app",
+		data:{
+			datalist:[{
+					id:1,
+					header:100,
+					click:1
+				},
+				{	
+					id:2,
+					header:88,
+					click:0
+				},
+				{	
+					id:3,
+					header:77,
+					click:1
+				},
+				{	
+					id:4,
+					header:33,
+					click:0
+				},
+			],
+			getmoney:true
+		},
+		mounted:function(){
+			this.getway()
+		},
+		methods:{
+			getway(){
+				
+			}
+		}
+	})
+</script>
+</html>

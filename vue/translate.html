@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style>
+@keyframes rotate{
+	0%
+	{transform:rotate(0);} 
+	100%
+	{transform:rotate(360deg);}
+}
+	
+			.aa{
+				width:20px;
+				height:20px;
+				background:red;
+				margin-bottom:100px;
+				/* transform: translateY(90px); */
+				/* animation: rotate 10s linear infinite */
+			}
+			.zz{
+				/* animation-play-state: paused; */
+			}
+			.bb{
+				position:fixed;
+				top:0;
+				left:0;
+				bottom:0;
+				right:0;
+				background:yellow;
+				
+			}
+			.shipei{
+				/* position:absolute; */
+				padding:0 20px;
+				height:0;
+				padding-bottom:100%;
+				background:green;
+			}
+			.shipeiround{
+				width:80%;
+				height:80%;
+				background:red;
+			}
+			.cc{
+				/* width:300px;
+				height:300px;
+				background:yellow; */
+			}
+			.flex{
+				width:50%;
+				height:100px;
+				display:flex;
+			}
+			.flex-left{
+				flex:0 0 0;
+				background:red;
+			}
+			.flex-center{
+				flex:0 0 0;
+				
+				background:black;
+			}
+			.flex-right{
+				flex:0 0 1;
+				background:green;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <div id="app"> -->
+			<div class="aa zz" id="bb" onclick="zz(9)">123</div>
+			<!-- <audio controls autoplay id="music">
+				<source src="music/如果爱能早些说出来.mp3"></source>
+			</audio> -->
+				<!-- <div class="bb"><div class="shipei">
+					<div class="shipeiround"></div>
+				</div></div> -->
+		<!-- </div>
+		<div class="flex">
+			<div class="flex-left">1211</div>
+			<div class="flex-center">2232222222222223333333333333333333333333333333333333333</div>
+			<div class="flex-right">1</div>
+		</div> -->
+	</body>
+	<script type="text/javascript">
+// 		var aa=document.getElementsByClassName('aa')[0]
+// 		console.log(aa)
+// 		aa.style['transform']=`translateY(200px)`
+// 		var bb=document.getElementById('bb')
+// 		console.log(bb.offsetHeight)
+// 		console.log(aa.style)
+// 		
+// 		
+// 		const aaa=bb=>bb
+// 		const bbb=()=>'cc'
+// 		const ccc=aa=>{
+// 			alert(aa)
+// 		}
+// 		const ddd=()=>{
+// 			
+// 		}
+// 		console.log(aaa("我是箭头函数的参数"))
+// 		console.log(bbb())
+// 		ccc(111)
+// var vm=new Vue({
+// 	el:'#app',
+// 	data:{
+// 		songlist:"music/如果爱能早些说出来.mp3"
+// 	}
+// })
+let music=document.getElementById('music')
+const bb=document.getElementById('bb')
+// bb.ontouchstart(e){
+// 	const bbclientX=e.clientX
+// 	const bbclientY=e.clientY
+// 	console.log(bbclientX)
+// }
+// bb.ontouchmove(e){
+// 	const bbmoveX=e.clientX
+// 	const bbmoveY=e.clientY
+// }
+// bb.ontouchend(e){
+// 	const bbendX=e.clientX
+// 	const bbendY=e.clientY
+// }
+// bb.addEventListener('touchstart',touchbegin,false)
+// bb.addEventListener('touchmove',touchMove,false)
+// bb.addEventListener('touchend',touchEnd,false)
+// var clientc
+// var moveclientx
+// var value
+// function touchbegin(e){
+// 	e=e||window.e
+// 	clientc=target.clientX
+// 	console.log(clientc)
+// }
+// function touchMove(e){
+// 	e=e||window.e
+// 	moveclientx=e.touches.pageX
+// 	console.log(moveclientx)
+// 	value=moveclientx-clientc
+// 	bb.style.marginLeft=(moveclientx-20)+'px'
+// }
+// function touchEnd(e){
+// 	// bb.style.marginLeft=value+'px'
+// }
+function aa(){
+	alert(1)
+}
+
+// aa=()=>{
+// 	alert(1)
+// }
+
+// function zz(aa){
+// 	alert(aa)
+// }
+zz=(aa)=>{
+	alert(aa)
+}
+	</script>
+</html>

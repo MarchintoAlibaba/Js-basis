@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>对象的继承实列</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	//这种继承方法叫做圣杯模式
+	function inherit(Target,Origin){
+		function F(){};
+		F.prototype=Origin.prototype
+		Target.prototype=new F()
+		Target.prototype.constructor=Target
+		Target.prototype.uber=Origin.prototype
+	}
+</script>
+</html>

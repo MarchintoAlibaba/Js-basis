@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-css中的动画原理</title>
+		<style type="text/css">
+			.fade-enter{
+				opacity:0;
+			}
+			.fade-enter-active{
+				transition:1s;
+			}
+			.fade-leave-to{
+				opacity:0;
+			}
+			.fade-leave-active{
+				transition:1s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<transition name="fade">
+				<div v-if="show">show or fide</div>
+			</transition>
+			<button v-on:click="click">点击</button>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				show:true
+			},
+			methods:{
+				click:function(){
+					this.show=!this.show
+				}
+			}
+		})
+	</script>
+</html>

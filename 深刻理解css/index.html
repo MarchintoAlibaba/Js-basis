@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>深刻复习理解css之bfc</title>
+	<style type="text/css">
+	/*了解详情请查看https://www.cnblogs.com/CafeMing/p/6252286.html*/
+		*{
+			padding:0px;
+			margin:0px;
+		}
+		.cc{
+			/*display: block;*/
+			/*overflow: hidden;*/
+			/*display: inline-block;*/
+		}
+		.aa{
+			width:100px;
+			height:100px;
+			background: red;
+			/*overflow: auto;*/
+			margin-bottom:20px;
+			/*display: inline-block;*/
+		}
+		.bb{
+			width:100px;
+			height:100px;
+			background: black;
+			margin-top:20px;
+			overflow: hidden;
+			/*display: table-caption;*/
+		}
+		.dd{
+/*			width:200px;
+			height:200px;*/
+			overflow: hidden;
+			background: blue;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<div class="cc">
+		<div class="dd">
+			<div class="aa"></div>
+		</div>
+		<div class="bb"></div>
+	</div>
+</body>
+</html>

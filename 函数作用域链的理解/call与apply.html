@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>call与apply的区别</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// call与apply的共同点是改变this指向 不同点是他们的传参方式不同 apply是以数组的形式传参
+	// 列
+	function Wheel(color,style){
+		this.color=color;
+		this.style=style;
+	}
+	function Door(doorcolor,width,height){
+		this.doorcolor=doorcolor;
+		this.width=width;
+		this.height=height;
+	}
+	function Safa(safacolor,c,z){
+		this.safacolor=safacolor;
+		this.c=c;
+		this.z=z;
+	}
+	// Car.prototype={}
+	function Car(color,style,doorcolor,width,height,safacolor,c,z){
+		Wheel.call(this,color,style);
+		Door.call(this,doorcolor,width,height);
+		Safa.apply(this,[safacolor,c,z]);
+	}
+	var car =new Car('blue','happy','blue','1800','1900','gray','good','big')
+</script>
+</html>

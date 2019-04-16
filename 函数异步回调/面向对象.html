@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+		}
+	    ul{
+	    	width:900px;
+	    	margin:0 auto;
+	    }
+	    li{
+	    	float: left;
+	    	width: 300px;
+	    	height: 40px;
+	    	line-height: 40px;
+	    	cursor: pointer;
+	    	text-align: center;
+	    }
+	    li.active{
+	    	background: red;
+	    	color:#fff;
+	    	text-align: center;
+	    }
+	    .content-box{
+	    	width:900px;
+	    	margin:0 auto;
+	    }
+	    .content-box div{
+	    	height: 300px;
+	    	text-align: center;
+	    	line-height: 300px;
+	    	display: none;
+	    }
+        
+        .content-box div.active{
+        	display: block;
+        }
+	</style>
+</head>
+<body>
+<ul class="ul">
+	<li class="active">第一页</li>
+	<li>第二页</li>
+	<li>第三页</li>
+</ul>
+<div class="content-box">
+	<div class="active">第一页内容</div>
+	<div>第二页内容</div>
+	<div>第三页内容</div>
+</div>
+
+</body>
+<script type="text/javascript">
+</script>
+</html>

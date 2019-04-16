@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<div id="">{{msg}}</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+        el:'#box',
+        data:{
+            msg:'',
+        },
+		mounted:function(){
+			this.geta();
+		},
+        methods:{
+            geta:function(){
+                //发送get请求
+                this.$http.get('data.txt').then(function(res){
+                    console.log(res.body);
+					var aa={"jiuyuming":123,"xinyuming":456};
+					if(aa.xinyuming!==" "){
+						aa.jiuyuming=aa.xinyuming;
+					}
+					console.log(aa);
+                },function(){
+                    console.log('请求失败处理');
+                });
+            }
+        }
+    });
+	</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>echarts</title>
+	<script src="js/echarts.js"></script>
+</head>
+<body>
+	<div id="main" style="height:400px;width: 600px"></div>
+</body>
+<script>
+	// 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById("main"));
+    option = {
+    legend: {
+        data:['高度(km)与气温(°C)变化关系']
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: "Temperature : <br/>{b}km : {c}°C"
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        axisLabel: {
+            formatter: '{value} °C'
+        }
+    },
+    yAxis: {
+        type: 'category',
+        axisLine: {onZero: false},
+        axisLabel: {
+            formatter: '{value} km'
+        },
+        boundaryGap: false,
+        data: ['0', '1', '2', '3', '4', '5', '6', '7']
+    },
+    series: [
+        {
+            name: '高度(km)与气温(°C)变化关系',
+            type: 'line',
+            lineStyle: {
+                normal: {
+                    width: 3,
+                    shadowColor: 'rgba(0,0,0,0.4)',
+                    shadowBlur: 10,
+                    shadowOffsetY: 10
+                }
+            },
+            data:[15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5]
+        }
+    ]
+};
+    myChart.setOption(option);
+</script>
+</html>

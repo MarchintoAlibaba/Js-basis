@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-动态组件与v-once指令</title>
+	</head>
+	<body>
+		<div id="app">
+			<component :is='type'></component>
+			<!-- <child-one v-if="type==='child-one'"></child-one>
+			<child-two v-if="type==='child-two'"></child-two> -->
+			<button v-on:click="submit">change<button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		Vue.component("child-one",{
+			template:"<div v-once>child-one</div>"
+		})
+		Vue.component("child-two",{
+			template:"<div v-once>child-two</div>"
+		})
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				type:"child-one"
+			},
+			methods:{
+				submit:function(){
+					this.type=this.type==="child-one"?"child-two":"child-one"
+				}
+			}
+		})
+	</script>
+</html>

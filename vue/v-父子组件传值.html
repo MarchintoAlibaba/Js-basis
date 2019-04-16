@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-父子组件传值</title>
+	</head>
+	<body>
+		<div id="app">
+			<div id="">
+				<input type="text" v-model="something" name="" id="" value="" />
+				<button type="button" v-on:click="submit">提交</button>
+			</div>
+			<ul>
+				<todo-item v-bind:content="item" v-bind:index="index" v-for="(item,index) in list" v-on:delete="deletebb"></todo-item>
+			</ul>
+		</div>
+	</body>
+	<!-- 这是父组件向子组件传值 父组件向子组件传值时通过父组件属性的方式  子组件向父组件传值时通过事件触发的方式 -->
+	<script type="text/javascript">
+		var TodoItem={
+			props:["content","index"],
+			template:"<li v-on:click='deleteaa'>{{content}}</li>",
+			methods:{
+				deleteaa:function(){
+					this.$emit("delete",this.index);
+				}
+			}
+		}
+		var app=new Vue({
+			el:"#app",
+			components:{
+				TodoItem:TodoItem
+			},
+			data:{
+				list:[],
+				something:' '
+			},
+			methods:{
+				submit:function(){
+					this.list.push(this.something);
+					this.something=" ";
+				},
+				deletebb:function(index){
+					this.list.splice(index,1);
+				}
+			}
+		})
+	</script>
+</html>

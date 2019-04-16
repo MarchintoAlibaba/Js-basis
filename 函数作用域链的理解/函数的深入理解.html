@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>函数的深入理解</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	function test(){
+		let arr=[]
+		for(var i=0;i<10;i++){
+			(function(k){
+				arr[k]=function(){
+					console.log(k)
+					console.log(i)
+				}
+			}(i))
+			// console.log(i)
+		}
+		return arr
+	}
+	// test()
+	var aa=test()
+	for(let j=0;j<10;j++){
+		aa[j]()
+	}
+</script>
+</html>

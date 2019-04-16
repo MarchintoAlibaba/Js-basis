@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-vue中的动画封装</title>
+		<style type="text/css">
+			.v-enter,.v-leave-to{
+				opacity:0
+			}
+			.v-enter-active,.v-leave-active{
+				transition:opacity 2s
+			}
+		</style>
+	</head>
+	<body>
+		<span style="display:block;width:100%;text-align:center;">1234</span>
+		<div id="app">
+			<fade :show="show">
+				<div>vue中的动画封装</div>
+			</fade>
+			<fade :show="show">
+				<h1>vue中的动画封装</h1>
+			</fade>
+			<button type="button" v-on:click="click">切换</button>
+		</div> 
+	</body>
+	<script type="text/javascript">
+		Vue.component("fade",{
+			props:["show"],
+			template:`
+			<transition @before-enter="aa" @enter="bb">
+				<slot v-if="show"></slot>
+			</transition>	
+			`,
+			methods:{
+				aa:function(el){
+					el.style.color="red";
+				},
+				bb:function(el,done){
+					setTimeout(()=>{
+						el.style.color="green";
+						done()
+					},2000)
+				}
+			}
+		})
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				show:true
+			},
+			methods:{
+				click:function(){
+					this.show=!this.show
+				}
+			}
+		})
+	</script>
+</html>

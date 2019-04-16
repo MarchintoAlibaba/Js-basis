@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-组件使用的细节</title>
+	</head>
+	<body>
+		<div id="app">
+			<table border="" cellspacing="" cellpadding="">
+				<tbody>
+					<tr is="row" v-bind:datab="dataa"></tr><!-- 使用is属性解决模板标签上的bug问题 -->
+					<div id="" v-on:click="dianji" ref="click">
+						这是一个有ref属性的标签
+					</div>
+				</tbody>
+			</table>
+		</div>
+	</body>	
+	<script type="text/javascript">
+		Vue.component("row",{
+			props:["datab"],
+			template:"<tr><td>{{datab}}</td></tr>"
+		})
+		var vm=new Vue({
+			el:"#app",
+			data:{
+				dataa:"this is a row"
+			},
+			methods:{
+				dianji:function(){
+					console.log(this.$refs.click.innerHTML)
+				}
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>创建对象函数的几种方法</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 创建对象的两种方法分别是：函数字面量和构造函数
+	// 第一种方法函数字面量创建对象
+	var Car={
+		name:'aodi',
+		color:'red',
+		price:'50w',
+		evaluate:'good',
+		run:function(){
+			console.log('200km/s')
+		}
+	}
+	//第二种方法构造函数 由于构造函数与平时的函数声明一样 所以我们默认是用大驼峰（大写单词的第一个字母）方式些构造函数
+	//构造函数的方法分为两种1.自定义构造函数
+	function SongYu(){
+		this.name='songyu',
+		this.sex='male',
+		this.age='28',
+		this.hight='165',
+		this.run=function(){
+			console.log(this.age)
+		}
+		// console.log(11)
+	}
+	// SongYu()
+	var minisong=new SongYu()
+	minisong.color='blue'
+	//第二种：系统自带的构造函数 如Object() Array() Number()
+	var haha=new Object()
+	haha.name='object',
+	haha.color='gray',
+	haha.age='no',
+	haha.sex='middle'
+	var hehe=new Number()
+	var hahe=new Array()
+
+	//函数模拟构造函数
+	function pp(){
+		var that={}
+		that.name='fakename'
+		that.age='0'
+		that.sex='fakemiddle'
+		that.way=function(){
+			console.log(this.sex)
+		}
+		return that
+	}
+	var dd=pp()
+</script>
+</html>

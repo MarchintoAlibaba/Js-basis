@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas基础</title>
+</head>
+<body>
+<canvas id="canvas" width="1024" height="768" style="border:1px solid gray;margin:50px auto;display: block;">
+	你的浏览器不支持canvas，请更换其他浏览器
+</canvas>
+</body>
+<script type="text/javascript">
+	window.onload=function(){
+		var canvas=document.getElementById('canvas')
+		var context=canvas.getContext('2d')
+		context.beginPath()
+		context.moveTo(100,100)
+		context.lineTo(700,700)
+		context.lineTo(100,700)
+		context.lineTo(100,100)
+		context.closePath()
+		context.fillStyle="black"
+		context.fill()
+
+		context.strokeStyle="red"
+		context.lineWidth="5"
+		context.stroke()
+
+		context.beginPath()
+		context.moveTo(200,100)
+		context.lineTo(700,600)
+		context.closePath()
+		context.strokeStyle="blue"
+		context.stroke()
+	}
+</script>
+</html>

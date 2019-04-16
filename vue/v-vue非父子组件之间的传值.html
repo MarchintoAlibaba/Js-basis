@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title>v-vue非父子之间的传值</title>
+	</head>
+	<body>
+		<div id="app">
+			<bbc conter="dell"></bbc>
+			<bbc conter="lee"></bbc>
+		</div>
+	</body>
+	<script type="text/javascript">
+		Vue.prototype.bus=new Vue();
+		Vue.component("bbc",{
+			data:function(){
+				return {
+					msn:this.conter
+				}
+			},
+			props:{
+				conter:String
+			},
+			template:"<div @click='click'>{{msn}}</div>",
+			methods:{
+				click:function(){
+					console.log(this.conter);
+					this.bus.$emit("change",this.msn);
+				}
+			},
+			mounted:function(){
+				var this_=this;
+				this.bus.$on("change",function(msg){
+					this_.msn=msg;
+				})
+			}
+		})
+		var vm=new Vue({
+			el:"#app",
+		})
+	</script>
+</html>

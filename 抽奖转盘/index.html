@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="熊仔其人">
+    <title>转盘抽奖效果</title>
+    <!-- 这里是css部分 -->
+    <style>
+        #bg {
+            width: 650px;
+            height: 600px;
+            margin: 0 auto;
+            background: url(img/840264-20171102114832482-1299941621.jpg) no-repeat;
+            position: relative;
+        }
+
+        .clickopen{
+            position: absolute;
+            z-index: 10;
+            top: 155px;
+            left: 247px;
+        }
+
+        .clicktranlate{
+            position: absolute;
+            z-index: 5;
+            top: 60px;
+            left: 116px;
+            -webkit-animation-direction:alternate;
+            -webkit-transition: all 4s ease 0s;
+            -moz-transition: all 4s ease 0s;
+            -o-transition: all 4s ease 0s;
+        }
+    </style>
+</head>
+<body>
+    <!-- 这里是HTML结构部分 --> 
+    <div id="bg"><img class="clickopen" src="img/840264-20171102114756216-1762498679.png" alt="pointer"><img class="clicktranlate" src="img/840264-20171102114908670-944184935.png" alt="turntable"></div>  
+    <!-- 这里是js部分 -->
+    <script>
+        var oPointer = document.getElementsByClassName("clickopen")[0];
+        var oTurntable = document.getElementsByClassName("clicktranlate")[0];
+        var cat = 51.4; //总共7个扇形区域，每个区域约51.4度
+        var num = 0; //转圈结束后停留的度数
+        var offOn = true; //是否正在抽奖
+        oPointer.onclick = function () {
+            if (offOn) {
+                oTurntable.style.transform = "rotate(0deg)";
+                offOn = !offOn;
+                ratating();
+            }
+        }
+        //旋转
+        function ratating() {
+            var timer = null;
+            var rdm = 0; //随机度数
+            clearInterval(timer);
+            timer = setInterval(function () {
+                if (Math.floor(rdm / 360) < 3) { rdm = Math.floor(Math.random() * 3600); }
+                else {
+                    oTurntable.style.transform = "rotate(" + rdm + "deg)";
+                    clearInterval(timer);
+                    setTimeout(function () {
+                        offOn = !offOn;
+                        num = rdm % 360;
+                        if (num <= cat * 1) {console.log("rdm=" + rdm + "，num=" + num + "，" + "4999元"); }
+                        else if (num <= cat * 2) { console.log("rdm=" + rdm + "，num=" + num + "，" + "50元"); }
+                        else if (num <= cat * 3) { console.log("rdm=" + rdm + "，num=" + num + "，" + "10元"); }
+                        else if (num <= cat * 4) {console.log("rdm=" + rdm + "，num=" + num + "，" + "5元"); }
+                        else if (num <= cat * 5) {console.log("rdm=" + rdm + "，num=" + num + "，" + "免息服务"); }
+                        else if (num <= cat * 6) { console.log("rdm=" + rdm + "，num=" + num + "，" + "提交白金"); }
+                        else if (num <= cat * 7) { console.log("rdm=" + rdm + "，num=" + num + "，" + "未中奖"); }
+                    }, 4000);
+                }
+            }, 0);
+        }
+    </script>
+</body>
+</html>

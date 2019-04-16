@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+ 
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>Document</title>
+
+</head>
+
+<style>
+
+* {
+
+padding: 0;
+
+margin: 0;
+
+box-sizing: border-box;
+
+list-style: none;
+
+}
+
+ 
+
+#box {
+
+width: 496px;
+
+height: 210px;
+
+border: 1px solid #f00;
+
+text-align: center;
+
+margin: 0 auto;
+
+overflow: hidden;
+
+position: relative;
+
+}
+
+ 
+
+/* 图片 */
+
+ 
+
+img {
+
+float: left;
+
+width: 100%;
+
+display: none;
+
+}
+
+ 
+
+img:first-child {
+
+display: block;
+
+}
+
+ 
+
+#littlecircle {
+
+width: 100px;
+
+height: 30px;
+
+position: absolute;
+
+bottom: 10px;
+
+left: 50%;
+
+margin-left: -50px;
+
+}
+
+ 
+
+#littlecircle #ul {
+
+overflow: hidden;
+
+width: 100px;
+
+height: 30px;
+
+line-height: 30px;
+
+}
+
+ 
+
+ul li {
+
+width: 15px;
+
+height: 15px;
+
+cursor: pointer;
+
+border-radius: 50%;
+
+behavior: url(./PIE.htc);
+
+position: relative;
+
+background: #f00;
+
+float: left;
+
+border-radius: 50%;
+
+margin-left: 4px;
+
+margin-top: 5px;
+
+overflow: hidden;
+
+}
+
+ 
+
+/* 默认的样式 */
+
+ 
+
+.changecolor {
+
+cursor: pointer;
+
+background: #0094ff;
+
+float: left;
+
+margin-left: 4px;
+
+margin-top: 5px;
+
+ 
+
+}
+
+ 
+
+#left {
+
+width: 40px;
+
+height: 70px;
+
+background: url("./img/arr.png") 0px 0px no-repeat;
+
+position: absolute;
+
+left: 0;
+
+top: 50%;
+
+margin-top: -35px;
+
+border: 1px solid #f00;
+
+}
+
+ 
+
+#right {
+
+width: 40px;
+
+height: 70px;
+
+background: url("./img/arr.png") -44px 0px no-repeat;
+
+position: absolute;
+
+right: 0;
+
+top: 50%;
+
+margin-top: -35px;
+
+border: 1px solid #f00;
+
+}
+
+</style>
+
+ 
+
+<body>
+
+<div id="box">
+
+ 
+
+<img src="img/1.jpg" id="img1" data-index="0">
+
+<img src="img/2.jpg" id="img2" data-index="1">
+
+<img src="img/3.jpg" id="img3" data-index="2">
+
+<img src="img/4.jpg" id="img4" data-index="3">
+
+<img src="img/5.jpg" id="img5" data-index="4">
+
+<img src="img/1.jpg" id="img6" data-index="5">
+
+<div id="littlecircle">
+
+<ul id="ul">
+
+<li class="changecolor"></li>
+
+<li></li>
+
+<li></li>
+
+<li></li>
+
+<li></li>
+
+</ul>
+
+</div>
+
+<div id="left"></div>
+
+<div id="right"></div>
+
+</div>
+
+</body>
+
+<script src="js/jquery-1.8.3.min.js"></script>
+
+<script>
+
+var left = document.getElementById("left");
+
+var right = document.getElementById("right");
+
+var img = document.getElementsByTagName("img");
+
+var li = document.getElementsByTagName("li");
+
+var index = 0;
+
+var changeindex = 0;
+
+var changeindex1 = 0;
+
+left.onclick = function () {
+
+for (var i = 0; i < 5; i++) {
+
+if (i == index) {
+
+changeindex = index - 1;
+
+$("li").eq(changeindex).addClass("changecolor");
+
+$("li").eq(index).removeClass("changecolor");
+
+if (changeindex < 0) {
+
+changeindex = 4;
+
+$("img").eq(index).css("display", "none");
+
+$("img").eq(changeindex).css("display", "block");
+
+}
+
+$("img").eq(index).css("display", "none");
+
+$("img").eq(changeindex).css("display", "block");
+
+}
+
+}
+
+index = changeindex;
+
+}
+
+ 
+
+right.onclick = function () {
+
+move();
+
+}
+
+ 
+
+// 鼠标点击圆圈引发的图片改变逻辑，点击那张图片就到那张图片的
+
+// for (let i = 0; i < li.length; i++) {
+
+// li[i].onclick = function () {
+
+// // 点击当前索引变成i
+
+// index = i;
+
+// // 当前索引对应的图片显示,其他隐藏
+
+// $("img").eq(i).css("display", "block").siblings("img").css("display", "none");
+
+// // 将所有圆圈的样式移除
+
+// $("li").removeClass("changecolor");
+
+// // 让点击的圆圈样式显示
+
+// $("li").eq(index).addClass("changecolor");
+
+ 
+
+// }
+
+// }
+
+
+ 
+
+// ie8时点击圆圈出现相对的页面则使用这个这段代码(上面是用ES6的let方法进行的，IE8不支持，又是IE8)，IE8可以使用
+
+function b(i) {
+
+return function c() {
+
+index = i;
+
+$("img").eq(i).css("display", "block").siblings("img").css("display", "none");
+
+$("li").removeClass("changecolor");
+
+$("li").eq(index).addClass("changecolor");
+
+}
+
+}
+
+for (var i = 0; i < li.length; i++) {
+
+li[i].onclick = b(i);
+
+}
+
+
+ 
+
+function move() {
+
+for (var i = 0; i < 5; i++) {
+
+if (i == index) {
+
+changeindex1 = index + 1;
+
+$("li").eq(changeindex1).addClass("changecolor");
+
+$("li").eq(index).removeClass("changecolor");
+
+$("img").eq(index).css("display", "none");
+
+$("img").eq(changeindex1).css("display", "block");
+
+if (changeindex1 > 4) {
+
+$("img").eq(index).css("display", "none");
+
+$("img").eq(changeindex1).css("display", "block");
+
+changeindex1 = 0;
+
+$("li").eq(changeindex1).addClass("changecolor");
+
+}
+
+}
+
+}
+
+index = changeindex1;
+
+}
+
+setInterval(function () {
+
+move();
+
+}, 2000);
+
+// IE浏览器上要使用上面这种格式，我去
+
+// setInterval(()=>{
+
+// move();
+
+// },2000);
+
+</script>
+
+ 
+
+</html>
+
+<!-- 还有一种思路就是通过改变width来实现 -->
+--------------------- 
+作者：迷途明 
+来源：CSDN 
+原文：https://blog.csdn.net/weixin_41905935/article/details/81293505 
+版权声明：本文为博主原创文章，转载请附上博文链接！

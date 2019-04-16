@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>用canvas做个七巧板</title>
+</head>
+<body>
+<canvas id="canvas" width="800" height="800" style="border:1px solid gray;display: block;margin:50px auto;">你的浏览器不支持cancas，请更换浏览器打开</canvas>
+</body>
+<script type="text/javascript">
+	var canvasdata=[{
+		p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color:"#caff67"
+	},{
+		p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color:"#67becf"
+	},{
+		p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color:"#ef3d61"
+	},{
+		p:[{x:600,y:200},{x:600,y:600},{x:400,y:400}],color:"#f9f51a"
+	},{
+		p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color:"#a594c0"
+	},{
+		p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color:"#fa8ecc"
+	},{
+		p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color:"#f6ca29"
+	}]
+	var canvas=document.getElementById("canvas")
+	var context=canvas.getContext("2d")
+	for(var i=0;i<canvasdata.length;i++){
+		dram(canvasdata[i],context)
+	}
+	function dram(arr,txt){
+		txt.beginPath()
+		txt.moveTo(arr.p[0].x,arr.p[0].y)
+		for(var j=1;j<arr.p.length;j++){
+			txt.lineTo(arr.p[j].x,arr.p[j].y)
+		}
+		txt.closePath()
+		txt.fillStyle=arr.color
+		txt.fill()
+		txt.strokeStyle="black"
+		txt.lineWidth=5
+		txt.stroke()
+	}
+</script>
+</html>

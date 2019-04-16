@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>定位布局</title>
+	<style type="text/css">
+		*{
+			padding:0px;
+			margin:0px;
+		}
+		.all{
+			width:200px;
+			height:200px;
+			background: orange;
+			position: relative;
+			display: inline-block;
+		}
+		.aa{
+			width:100px;
+			height:100px;
+			background: pink;
+			position:relative;
+			z-index: 400;
+		}
+		.bb{
+			width:100px;
+			height:100px;
+			background:skyblue;
+			top:-50px;
+			bottom:0px;
+			position: relative;
+			z-index: 300;
+		}
+	</style>
+</head>
+<body>
+<div class="all">
+	<div class="aa"></div>
+	<div class="bb"></div>
+</div>
+</body>
+</html>

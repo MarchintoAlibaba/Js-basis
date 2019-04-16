@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>v-css中的动画原理</title>
+		<style type="text/css">
+			.ring{
+				width:200px;
+				height:200px;
+				border-radius:50%;
+				border:4px solid yellow;
+				overflow:hidden;
+				stroke-dasharray:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ring"></div>
+	</body>
+	<script type="text/javascript">
+		function random(min,max){ //取min到max之间的随机数，包括min和max
+			return Math.floor(Math.random()*(max-min+1)+min)
+		}
+		function changelist(list){
+			let _list=list.slice()
+			for(var i=0;i<_list.length;i++){
+				let j=random(0,i)
+				let t=_list[i]
+				_list[i]=_list[j]
+				_list[j]=t
+			}
+			return _list
+		}
+	var a=[{
+		name:'小明',
+		sex:'男',
+		age:1
+	},{
+		name:'小明',
+		sex:'男',
+		age:2
+	},{
+		name:'小明',
+		sex:'男',
+		age:3
+	},{
+		name:'小明',
+		sex:'男',
+		age:4
+	}]
+	console.log(changelist(a))
+	console.log(a)
+	</script>
+</html>

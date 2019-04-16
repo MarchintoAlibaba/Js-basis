@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>异步函数回调</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	function b(){
+		console.log("该到我回调函数了")
+	}
+	function d(){
+		console.log("我是函数d")
+	}
+	function a(callback,callback1){
+		console.log("let us go")
+		$.ajax({
+			url:"https://code.jquery.com/jquery-3.1.1.min.js",
+			async: true,
+			success:function(result){
+	        console.log("请求到资源了")
+	        callback()
+	    }});
+	    callback1()
+	}
+	a(b,d)
+	function c(){
+		console.log("我是函数c")
+	}
+	c()
+</script>
+</html>

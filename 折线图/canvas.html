@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>canvas</title>
+		<style>
+			#myCanvas{
+				background:red;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="650" height="1198" style="position: absolute;"></canvas>
+	</body>
+	<script>		
+var c = document.getElementById("myCanvas");//初始化
+var ctx = c.getContext("2d");
+
+
+var point1 = { left: 172, top: 276 };//第一个点
+var point2 = { left: 254, top: 236 };//第二个点
+ctx.beginPath();
+ctx.moveTo(point1.left, point1.top);//起始位置
+ctx.lineTo(point2.left, point2.top);//停止位置
+ctx.stroke();
+	</script>
+</html>

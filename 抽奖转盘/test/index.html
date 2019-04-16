@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>flex布局测试</title>
+		<style>
+			*{
+				padding:0px;
+				margin:0px;
+			}
+			.bigbox{
+				width:500px;
+				height:500px;
+				background:red;
+				position:relative;
+				display: flex;
+				align-items: center;
+	          	justify-content: center;
+			}
+			.smallbox{
+				position:absolute;
+				width:100px;
+				height:100px;
+				/*background:black;*/
+				z-index: 8;
+			}
+			.smallboxtwo{
+				position: absolute;
+				width:200px;
+				height:200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bigbox">
+			<div class="smallbox"><img width="100%" src="img/pointer.png" alt="" /></div>
+			<div class="smallboxtwo"><img width="100%" src="img/turntable.png" alt="" /></div>
+		</div>
+	</body>
+</html>
