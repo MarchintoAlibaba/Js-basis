@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>避免bug之纯函数</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 什么是纯函数：不利用全局变量并且该函数不对外部产生影响的函数 简单例
+	//不是纯函数：
+	var num = 20;
+	function compare(y){
+		return num > y
+	}
+	compare(num,16); //这个比较函数就引用了全局变量 num 所以不是纯函数
+	//纯函数：
+	function compare(x,y){
+		return x > y;
+	}
+	compare(20,16);//这个比较函数就没有引用全局变量且该函数不对外部产生任何影响，可以放在任何地方
+	// 例：在实际开发中我们会输入框中输入一个字后只出现有这个字的相关信息，这里用纯函数开发，不改变该原始数据，因为该原始数据可能在其他地让还要用
+	var arr = [
+		{name:'王二',sex:'male',age:'18',hight:'170'},
+		{name:'李四',sex:'female',age:'20',hight:'160'},
+		{name:'王五',sex:'female',age:'20',hight:'158'}
+	];
+	function screening(text,allarr){
+		var newarr = [];
+		for(prop in allarr){
+			if(allarr[prop].name.indexOf(text) !=-1){
+				var obj = {};
+				for(propp in allarr[prop]){
+					obj[propp] = allarr[prop][propp];
+				}
+				newarr.push(obj)
+			}
+		}
+		return newarr;
+	}
+	var newarr = screening('王',arr);
+	//这样的话我们就只使用这个副本，怎么修改都与原数据无关，其中用到了深度克隆；
+	//默写深度克隆
+	
+	var clonearr = [{name:'jack',hobby:{sprot:'basktaball',other:'sing'}},[1,2]];
+	var aftertarget;
+	function deepClone(origin,target){
+		var target = target || {};
+		for(prop in origin){
+			if(typeof(origin[prop]) == 'object'){
+				if(Object.prototype.toString.call(origin[prop]) == '[object Array]'){
+					target[prop] = [];
+				}else{
+					target[prop] = {};
+				}
+				deepClone(origin[prop],target[prop]);
+			}else{
+				target[prop] = origin[prop];
+			}
+		}
+		return target;
+	}
+</script>
+</html>

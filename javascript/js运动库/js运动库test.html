@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js运动库</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.move{
+			width:100px;
+			height:100px;
+			background:red;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+		#aa{
+			margin-top:200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="move"></div>
+	<div id="aa">1321321</div>
+	<button id='btn'>btn</button>
+	<button id='obtn'>obtn</button>
+</body>
+<script>
+	var move = document.getElementsByClassName('move')[0],
+		timer;
+	var cc = '<div></div>';
+	btn.onclick = function(){
+		moveDom(move)
+	}
+	function moveDom(dom){
+		var speed = 1;
+		if(!timer){
+			timer = setInterval(function(){
+				dom.style.left = dom.offsetLeft + speed + 'px';
+			},0.001)
+		}
+	}
+	var style = getComputedStyle(move,false)['width'];
+	function zz(aa){
+		console.log(getComputedStyle(move,false)[aa])
+	}
+	var stylee = move.currentStyle;
+</script>
+</html>

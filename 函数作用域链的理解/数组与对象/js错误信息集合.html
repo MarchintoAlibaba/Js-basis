@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js报错的错误信息集合</title>
+</head>
+<script>
+	console.log(window.innerWidth)
+	console.log(document.documentElement.clientWidth)
+</script>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 1.ReferenceError:非法或不能识别的引用值
+	// 2.SyntaxError:发生语法解析错误
+	// 3.TypeError：操作数类型错误
+	// 4.URLError:url处理函数使用不当
+	
+	// js版本有：js3.0 js5.0 js6.0 js7.0
+	// 现在我们在用普遍的版本是js3.0加js5.0的方法  现在很多浏览器都加上了6.0 7.0
+	// 在js5.0的严格模式下是js5.0加上js3.0的方法  在js开始时加上 "use strict" 即是js严格模式
+	// 例 with方法在js5.0的严格模式下是不能使用的 
+	// with方法的作用是会改变作用域
+	// "use strict" 
+		var name="jingdong"
+		var obj={
+			name:'77'
+		}
+	function test(){
+		var name="xiaoming"
+		console.log(this.name)
+	}
+	with(obj){
+		console.log(name)
+	}
+	console.log(document.body.offsetWidth)
+</script>
+</html>

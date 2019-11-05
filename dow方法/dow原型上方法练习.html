@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document原型上的方法</title>
+</head>
+<body>
+	<div>
+		<span></span>
+		<p></p>
+		<i></i>
+		<em></em>
+		<div>
+			<div>
+				<p>
+					<strong></strong>
+				</p>
+			</div>
+			<div>
+				<div>
+					<table>
+						<tbody>
+							<tr>
+								<td><div></div></td>
+							</tr>
+						</tbody>
+					</table>
+					<span>
+						<p></p>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	//1.遍历元素节点树（在原型链上编程）
+	// var p = document.querySelectorAll('p')[0];
+	// var i = document.querySelector('i');
+	var div = document.body.children[0];
+	// HTMLElement.prototype.childrenSelf = function(){
+	// 	var len = this.childNodes.length,arr = [];
+	// 	for(var i = 0;i <len;i ++){
+	// 		if(this.childNodes[i].nodeType == 1){
+	// 			arr.push(this.childNodes[i]);
+	// 		}
+	// 	}
+	// 	return arr;
+	// }
+	// 2.封装函数，返回元素span的第n层祖先元素节点
+	// var span = document.querySelector('p span');
+	// function getElement(ele,n){
+	// 	for(var i = 0;i <n;i ++){
+	// 		ele = ele.parentElement
+	// 	}
+	// 	return ele;
+	// }
+	// 3.封装函数，返回元素e的第n个兄弟元素节点，n为正 返回后面的兄弟节点 n为负 返回前面的 n为0 返回自己
+	// var em = document.querySelector('em');
+	// function siblingElement(em,n){
+	// 	var i = 0;
+	// 	if(n > 0){
+	// 		for(;i < n;i ++){
+	// 			em = em.nextElementSibling;
+	// 			if(em == null){
+	// 				return null
+	// 			}
+	// 		}
+	// 	}else{	
+	// 		for(;n < i;n ++){
+	// 			em = em.previousElementSibling;
+	// 			if(em == null){
+	// 				return null
+	// 			}
+	// 		}
+	// 	}
+	// 	return em;
+	// }
+	// 4.编辑函数，封装myChildren功能，解决以前部分浏览器的兼容性问题
+	// 5.自己封装hasChildren()方法，不可用children属性
+	// HTMLElement.prototype.hasChildren = function (){
+	// 	var len = this.childNodes.length;
+	// 	for(var i = 0; i < len; i ++){
+	// 		if(this.childNodes[i].nodeType == 1){
+	// 			return true;
+	// 		}
+	// 	}
+	// 	return false;
+	// }
+	// 6.遍历div下所有子元素节点 子元素节点的子元素节点 这里要用到递归
+	// 1.遍历所有元素子节点 
+	// 2.将所有元素子节点添加到一个数组里面 然后递归  
+	// 注意:p元素里不能直接放块级元素
+	var arr = [];
+	function allChildren(div){
+			var len = div.children.length;
+			for(var i = 0; i < len; i ++){
+				if(div.children){
+				arr.push(div.children[i]);
+				allChildren(div.children[i]);
+			}
+			
+		}
+		return arr;
+	}
+	
+</script>
+</html>

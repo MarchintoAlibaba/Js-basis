@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>new-world</title>
+</head>
+<body>22
+	<div id="box">
+	</div>
+</body>
+<script>
+	//以前我们都是通过form表单获取数据，他的缺点是每次获取数据都要刷新页面
+	//现在用ajax的优点是可以局部异步的获取数据
+	//ajax -- 用js异步获取xml数据 -- asynchronous javascript and xml 
+	//以前我们的数据格式用的是xml，由于json数据更好的解析所以现在是 asynchronous javascript and json 
+
+
+
+	//手动封装ajax -- async javascript and xml
+	// var xhr = new XMLHttpRequest(); //创建XMLHttpRequest对象 是ajax的基础
+	// xhr.open('GET','new-world.php',true); //xhr的请求 第一个参数是请求方式 第二个参数是请求数据的地址 第三个参数是是否异步请求
+	// xhr.send();// 发送请求
+	// xhr.onreadystatechange = function(){ //监听XMLHttpRequest的状态 每次状态改变都会触发改函数
+	// 	 if(xhr.readyState == 4 && xhr.status == 200){ //readyState == 4表示请求已经完成 status == 200 表示请求成功
+	// 	 	box.innerHTML = xhr.responseText;
+	// 	 }
+	// }
+	
+	//post请求方式如下、
+	// var xhr = new XMLHttpRequest(); //实列XMLHttpRequest对象
+	// xhr.open('POST','./post.php',true); //规定请求的类型，地址，是否异步
+	// xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");//添加请求头 规定post发送参数的解析数据的类型
+	// xhr.send("username=aimee&age=18"); //里面填写请求的参数
+	// xhr.onreadystatechange = function(){ //监听XMLHttpRequest的状态 每次状态改变都会触发改函数
+	// 	if(xhr.readyState == 4 && xhr.status == 200){ //readyState == 4表示请求已经完成 status == 200 表示请求成功
+	// 		box.innerHTML = xhr.responseText;  //responseText 请求成功后得到的数据
+	// 	}
+	// }
+	//自己封装一个可用的ajax 简单的令人发指、
+
+
+	myAjax('POST','post.php',true,function(data){
+		box.innerHTML = data;
+	})
+	function myAjax(method,url,torf,func){
+		var xhr = new XMLHttpRequest();
+		xhr.open(method,url,torf);
+		if(method == 'GET'){
+			xhr.send();
+		}else if(method == 'POST'){
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send("username=aimee&age=18");
+		}
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				func(xhr.responseText);
+			}
+		}
+	}
+	//客户端http请求资源的方式有 get post delete head put options...
+	//get请求方式与post的不同
+	//1.get请求传递的方式与post不同 get请求的参数是直接跟在url后面 post是将参数放请求主体里面
+	//2.post请求的参数长度要比get长 post可以传递更多的参数 因为url的长度是有限制的 所以限制了get请求时的数据量
+	//3.post要比get安全
+</script>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js的异步加载与按需加载</title>
+	<!-- <script src='demo.js' async></script> js加载是同步加载的 在script标签上加了async之后就变成了异步加载（下载完后立即执行）  -->
+</head>
+<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.test{
+			width:300px;
+			height:300px;
+			background: red;
+		}
+		.test-one{
+			width:200px;
+			height:300px;
+			background: green;
+		}
+		.test-two{
+			width:400px;
+			height:300px;
+			background: yellow;
+		}
+	</style>
+<body>
+	<div class="test">printf("%3d",a[i][j]);三条执行语句，想把他们都包括到循环体内就必须用大括号括起来，作为一个复合语句出现。
+for语句还有空循环模式，就是没有执行语句，如：
+for(i=0;str[i]!='\0';i++);此句后就有分号，表示为空循环，没有执行语句，它的功能就是为了得到i的值。</div>
+	<div class="test-one">方法	描述
+Math.ceil(x)	对数进行上舍入。（向上取整；大于等于x的最小整数）
+Math.floor(x)	对数进行下舍入。（小于等于x的最大整数）
+Math.max(x,y)	返回 x 和 y 中的最高值。（返回x、y中的最大值；可以传入多个参数，用逗号隔开）
+Math.min(x,y)	返回 x 和 y 中的最低值。（返回x、y中的最小值；可以传入多个参数，用逗号隔开）
+Math.random()	返回 0 ~ 1 之间的随机数。（此方法可扩展，如：取一定范围内的随机整数…）
+Math.round(x)	把数四舍五入为最接近的整数。（对x四舍五入）
+Math.acos(x)	返回数的反余弦值。
+Math.asin(x)	返回数的反正弦值。
+Math.atan(x)	以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。
+Math.atan2(y,x)	返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）。
+Math.cos(x)	返回数的余弦。
+Math.exp(x)	返回 e 的指数。
+Math.log(x)	返回数的自然对数（底为e）。
+Math.pow(x,y)	返回 x 的 y 次幂。
+Math.sin(x)	返回数的正弦。
+Math.sqrt(x)	返回数的平方根。
+Math.tan(x)	返回角的正切。
+Math.toSource()	返回该对象的源代码。
+Math.valueOf()	返回 Math 对象的原始值。
+--------------------- 
+作者：littlebearGreat 
+来源：CSDN 
+原文：https://blog.csdn.net/littlebearGreat/article/details/78414501 
+版权声明：本文为博主原创文章，转载请附上博文链接！</div>
+	<div class="test-two">方法	描述
+Math.ceil(x)	对数进行上舍入。（向上取整；大于等于x的最小整数）
+Math.floor(x)	对数进行下舍入。（小于等于x的最大整数）
+Math.max(x,y)	返回 x 和 y 中的最高值。（返回x、y中的最大值；可以传入多个参数，用逗号隔开）
+Math.min(x,y)	返回 x 和 y 中的最低值。（返回x、y中的最小值；可以传入多个参数，用逗号隔开）
+Math.random()	返回 0 ~ 1 之间的随机数。（此方法可扩展，如：取一定范围内的随机整数…）
+Math.round(x)	把数四舍五入为最接近的整数。（对x四舍五入）
+Math.acos(x)	返回数的反余弦值。
+Math.asin(x)	返回数的反正弦值。
+Math.atan(x)	以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。
+Math.atan2(y,x)	返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）。
+Math.cos(x)	返回数的余弦。
+Math.exp(x)	返回 e 的指数。
+Math.log(x)	返回数的自然对数（底为e）。
+Math.pow(x,y)	返回 x 的 y 次幂。
+Math.sin(x)	返回数的正弦。
+Math.sqrt(x)	返回数的平方根。
+Math.tan(x)	返回角的正切。
+Math.toSource()	返回该对象的源代码。
+Math.valueOf()	返回 Math 对象的原始值。
+--------------------- 
+作者：littlebearGreat 
+来源：CSDN 
+原文：https://blog.csdn.net/littlebearGreat/article/details/78414501 
+版权声明：本文为博主原创文章，转载请附上博文链接！</div>
+<script>
+	//这里我们来介绍js的按需加载 js的按需加载就是在我们点击页面的时候创建一个script标签（此时页面会下载此js）并且添加到页面中（此时页面会运行js）
+	var div = document.getElementsByTagName('div')[0];
+	div.addEventListener('click',function(){
+		var script = document.createElement('script');
+
+		//但是当我们只想执行test文件里面的一个方法的时候 我们要在test文件下载完之后再执行该方法
+		script.onload = function(){ //script.onload就是检测script标签里面的文件有木有下载完成 下载完成后执行里面的代码
+			demoTest();
+		}
+		script.src = 'test.js';
+		document.head.appendChild(script);
+	},false)
+
+
+var obj = {
+	demo : function(){
+		console.log(111)
+	}
+}
+obj[demo]();
+</script>
+</body>
+
+</html>

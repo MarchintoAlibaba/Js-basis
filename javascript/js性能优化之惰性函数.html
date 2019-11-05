@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js性能优化之惰性函数</title>
+</head>
+<body>
+	<button id="demo">点击</button>
+</body>
+<script>
+	//写一个test函数，这个函数返回首次调用时的new Date().getTime()时间 注意是首次
+	var test = function(){
+		var t = new Date().getTime();
+		test = function(){
+			return t;
+		}
+		return test();
+	}
+	console.log(test());
+	console.log(test());
+	console.log(test());
+	console.log(test());
+	// 这样写的好处是即避免了变量的污染 又达到了要求
+	// 这样的写法在封装兼容性函数的时候很常见，会避免每次都进行不必要的判断 以前的老方法写法如下 例
+	// function addEvent(dom,type,handler){
+	// 	if(dom.addEventListener){
+	// 		dom.addEventListener(type,handler,false)
+	// 	}else{
+	// 		dom.attachEvent('on' + type,handler);
+	// 	}
+	// }
+	// var demo = document.getElementById('demo');
+	// addEvent(demo,'click',function(){
+	// 	alert(1);
+	// })
+// 新方法如下 不用每次去判断 只用判断第一次 优化了性能
+	function addEvent(dom,type,handler){
+		if(dom.addEventListener){
+			// console.log(1)
+			dom.addEventListener(type,handler,false);
+			addEvent = function(dom,type,handler){
+				// console.log(2)
+				dom.addEventListener(type,handler,false);
+			}
+		}else{
+			dom.attachEvent('on' + type,handler);
+			addEvent = function(dom,type,handler){
+				dom.attachEvent('on' + type,handler)
+			}
+		}
+	}
+	var demo = document.getElementById('demo');
+	console.log(addEvent);
+	addEvent(demo,'click',function(){
+		console.log(addEvent)
+	})
+	addEvent(demo,'click',function(){
+		console.log(addEvent)
+	})
+	addEvent(demo,'click',function(){
+		console.log(addEvent)
+	})
+</script>
+</html>

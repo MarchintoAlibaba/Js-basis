@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js数学之美拖拽</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.oDiv{
+			position: absolute;
+			width:100px;
+			height:100px;
+			background:red;
+			left:0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="oDiv"></div>
+	<div style='width:100px;height:100px;background:yellow;'></div>
+</body>
+<script>
+	//日常电脑上的操作 拖拽 拖拽一个东西跟着鼠标走
+	var oDiv = document.getElementsByClassName('oDiv')[0];
+	var body = document.body;
+	function moveDiv(dom,bigpage){
+		var distanceX,distanceY;
+		dom.onmousedown = function (e){
+			var event = e || window.event;
+			distanceX = event.clientX - this.offsetLeft;
+			distanceY = event.clientY - this.offsetTop;
+			bigpage.onmousemove = function(e){
+				var event = e || window.event;
+				dom.style.left = event.clientX - distanceX + 'px';
+				dom.style.top = event.clientY - distanceY + 'px';
+				console.log(event.clientX)
+			}
+			bigpage.onmouseup = function(){
+				bigpage.onmousemove = null;
+			}
+		}
+	}
+	moveDiv(oDiv,document);
+</script>
+</html>

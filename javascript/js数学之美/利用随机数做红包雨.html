@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用随机数做满屏幕漂的红包雨</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.wrapper{
+			width:500px;
+			height:600px;
+			border:1px solid black;
+			box-sizing:border-box;
+			position: relative;
+			margin-top:200px;
+			overflow: hidden;
+		}
+		.redbox{
+			width:80px;
+			height:100px;
+			background:red;
+			position: absolute;
+			/*transform: rotate(30deg);*/
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper"></div>
+</body>
+<script src='jquery.js'></script>
+<script>
+	//先随机生成div
+	function init(){
+		var timer = setInterval(function(){
+			var redBox = $("<div class='redbox'></div>");
+				redBox.css({
+					"top":-parseInt((Math.random() * 100 + 100)) + "px",
+					"left":parseInt(Math.random() * 420) + 'px',
+					"transform":'rotate(' + parseInt(Math.random() * 60 - 30) + 'deg)'
+				})
+			goingDown(redBox);
+			$('.wrapper').append(redBox);
+		},Math.random() * 300 + 200)
+		function goingDown(dom){
+			dom.animate({top:'600px'},4000,function(){
+				if(parseInt(dom.css('top')) >= 600){
+					dom.remove();
+				}
+			})
+		}
+	}
+	init();
+</script>
+</html>

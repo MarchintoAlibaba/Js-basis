@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机移动的方块</title>
+</head>
+<body>
+	<div style="width:50px;height:50px;background:red;position: absolute;left:500px;top:500px;"></div>
+</body>
+<script>
+	var div = document.getElementsByTagName('div')[0];
+		div.onmouseenter = function(){
+			var randomData = Math.ceil(Math.random() * 8)
+			console.log(randomData)
+			if(randomData == 1){
+				div.style.top = div.offsetTop - 100 + 'px';
+			}else if(randomData == 2){
+				div.style.left = div.offsetLeft - 100 + 'px';
+				div.style.top = div.offsetTop - 100 + 'px';
+			}else if(randomData == 3){
+				div.style.left = div.offsetLeft + 100 + 'px';
+			}else if(randomData == 4){
+				div.style.top = div.offsetTop + 100 + 'px';
+				div.style.left = div.offsetLeft + 100 + 'px';
+			}else if(randomData == 5){
+				div.style.top = div.offsetTop + 100 + 'px';
+			}else if(randomData == 6){
+				div.style.top = div.offsetTop + 100 + 'px';
+				div.style.left = div.offsetLeft - 100 + 'px';
+			}else if(randomData == 7){
+				div.style.left = div.offsetLeft - 100 + 'px';
+			}else if(randomData == 8){
+				div.style.top = div.offsetTop - 100 + 'px';
+				div.style.left = div.offsetLeft - 100 + 'px';
+			}
+		}
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 自己从写数组的forEach方法
+	Array.prototype.myForEach = function(func){
+		for(var i = 0;i < this.length; i ++){
+			func(this[i],i)
+		}
+	} 
+	var arr = [1,2,3];
+	// arr.myForEach(function(ele,index){
+	// 	console.log(ele,index)
+	// })
+	function aa(fun){
+		fun()
+	}
+	aa(function(){
+		for(var i = 0;i < 3;i ++){
+			break;
+			if(i == 1){
+				return;
+			}
+			console.log(i);
+		}
+		console.log(2)
+	})
+	for(var i = 0; i < 3;i ++){
+		(function(){
+			console.log('a')
+		}())
+	}
+</script>
+</html>

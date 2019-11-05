@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>页面渲染原理</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.wrapper{
+			margin:200px;
+			width:200px;
+			height:200px;
+			border:1px solid black;
+			position:relative;
+			transform:rotate3d(1,0,0,-45deg);
+			transform-style:preserve-3d;
+			text-align: center;
+			line-height: 200px;
+			color:white;
+			font-size:30px;
+			animation:turnmove 5s linear infinite both;
+		}
+		@keyframes turnmove{
+			form{
+				transform:rotate3d(0,1,0,0deg);
+			}
+			to{
+				transform:rotate3d(0,1,0,300deg);
+			}
+		}
+		.wrapper div{
+			position: absolute;
+			width:200px;
+			height:200px;
+		}
+		.top{
+			background:blue;
+			transform:translate3d(0,0,200px);
+		}
+		.right{
+			background:pink;
+			transform:rotate3d(0,1,0,60deg) translate3d(0,0,200px);
+		}
+		.bottom{
+			background:#f30;
+			transform:rotate3d(0,1,0,120deg) translate3d(0,0,200px);
+		}
+		.left{
+			background:green;
+			transform:rotate3d(0,1,0,180deg) translate3d(0,0,200px);
+		}
+		.front{
+			background:orange;
+			transform:rotate3d(0,1,0,240deg) translate3d(0,0,200px);
+		}
+		.behined{
+			background:black;
+			transform:rotate3d(0,1,0,300deg) translate3d(0,0,200px);
+		}
+	</style>
+</head>
+<body>
+	<!-- 1.重排比重绘更耗性能；重排是页面元素改变大小，位置，显示隐藏是会触发重排
+		重绘是改变页面的文字会背景颜色
+	2.当在些js的时候，要将多个重排写一个，多个重绘写一起，这样系统会识别，将多个重排（重绘）代码一起只重排（重绘）一次，提高页面性能
+	3.改变一个元素多个属性时，改变其class名更好，或一次性添加到dom的style中 例： -->
+	<div id="box"></div>
+	<!-- css3-3d -->
+	<div class="wrapper">
+		<div class="top">top</div>
+		<div class="right">right</div>
+		<div class="bottom">bottom</div>
+		<div class="left">left</div>
+		<div class="front">front</div>
+		<div class="behined">behined</div>
+	</div>
+</body>
+<script>
+	box.style = 'width:100px;height:100px;background:red;'; //这样写性能更好
+</script>
+</html>

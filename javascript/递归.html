@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>递归</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 递归的好处是方便，代码简洁其他没什么好处而且运行还慢
+
+	// 适合用递归的函数1.有规律 2.有出口
+	
+	// 下面是列举两个经典的递归函数
+	// 1.求n的阶乘
+	// 首先我们找规律  n！= n * (n-1)!;
+	// 然后找出口  出口是n = 1; return 1
+	function factorial(n){
+		if(n == 1){
+			return 1;
+		}
+		return n * factorial(n - 1);
+	}
+	// 2.求第n个斐波那契额列表的数是多少  1 1 2 3 5 8 13 21 34 55
+	// 首先找规律 fbnqList(n) = fbnqList(n - 1) + fbnqList(n - 2)
+	// 找出口 n = 1 或 n = 2 return 1;
+	function fbnqList(n){
+		if(n == 1 || n == 2){
+			return 1;
+		}
+		return fbnqList(n - 1) + fbnqList(n - 2);
+	}
+	if(a){
+		
+		function a(){
+			console.log(1);
+		}
+		console.log(a)
+	}
+	console.log(a)
+</script>
+</html>

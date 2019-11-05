@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3的常用属性</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.leaf{
+			width:100px;
+			height:100px;
+			background:green;
+			border-radius:98px 27px 177px 3px;
+		}
+		.wrapper{
+			margin:100px;
+		}
+		.wrapper div{
+			margin:10px;
+		}
+		.half_circle{
+			width:100px;
+			height:50px;
+			background:black;
+			border-radius:50px 50px 0 0;
+		}
+		.other{
+			width:100px;
+			height:100px;
+			background:red;
+			border-top-left-radius:100px 100px;
+			border-top-right-radius:100px 100px;
+			border-bottom-left-radius:50px 50px;
+			border-bottom-right-radius:50px 50px;
+		}
+		.sector{	
+			width:100px;
+			height:100px;
+			background:yellow;
+			border-top-right-radius:100px 100px;
+		}
+		.ba-po{
+			width:100px;
+			height:16px;
+			padding:30px;
+			background-image:url(ba.png);
+			background-repeat:no-repeat;
+			background-position:0px -14px;
+			background-clip:content-box;
+			background-origin:content-box;
+		}
+		.shadow{
+			width:100px;
+			height:30px;
+			background:red;
+			box-shadow:0 0 6px 4px #000 inset;
+		}
+		.linear{
+			width:100px;
+			height:100px;
+			background:linear-gradient(200deg,red 10%,green 20%,yellow 80%); /*线性渐变*/
+		}
+		.radial{
+			width:200px;
+			height:100px;
+			background: radial-gradient(ellipse at 100px 50px, red 10%, yellow 20%, green 30%,transparent 100%); /* 标准语法 */
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="leaf"></div>
+		<div class="half_circle"></div>
+		<div class="other"></div>
+		<div class="sector"></div>
+		<div class="ba-po"></div>
+		<div class="shadow"></div>
+		<div class="linear"></div>
+		<div class="gradit"></div>
+		<div class="radial"></div>
+	</div>
+</body>
+</html>

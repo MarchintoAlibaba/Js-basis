@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SimplePagination</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+  <input type="text" placeholder="请输入您的关键字" class="searchName"><button class='seachBox'>搜索</button>
+  <div class="song">
+  </div>
+  <div class="box"></div>
+  <!-- <form action="" id="page-go">
+    <input type="text" id="page-num">
+    <input type="submit" id="goto" value="Go">
+  </form> -->
+</body>
+<script src='../SimplePagination.js'></script>
+<script>
+  var page_num = 1;
+  var viewpage = 10;
+  function pageView(allPage){
+    const slp = new SimplePagination(allPage);
+    slp.init({
+      container: '.box',
+      maxShowBtnCount: 5,
+      onPageChange:  function(state) {//点击页数后的回调函数
+        // console.log('pagination change:', state.pageNumber)
+        page_num = state.pageNumber;
+        // allWays.ajax((page_num - 1) * allWays.pageCount);
+        var str = '';
+        $.ajax({
+          type:'get',
+          url:'https://api.douban.com/v2/music/search',
+          dataType:'jsonp',
+          data:'q=' + allWays.searchName + '&start=' + (page_num - 1) * viewpage + '&count=' + viewpage,
+          success:function(data){
+            console.log(data);
+            allWays.pageCount = (data.total - data.start) <  allWays.pageCount ? (data.total % 10) : viewpage;
+            console.log(allWays.pageCount)
+            for(var i = 0;i < allWays.pageCount;i ++){
+              str += '<img src=' + data.musics[i].image + '>';
+            }
+            allWays.song.innerHTML = str;
+          }
+        })
+      }
+    })
+  }
+  
+  // document.getElementById('page-go').addEventListener('submit', e => {
+  //   e.preventDefault()
+  //   slp.gotoPage(+document.getElementById('page-num').value)
+  // })
+</script>
+<!-- <script>
+  var page_active = document.getElementsByClassName('page-active')[0],
+  box = document.getElementsByClassName('box')[0];
+  box.addEventListener('click',function(e){
+    console.log(e)
+  },false)
+</script> -->
+<script>
+  var allWays = {
+    init:function(){
+      this.searchNameC = document.getElementsByClassName('searchName')[0];
+      this.song = document.getElementsByClassName('song')[0];
+      this.box = document.getElementsByClassName('box')[0];
+      this.seachBox = document.getElementsByClassName('seachBox')[0];
+      this.clickS(page_num);
+      this.test();
+    },
+    song:null,
+    searchName:null,
+    startN:0,
+    box:null,
+    seachBox:null,
+    searchNameC:null,
+    pageCount:10,
+    allPage:1,
+    data:null,
+    test:function(){
+      var This = this;
+      this.searchNameC.oninput = function(){
+        This.searchName = this.value;
+        console.log(This.searchName)
+      }
+    },
+    clickS:function(pageNow){
+      var This = this;
+      this.seachBox.onclick = function(){
+        console.log(111)
+        This.ajax((pageNow - 1) * This.pageCount);
+      }
+    },
+    ajax:function(startNow){
+      var This = this,
+        str = '';
+      $.ajax({
+        type:'get',
+        url:'https://api.douban.com/v2/music/search',
+        dataType:'jsonp',
+        data:'q=' + this.searchName + '&start=' + startNow + '&count=' + this.pageCount,
+        success:function(data){
+          console.log(data);
+          This.data = data;
+          This.pageCount = (data.total - data.start) <  This.pageCount ? data.total % 10 : viewpage;
+          for(var i = 0;i < This.pageCount;i ++){
+            str += '<img src=' + data.musics[i].image + '>';
+          }
+          This.song.innerHTML = str;
+          if(data.total > This.pageCount){
+            This.box.style.display = 'block';
+            This.allPage = Math.ceil(data.total / This.pageCount);
+            pageView(This.allPage);
+          }
+        }
+      })
+    }
+  }
+  allWays.init();
+</script>
+</html>

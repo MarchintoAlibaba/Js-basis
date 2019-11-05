@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jq制作绚丽的ppt</title>
+	<script src="js/jquery.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="all">
+			<div class="swiper">
+				<img src="img/1.jpg" alt="">
+				<div class="small-img">
+					<img src="img/1-1.jpg" alt="">
+				</div>
+			</div>
+			<div class="swiper">
+				<img src="img/2.jpg" alt="">
+				<div class="small-img">
+					<img src="img/2-2.jpg" alt="">
+				</div>
+			</div>
+			<div class="swiper">
+				<img src="img/3.jpg" alt="">
+				<div class="small-img">
+					<img src="img/3-3.jpg" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="left-right">
+			<div class="btn-left"><</div>
+			<div class="btn-right">></div>
+		</div>
+		<div class="slider">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	init();
+	function init(){
+		var timer,imgIndex = 0,flag = true;
+		startPpt();
+		$('.btn-left').add($('.btn-right')).add($('.slider ul li')).on('click',function(){
+			if(flag){
+				clearTimeout(timer);
+				if($(this).attr('class') == 'btn-left'){
+					startMove('left');
+				}else if($(this).attr('class') == 'btn-right'){
+					startMove('right');
+				}else{
+					startMove($(this).index());
+				}
+				startPpt();
+			}
+		})
+		function startPpt(){	
+			timer = setTimeout(function(){
+				startMove();
+				startPpt();
+			},3000)
+		}
+		function startMove(direction){
+			flag = false;
+			if(direction == imgIndex){
+				return;
+			}
+			$($('.swiper')[imgIndex]).children('img').animate({opacity:0},500).siblings('.small-img').children('img').animate(
+				{
+					width:0,
+					height:0
+				},500
+				);
+			if(direction == '0' || direction == '1' || direction == '2'){
+				imgIndex = direction;
+			}
+			if(direction == 'left'){
+				imgIndex --;
+				if(imgIndex < 0){
+					imgIndex = $('.swiper').length - 1;
+				}
+			}else if(direction == 'right' || direction == undefined){
+				imgIndex ++;
+				if(imgIndex == $('.swiper').length){
+					imgIndex = 0;
+				}
+			}
+			$($('.slider ul li')[imgIndex]).css("background",'red').siblings().css("background","skyblue");
+			$($('.swiper')[imgIndex]).children('img').delay(200).animate({opacity:1},500).siblings('.small-img').children('img').delay(1000).animate({
+				width:"500px",
+				height:"300px"
+			},500,function(){
+				flag = true;
+			});
+		}
+	}
+</script>
+</html>

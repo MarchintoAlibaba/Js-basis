@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断div滑入滑出的方向</title>
+	<style>
+		*{
+			margin:0;
+		}
+		.box{
+			width:200px;
+			height:200px;
+			background:#f30;
+			margin:200px auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+<script>
+	var box = document.getElementsByClassName('box')[0];
+	function judgeDirection(){
+		var disX,disY,direction;
+		box.onmouseenter = function(e){
+			var event = e || window.event;
+			getDire(event);
+		}
+		box.onmouseleave = function(e){
+			var event = e || window.event;
+			getDire(event);
+		}
+		function getDire(e){
+				disX =(event.clientX - box.offsetLeft) - (box.offsetWidth / 2);
+				divY =(event.clientY - box.offsetTop) - (box.offsetHeight / 2);
+				direction = Math.atan2(divY,disX) * (180 / Math.PI);
+				if(-45 < direction && direction <= 45){
+					console.log('right')
+				}else if(45 < direction && direction <= 135){
+					console.log('bottom')
+				}else if(-135 < direction && direction <= -45){
+					console.log('top')
+				}else{
+					console.log('left')
+				}
+			}
+	}
+	judgeDirection();
+</script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3盒模型布局</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.box{
+			width:100px;
+			height:100px;
+			background:red;
+			padding:10px;
+			border:50px solid black;
+			box-sizing:border-box;
+		}
+		.column{
+			width:300px;
+			border:1px solid black;
+			column-count: 2;/*此属性是将文字分列*/
+		}
+
+
+
+		
+		.wrapper{
+			width:100%;
+			height:400px;
+			display:flex;
+			border:1px solid red;
+			box-sizing:border-box;
+			/*flex-direction:column;设置主轴是列还是行*/
+			/*flex-wrap:wrap;让弹性盒模型在项目超出的时候换行  flex-flow是复合属性*/ 
+			justify-content: space-between;
+		}
+		.item{
+			width:200px;
+			border:1px solid blue;
+			height:30px;
+		}
+		.item2{
+			order:2; /*根据order属性的值的大小，来排列展示的顺序*/
+			/*flex-grow:1;*/ /*flex是一个复合属性分别是：flex-grow（剩下的部分怎么分摊）、flex-shrink（超出的部分如何分摊）和flex-basis（规定项目的初始长度）*/
+		}
+		.item1,.item3{
+			order:1;
+			/*flex-basis:100px; 设置项目在主轴上的初始宽度，比重比width高*/
+			/*align-self:flex-end;*/ /*依靠主轴排列的位置*/
+		}
+		.triangle{
+			display:inline-block;
+			border:100px solid transparent;
+			border-top:100px solid red;
+		}
+		.sector{
+			width:100px;
+			height:100px;
+			border-top-right-radius:100px;
+			background:blue;
+		}
+		.half-circle{
+			width:100px;
+			height:50px;
+			background:orange;
+			border-top-right-radius:100px;
+			border-top-left-radius:100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<div class="column">的骄傲辣椒东方季道了设计费度克隆范德萨了范德萨离开家福利都是离开家上点击福利都是独立思考发几款来的急是打开了绝对是分散多斯拉克积分多斯拉克积分都是单身快乐接发大水深度克隆积分打瞌睡深度克隆接发大水深度克隆积分受得了跨境电商开始懂了接发大水单身快乐接发大水</div>
+
+
+	
+	<div class="wrapper">
+		<div class="item item1">1</div>
+		<div class="item item2">2</div>
+		<div class="item item3">3</div>
+	</div>
+
+	<!-- 画三角 -->
+	<div class="triangle"></div>
+	<!-- 画扇形 -->
+	<div class="sector"></div>
+	<!-- 画半圆 -->
+	<div class="half-circle"></div>
+</body>
+</html>

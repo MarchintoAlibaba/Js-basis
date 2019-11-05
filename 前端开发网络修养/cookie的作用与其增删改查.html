@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+	<title>cookie的作用与其增删改查</title>
+</head>
+<body>
+	<div class="aa">1</div>
+</body>
+<script>
+	// cookie的出现环境：由于网络请求的协议http是无状态协议，这样网站不能根据客户的喜好生成个人页面，由此催生出cookie，
+	// cookie是由服务器端生成：当用户第一次访问服务器时，此时服务器端生成cookie，以报文的形式传给浏览器保存在本地，当用户第二次访问服务器时，浏览器会将之前保存的cookie传给服务器，这样服务器就可以识别当前用户的唯一性了，这样就能替用户生成其个性页面
+	// cookie的增删改查
+	document.cookie = 'name=jingdong;Max-Age=1000;path=/'; //Max-Age设置的是从现在开始cookie要保留的时间 单位是秒 1000就是1000秒 -1就相当于删除当前cookie 如果设置1000秒 那么1000秒后改cookie就会在本地删除
+	//下面写函数来对cookie进行增删改查
+	function addCookie(name,value,time,path){
+		path = path || '/';
+		document.cookie = name + '=' + value + ';Max-Age=' + time + ';path=' + path;
+	}
+	addCookie('age',18,100);
+	addCookie('sex','man',1000);
+	addCookie('hight','170',1000);
+	function deleteCookie(name,path){
+		path = path || '/';
+		document.cookie = name + '="";Max-Age=-1;path=' + path;
+	}
+	deleteCookie('age');
+	deleteCookie('name','/newworld');
+	deleteCookie('name');
+	// addCookie('name','jd',1000);
+	// addCookie('name2','jd',1000,'/newworld');
+	//修改的话就直接增加一样的cookie的name会直接覆盖
+	//查看只能查看cookie的value值，其他属性没有接口查看
+	function checkCookie(name,callback){
+		var cookieString = document.cookie,
+			cookieArr = cookieString.split('; ');
+			cookieArrLength = cookieArr.length;
+		for(var i = 0;i < cookieArrLength;i ++){
+			cookieArr[i] = cookieArr[i].split('=');
+			if(cookieArr[i][0] == name){
+				return callback ? callback(cookieArr[i][1]) : cookieArr[i][1];
+			}
+		}
+	}
+	checkCookie('hight');
+</script>
+</html>

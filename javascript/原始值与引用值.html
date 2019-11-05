@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js的原始值与引用值</title>
+</head>
+<body>
+	
+</body>
+<script>
+// 	原始值  存放位置在 栈（stack）
+// 	number string boolean undefind null 
+
+// 	引用值  存放位置在 堆（heap）
+// 	arr object function date regexp(正则)...
+// 两值的不同点在 例
+// var a = 10;
+// var b=a;
+// a=20;
+// console.log(b) -->10
+
+// var arr=[1,2];
+// var arr1=arr;
+// arr.push(3);
+// console.log(arr1) -->[1,2,3]
+
+// var arra=[1,2]
+// var arrb=arra;
+// arra=[1,2,3]
+// console.log(arra) -->[1,2]
+
+
+// 栈（stack）
+// a = 10;
+// b =a = 10 -->b=10 这里的b相当于是a的副本 跟a没有一点关系 相当于给b赋值=10
+// a改变 b不变
+
+// 堆（heap）      栈（stack）
+// arr=[1,2]       arr=[1,2]的一个地址 -->[1,2]
+// arr1=arr=[1,2] 	arr1=[1,2]的一个地址 -->[1,2]
+// 当arr=arr.pust(3)	arr1=[1,2]的同一个地址 -->[1,2,3]
+
+
+// 堆（heap） 			栈（stack）
+// arra=[1,2]          arra=[1,2]的一个地址 -->[1,2]
+// arrb=arra=[1,2] 	arrb=[1,2]的一个地址  -->[1,2]
+// arra=[1,2,3]		arra=[1,2,3]的一个新地址 -->[1,2,3]
+// 所以此时的arrb=[1,2]还是指向的是以前那个地址
+
+
+
+// 从两个打印结果可以看出原始值是存放在栈上，a与b是两个分开的变量；a改变对b没有影响 
+// 引用值是存放在堆上的，但是引用值的地址是存放在栈上的 所以放arr1=arr其实是让arr的地址等于arr1 所以改变arr的值 arr1的值也改变了
+// 
+// 
+var number=1 + 1 + 1 + "a" + 1 + 1 + 1 + 1;
+</script>
+</html>

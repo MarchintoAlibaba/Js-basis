@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas扇形正在加载中样式</title>
+</head>
+<body>
+	<canvas id='canvas' width="500px" height="500px"></canvas>
+	<div class="oDiv"></div>
+</body>
+ <script>
+ 	var canvas = document.getElementById('canvas'),
+ 		oDiv = document.getElementsByClassName('oDiv')[0],
+ 		ctx = canvas.getContext('2d');
+ 		CanvasRenderingContext2D.prototype.sector = function(x,y,r,sDeg,eDeg){
+ 			// 圆心 半径 起始角度
+ 			this.save();
+ 			this.beginPath();
+ 			this.moveTo(x,y);
+ 			//角度 变成 幅度
+ 			this.arc(x,y,r,sDeg*Math.PI/180,eDeg*Math.PI/180,false);
+ 			this.closePath();
+ 			this.restore();
+ 			return this;
+ 		}
+ 		var timer;
+ 		var angle = 0;
+ 		var percentage;
+ 		ctx.fillStyle = 'red';
+ 		timer = setInterval(function(){
+ 			angle += 5;
+ 			// 5 / 360   x / 100
+ 			percentage = (angle/3.6).toFixed(2) + "%";
+ 			oDiv.innerText = percentage;
+ 			ctx.sector(250,250,100,0,angle).fill();
+ 			if(angle == 360){
+ 				clearInterval(timer);
+ 				oDiv.innerText = '加载完成！'
+ 			}
+ 		},200);
+ </script>
+</html>

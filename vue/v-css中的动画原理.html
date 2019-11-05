@@ -7,25 +7,42 @@
 		<title>v-css中的动画原理</title>
 		<style type="text/css">
 			.fade-enter{
-				opacity:0;
+				margin-left:100px;
 			}
 			.fade-enter-active{
 				transition:1s;
 			}
 			.fade-leave-to{
-				opacity:0;
+				margin-left:0;
 			}
 			.fade-leave-active{
 				transition:1s;
+			}
+			.aa{
+				position: fixed;
+				width:100vw;
+				height:100vh;
+				background:yellow;
+			}
+			.bb{
+				position: fixed;
+				width:100vw;
+				height:100vh;
+				z-index: 1;
+				background:green;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="app">
-			<transition name="fade">
+			<div class="bb" v-on:click="click">
+				11111
+			</div>
+			<transition name="fade" class="aa">
 				<div v-if="show">show or fide</div>
 			</transition>
-			<button v-on:click="click">点击</button>
+			
+			<button>点击</button>
 		</div>
 		
 	</body>

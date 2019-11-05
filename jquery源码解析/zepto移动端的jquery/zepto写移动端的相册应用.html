@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	<title>zepto移动端的jq（轻小）</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<ul class='img-ul'>
+			<!-- <li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li> -->
+		</ul>
+	</div>
+	<div class="cover">
+	</div>
+</body>
+<script src='js/zepto.js'></script>
+<script src="js/touch.js"></script>
+<script src="js/fx.js"></script>
+<script>
+	function init(){
+		var activeIndex,
+			oImg,
+			proportion = $(window).width() / $(window).height();
+		renderLi();
+		function renderLi(){
+			var str = '',total = 7,i = 0;
+			for(++ i;i <= total; i ++ ){
+				str += "<li><img src='img/" + i + ".jpg'></li>"
+			}
+			$('.img-ul').html(str);
+			$('.img-ul li').forEach(function(ele,index){
+				ele.style.height = ele.offsetWidth + 'px';
+				$('.img-ul li img').animate({opacity:1},500);
+			})
+		}
+		$('.img-ul').on('tap','li',function(){
+			activeIndex = $(this).index() + 1;
+			show(activeIndex);
+		})
+		function show(activeIndex){
+			$('.cover').html('');
+			$('.cover').show();
+			oImg = new Image();
+			oImg.src = 'img/' + activeIndex + '.jpg';
+			oImg.onload = function(){
+				var imgProporation = this.width / this.height;	
+				if(proportion <= imgProporation){
+					$(this).appendTo($('.cover')).css('width','100%').animate({opacity:1},500);
+				}else{
+					$(this).appendTo($('.cover')).css('height','100%').animate({opacity:1},500);
+				}
+			}
+		}
+		$('.cover')
+			.on('tap',function(){
+				$(this).hide();
+			})
+			.on('swipeLeft',function(){
+				swipeImg('left');
+			})
+			.on('swipeRight',function(){
+				swipeImg('right');
+			})
+		function swipeImg(direction){
+			if(direction == 'left'){
+				if(activeIndex < 7){
+					activeIndex ++;
+					show(activeIndex);
+				}
+			}else if(direction == 'right'){
+				if(activeIndex > 1){
+					activeIndex --;
+					show(activeIndex);
+				}
+			}
+		}
+	}
+	init();
+</script>
+</html>

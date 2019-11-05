@@ -7,16 +7,80 @@
 
 </body>
 <script type="text/javascript">
-	var x=1;
-	if(function f(){}){
-		console.log(typeof(f))
-		x+=typeof (f)
+	// var x=1;
+	// if(function f(){}){
+	// 	console.log(typeof(f))
+	// 	x+=typeof (f)
+	// }
+	// console.log(x)
+	// var aa=function cc(){
+	// 	// const c=1
+	// 	console.log(typeof aa)
+	// }
+	// console.log(typeof cc)
+	// var x = 1; y = z =0;
+	// function add(x){
+	// 	return x = x + 1;
+	// }
+	// y = add(x);
+	// console.log('x的值是'+ x + 'y的值是' + y)
+	// function Person(){
+
+	// }
+	// function Car(){
+	// 	name="car"
+	// }
+	// var person = new Person();
+	// var car = new Car();
+	// person.__proto__ = Car;
+	// console.log(person.name);
+	//
+	// var arr = [1,2];
+	// var arr1 = arr;
+	// // arr.length = 3;
+	// arr = [1,2,3];
+	// console.log(arr1);
+	// function Father(){
+	// 	this.name = 'father';
+	// }
+	// var father = new Father;
+	// function Son(){
+	// 	this.hobbit = 'smoking';
+	// }
+	// // Son.prototype.name = 'son';
+	// Son.prototype = father;
+	// var son = new Son();
+
+	// var Obj = {
+	// 	name:'aa'
+	// }
+	
+	// var Obj1 = {
+	// 	lastName : 'bb'
+	// }
+	
+	// function Balana(){
+	// 	this.color = 'yellow';
+	// }
+	// var balana = new Balana();
+	
+	// function Apple(){
+	// 	this.name='aa'
+	// }
+	// Apple.prototype = balana;
+	// var apple = new Apple();
+	// var aa = function (a){
+	// 	console.log(a)
+	// 	return 1;
+	// }
+	// aa();
+	function bb(){
+		function cc(){
+			return 2;
+		}
+		return cc;
 	}
-	console.log(x)
-	var aa=function cc(){
-		// const c=1
-		console.log(typeof aa)
-	}
-	console.log(typeof cc)
+	var dd = bb();
+	dd();
 </script>
 </html>

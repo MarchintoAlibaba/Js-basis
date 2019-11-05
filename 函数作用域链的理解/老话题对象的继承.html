@@ -10,10 +10,33 @@
 	//这种继承方法叫做圣杯模式
 	function inherit(Target,Origin){
 		function F(){};
-		F.prototype=Origin.prototype
-		Target.prototype=new F()
-		Target.prototype.constructor=Target
-		Target.prototype.uber=Origin.prototype
+		F.prototype=Origin.prototype;
+		Target.prototype = new F(); //前面这三句就是通过一个中间构造函数让Target.prototype=Origin.prototype
+		                            //有中间构造函数的好处是改变Target.prototype(原型对象)的时候Origin的原型对象不会改变
+		Target.prototype.constructor = Target; //让Target的构造器还是指着自己
+		Target.prototype.uber = Origin.prototype; //没用 目的是多添加了一个属性 作用可以查到Target继承的原型对象是谁
 	}
+	//这种圣杯模式的继承的好处是Target构造函数的实例对象既继承了origin的原型对象 
+	//在Target构造函数的原型对象上改动属性是不会影响Origin的构造函数的原型对象
+	function Son(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	Father.prototype.sex = 'male';
+	function Father(){
+	}
+	inherit(Son,Father)
+	var son = new Son('xiaoming',24);
+
+	//下面是雅虎的关于对象继承的方法
+	var yhinherit = (function(){
+		var F = function () {};
+		return function (Target,Origin){
+			F.prototype = Origin.prototype;
+			Target.prototype = new F();
+			Target.prototype.constructor = Target;
+			Target.prototype.uber = Origin.prototype;
+		}
+	}())
 </script>
 </html>

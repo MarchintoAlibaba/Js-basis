@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手写与运用call与apply</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var obj = {
+		name : 'jingdong'
+	}
+	var name = 'xiaohua';
+	function showName(name,age){
+		console.log(this.name);
+		return {
+			name:name,
+			age:age
+		}
+	}
+	showName();
+	// showName.call(obj);
+	// 或者给对象obj增加一个属性再执行也可以达到这个目的
+	obj.showName = showName;
+	obj.showName();
+	delete obj.showName;
+	//下面我们来自己写一个newCall与call一样
+	Function.prototype.newCall = function(ctx){
+		ctx.fn = this; //这里的this == showName
+		var firstReturn = ctx.fn(arguments[1],arguments[2]);
+		delete ctx.fn;
+		return firstReturn;
+	}
+	var res = showName.newCall(obj,'jingdong',18);
+</script>
+</html>

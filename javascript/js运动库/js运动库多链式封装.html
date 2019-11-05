@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js运动多物体多值链式封装库</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.oDiv{
+			position: absolute;
+			left:0;
+			top:0;
+			width:100px;
+			height:100px;
+			background:#f30;
+			opacity:1;
+		}
+		.oDivse{
+			top:200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="oDiv"></div>
+	<div class="oDiv oDivse"></div>
+</body>
+<script>
+	//我们先做单一物体 单值的改变 此时的改变要缓冲的形式 就是先快后慢
+	var oDiv = document.getElementsByClassName('oDiv'),
+		arr = {
+			width:'400',
+			height:'300',
+			opacity:'0.2',
+			top:'200',
+			left:'500'
+		}
+	oDiv[0].onclick = function(){
+		startMove(this,arr,function(){
+			startMove(oDiv[1],arr);
+		});
+	}
+	//改变div的宽度
+	// function startMove(dom,num){
+	// 	var divData = parseInt(getComputedStyle(dom,false).width),
+	// 		timer = setInterval(function(){
+	// 			iCor =  (num - dom.offsetWidth) / 8,
+	// 			speed = iCor > 0 ? Math.ceil(iCor) : Math.floor(iCor);
+	// 			dom.style.width = dom.offsetWidth + speed + 'px';
+	// 			if(dom.offsetWidth == 400){
+	// 				clearInterval(timer);
+	// 			}
+	// 		},30)
+	// }
+	// 改变div的透明度
+	// function startMove(dom,opc){
+	// 	timeropc = setInterval(function(){
+	// 		var opacity = parseFloat(getComputedStyle(dom,false).opacity),
+	// 		    iCorpc = (opc - opacity) * 100 / 8,
+	// 			speedpc = iCorpc > 0 ? Math.ceil(iCorpc) : Math.floor(iCorpc);
+	// 		console.log(speedpc,opacity)
+	// 		dom.style.opacity = opacity + (speedpc / 100);
+	// 		if(opacity == 0.5){
+	// 			clearInterval(timeropc);
+	// 		}
+	// 	},30)
+	// }
+	
+	// 下面我们来封装一个多物体多值的链式函数
+	// 多物体是指可以传入多个div多值是指同时改变多个div的属性，链式是指这个物体完了下个物体可以继续列如jq里面的"."什么
+
+	function startMove(dom,Arr,callback){
+		var timer;
+		timer = setInterval(function(){
+			for(prop in Arr){
+				var bStop = true;
+				if(prop == 'opacity'){
+					var speed =(Arr[prop] - parseFloat(getStyle(dom,prop))) * 100 / 8,
+						moreIcor = speed > 0? Math.ceil(speed) : Math.floor(speed);
+					dom.style[prop] = parseFloat(getStyle(dom,prop)) + moreIcor / 100;
+				}else{
+					var speed = (Arr[prop] - parseInt(getStyle(dom,prop))) / 8,
+						moreIcor = speed > 0? Math.ceil(speed) : Math.floor(speed);
+					dom.style[prop] = parseInt(getStyle(dom,prop)) + moreIcor + 'px';
+				}
+				if(parseFloat(getStyle(dom,prop)) != Arr[prop]){
+					bStop = false;
+				}
+			}
+			if(bStop){
+				clearInterval(timer);
+				callback ? callback() : '';
+			}
+		},30)
+	}
+	function getStyle(dom,attr){
+		if(getComputedStyle(dom,false)){
+			return getComputedStyle(dom,false)[attr];
+		}else if(dom.currentStyle){
+			return dom.currentStyle[attr]
+		}
+	}
+</script>
+</html>

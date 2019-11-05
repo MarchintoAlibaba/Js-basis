@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es5的forEach和map方法</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var arr = [1,2,3,4,5];
+	var sum = 0;
+	var arrtest = arr.forEach(function(a,b,c){
+		sum += a;
+	})
+	var maptest = arr.map(function(item,index,arr){
+		return ++ item;
+	})
+	var mapdemo = arr.map(function(item,index,arr1){
+		console.log(arr1)
+		return item;
+	})
+	//总结 相同点都不会改变原数组 都是数组原型上的函数，都是循环数组里的每一项执行一个函数 该函数可以传3个参数，分别是数组的具体每一个值，数组的索性，数组本身
+	//不同点就是 forEach没有返回值 map有返回值
+</script>
+</html>

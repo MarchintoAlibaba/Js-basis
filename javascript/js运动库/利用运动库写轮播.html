@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js手写轮播</title>
+	<script src='move.js'></script>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		ul{
+			list-style: none;
+		}
+		.wrapper{
+			width:450px;
+			height:180px;
+			margin:100px auto 0;
+			overflow: hidden;
+			position: relative;
+		}
+		.wrapper>ul{
+			position: absolute;
+			left:0;
+			top:0;
+			list-style: none;
+			height:180px;
+			width:2250px;
+		}
+		.wrapper>ul>li{
+			float:left;
+			width:450px;
+			height:180px;
+		}
+		.btn{
+			position: absolute;
+			width:50px;
+			height:50px;
+			top:50%;
+			margin-top:-25px;
+			text-align: center;
+			line-height: 50px;
+			color:white;
+			cursor: pointer;
+			opacity: 0.4;
+			background:black;
+		}
+		.leftBtn{
+			left:0;
+		}
+		.rightBtn{
+			right:0;
+		}
+		.slider{
+			width:100px;
+			height:20px;
+			position: absolute;
+			left:50%;
+			margin-left:-25px;
+			bottom:20px;
+			text-align: center;
+		}
+		.slider ul li{
+			display: inline-block;
+			width:12px;
+			height:12px;
+			background:#707075;
+			border-radius: 50%;
+			cursor:pointer;
+		}
+		.slider ul li.active{
+			background:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<ul class="ul">
+			<li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/1.jpg" alt=""></li>
+		</ul>
+		<div class="btn leftBtn"><</div>
+		<div class="btn rightBtn">></div>
+		<div class="slider">
+			<ul class='ul-item'>
+				<li class="item active" index='0'></li>
+				<li class="item" index='1'></li>
+				<li class="item" index='2'></li>
+				<li class="item" index='3'></li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	var ul = document.getElementsByClassName('wrapper')[0].getElementsByTagName('ul')[0],
+		leftBtn = document.getElementsByClassName('leftBtn')[0],
+		rightBtn = document.getElementsByClassName('rightBtn')[0],
+		li = ul.getElementsByTagName('li'),
+		nowIndex = 0,
+		timer,
+		flag = true,
+		ulItem = document.getElementsByClassName('ul-item')[0],
+		lbtimer,
+		liLength = li.length;
+	rightBtn.onclick = function(){
+		if(flag){
+			imgMove('right');
+		}	
+	}
+	leftBtn.onclick = function(){
+		if(flag){
+			imgMove('left');
+		}
+	}
+	ulItem.onclick = function(e){
+		if(flag){
+			var event = e || window.event,
+			target = event.srcElement || event.target;
+			if(target.nodeName == 'LI'){
+				nowIndex = target.getAttribute('index');
+				imgMove(nowIndex);
+			}
+		}
+		// target.className = 'active';
+	}
+	function imgMove(direction){
+		flag = false;
+		clearTimeout(timer);
+		document.getElementsByClassName('active')[0].classList.remove('active');
+		if(direction == 'right'){
+			nowIndex ++;
+			startMove(ul,{left:ul.offsetLeft - li[0].offsetWidth},function(){
+				if(ul.offsetLeft == -li[0].offsetWidth * (liLength-1)){
+					ul.style.left = '0px';
+				}
+				flag = true;
+				timing();
+			});
+			if(nowIndex == 4){
+				nowIndex = 0;
+			}
+			document.getElementsByClassName('item')[nowIndex].classList.add('active');
+		}else if(direction == 'left'){
+			nowIndex --;
+			if(ul.offsetLeft == 0){
+				ul.style.left = -li[0].offsetWidth * (liLength - 1) + 'px';
+				nowIndex = 3;
+			}
+			startMove(ul,{left:ul.offsetLeft + li[0].offsetWidth},function(){
+				flag = true;
+				timing();
+			});
+			document.getElementsByClassName('item')[nowIndex].classList.add('active');
+		}else{
+			startMove(ul,{left:-li[0].offsetWidth * direction},function(){
+				flag = true;
+				timing();
+			});
+			document.getElementsByClassName('item')[nowIndex].classList.add('active');
+		}
+	}
+	timing();
+	function timing(){
+		clearTimeout(timer);
+		timer = setTimeout(function(){
+			imgMove('right');
+		},2000)
+	}
+</script>
+</html>

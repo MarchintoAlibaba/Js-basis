@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	
+</body>
+<script>
+	// var promise = new Promise(function(resolve,reject){
+	// 	setTimeout(function(){
+	// 		console.log(1)
+	// 		resolve("数学作业");
+	// 	},1000)
+	// }).then(new Promise(function(resolve,reject){
+	// 	console.log(2)
+	// }))
+	// 
+	// 有了promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数，
+	// 下面用setTimeout来模拟异步
+	function buy(){
+		console.log("开始买笔");
+		var p = new Promise(function(resolve,reject){
+			setTimeout(function(){
+				console.log("买了笔芯");
+				resolve("数学作业");
+				reject("404");
+			},1000)
+		})
+		return p;
+	}
+	function work(data){
+		console.log("开始写作业" + data);
+		var p = new Promise(function(resolve,reject){
+			setTimeout(function(){
+				console.log("写作完毕");
+				resolve('作业本');
+				reject("404");
+			},1000)
+		})
+		return p;
+	}
+	function out(data){
+		console.log("开始上交" + data);
+		var p = new Promise(function(resolve,reject){
+			setTimeout(function(){
+				console.log("上交完毕");
+				resolve("得分：A");
+				reject("404");
+			},1000)
+		})
+		return p;
+	}
+	buy().then(work).then(out).then(function(data){
+		console.log(data)
+	});
+	//正式开发用ajax异步
+	var promise = new Promise(function(resolve,reject){
+
+	})
+</script>
+</html>

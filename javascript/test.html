@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var arr = [{name:'王二',sex:'male',age:'18'},{name:'李四',sex:'female',age:'20'},{name:'王老李',sex:'female',age:'20'}];
+	//纯函数
+	function screening(arr){
+		var newarr = [];
+		for(prop in arr){
+			if(arr[prop].name.indexOf('王') != -1){
+				var newobj = {};
+				for(propp in arr[prop]){
+					newobj[propp] = arr[prop][propp];
+				}
+				newarr.push(newobj);
+			}
+		}
+		return newarr;
+	}
+	var newarr = screening(arr);
+	newarr[0].name = '王五';
+</script>
+</html>

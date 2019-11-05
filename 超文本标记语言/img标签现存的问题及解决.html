@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>img文本标签的问题及解决办法</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		a img{
+			border:0; /*通配符写这个的原因是在ie浏览器下是a标签里面的img会有边框*/
+		}
+		div{
+			border:1px solid red;
+			 width:400px; 
+			 /*height:200px;*/
+			/*font-size:0;*/ /*2.让img的父标签的font-size为0；这样就没有间隔了*/
+		}
+		/*从页面上可以看到 div的高比img多出了6px左右 原因是img标签是行内块标签具有text文本的特性 有空格  下面是解决方式*/
+		img{
+			/*display: block;*/ /*1.让img变成块积元素*/
+			vertical-align:bottom; /*3.让img的对齐方式设置问top、bottom、middle都可以*/
+		}
+	</style>
+</head>
+<body>
+	<div> 
+		<img width="100px" height="200px" src="img/CYBPromoHistory.jpg">
+		<img width="100px" src="img/CYBPromoHistory.jpg">
+		<img width="100px" src="img/CYBPromoHistory.jpg">
+		<!-- <span>你好</span> -->
+	</div>
+	<!-- <a href="">
+		<img src="img/CYBPromoHistory.jpg" alt="">
+	</a> -->
+</body>
+</html>

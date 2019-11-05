@@ -8,43 +8,76 @@
 </body>
 <script type="text/javascript">
 	//先用构造函数的自定义方法创建一个对象
-	Car.prototype.sex="man"
-	function Person(){
-		this.name="pc"
-	}
-	Car.prototype.constructor=Person
-	Car.prototype={
-		color:'red',
-		lastname:'shi'
-	}
-	function Car(){ //函数和构造函数的唯一区别是构造函数是用大驼峰式命名（人为的默认规定）
-		this.name="bmw"
-		this.age="20year"
-		// this.constructor=function(){
-		// 	console.log(1)
-		// }
-	}
-	var car=new Car()
-	var person=new Person()
-	//理解区
-	//Car.prototype是Car构造函数的原型（祖先）Car对象上的属性跟方法会继承它的祖先 但是自己要是有该方法的或属性的话会替代祖先的方法
-	//Car.prototype相当于一个对象 可以在上面加任意属性与方法，上面也有constructor构造器
-	//Car.constructor构造器也是在prototype里面的 可以在原型（prototype）里面改变 car.constuctor打印出来的就是构造函数Car
-	var obj={name:'a'}
-	var obj1=obj
-	obj.name='b'	
-	// obj={name:'b'}
+	// Car.prototype.sex="man"
+	// function Person(){
+	// 	this.name="pc"
+	// }
+	// Car.prototype.constructor=Person
+	// Car.prototype={
+	// 	color:'red',
+	// 	lastname:'shi'
+	// }
+	// function Car(){ //函数和构造函数的唯一区别是构造函数是用大驼峰式命名（人为的默认规定）
+	// 	this.name="bmw"
+	// 	this.age="20year"
+	// 	// this.constructor=function(){
+	// 	// 	console.log(1)
+	// 	// }
+	// }
+	// var car=new Car()
+	// var person=new Person()
+	// //理解区
+	// //Car.prototype是Car构造函数的原型（祖先）Car对象上的属性跟方法会继承它的祖先 但是自己要是有该方法的或属性的话会替代祖先的方法
+	// //Car.prototype相当于一个对象 可以在上面加任意属性与方法，上面也有constructor构造器
+	// //Car.constructor构造器也是在prototype里面的 可以在原型（prototype）里面改变 car.constuctor打印出来的就是构造函数Car
+	// var obj={name:'a'}
+	// var obj1=obj
+	// obj.name='b'	
+	// // obj={name:'b'}
+	// // 
+	// function AA(){
+	// 	this.name="aa"
+	// }
+	// function BB(){
+	// 	this.name="bb"
+	// }
+	// var aa=new AA()
+	// var bb=new BB()
+	// BB.prototype.sex="1"
+	// AA.prototype=BB.prototype
+	// console.log(aa.sex)
 	// 
-	function AA(){
-		this.name="aa"
+	// 'use strict'
+	var str = 'jkljjijlkjoijlkjoijlkkjoijljijilkjijlkjijljijiojolkjoiljiuljouojljiuojabc';
+	function findFirst(str){
+		var obj = {},len = str.length;
+		for(var i = 0;i < len;i ++){
+			if(!obj[str[i]]){
+				obj[str[i]] = 'abc';
+			}else{
+				obj[str[i]] = 'ab';
+			}
+		}
+		for(var prop in obj){
+			if(obj[prop] == 'ab'){
+				delete obj[prop]
+			}else{
+				return prop
+			}
+		}
 	}
-	function BB(){
-		this.name="bb"
+	var first = findFirst(str);
+	
+	var obj = {
+		name:'aa',
+		name:'bb'
 	}
-	var aa=new AA()
-	var bb=new BB()
-	BB.prototype.sex="1"
-	AA.prototype=BB.prototype
-	console.log(aa.sex)
+	function Test(){
+		console.log(this);
+	}
+	var test = new Test();
+</script>
+<script>
+	
 </script>
 </html>

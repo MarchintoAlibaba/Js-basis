@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>深入数组扩展方法</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//下面深入介绍几个数组的方法
+	// 1.forEach 循环遍历数组 有3个参数 ele,index,arr
+	var arr = [1,2,3,4,5];
+	arr.forEach(function(ele,index,arr){
+		ele ++;
+		console.log(ele,index,arr);
+	})
+	//自写一个方法forEach方法
+	Array.prototype.myForEach = function(func){
+		for(var i = 0;i < this.length; i ++){
+			func(this[i],i,this);
+		}
+	}
+	arr.myForEach(function(ele,index,arr){
+		ele ++;
+		console.log(ele,index,arr);
+	})
+	// 2.filter 筛选 得到返回为true的数组的集合
+	var returnArr = arr.filter(function(ele,index,arr){
+		if(index % 2 ==0){
+			return true;
+		}
+	})
+	//自写一个myFilter的值
+	Array.prototype.myFilter = function(func){
+		var newArr = [];
+		for(var i = 0;i < this.length; i ++){
+			if(func(this[i],i,arr)){
+				newArr.push(this[i]);
+			}
+		}
+		return newArr;
+	}
+	// 3.map 返回改函数返回的每个值的集合
+	var newMap = arr.map(function(ele,index,arr){
+		return arr;
+	})
+	// 自写一个MyMap
+	Array.prototype.MyMap = function(func){
+		var newArr = [];
+		for(var i = 0;i < this.length; i ++){
+			newArr.push(func(this[i],i,this));
+		}
+		return newArr;
+	}
+	// 4.reduce 此方法把返回的数集体相加
+	var newReduce = arr.reduce(function(pre,ele,index,arr){
+		console.log();
+		return pre + 1;
+	})
+	//自写一个myReduce方法
+	Array.prototype.myReduce = function(func,init){
+		var k = 0;
+		if(init == undefined){
+			init = this[0];
+			k =1;
+		}
+		for(k;k < this.length;k ++){
+			init = func(init,this[k],k,arr);
+		}	
+		return init;
+	}
+</script>
+</html>

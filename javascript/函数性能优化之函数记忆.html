@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数记忆</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 在这次运算需要用到上次的运算结果中函数记忆可以帮助函数减少运算次数提高效率 从而达到性能上的优化 例
+	// 阶乘就是一个很好的例子
+	// 5！ = 5 * 4！
+	// 4！ = 4 * 3！
+	// 3！ = 3 * 2！
+	// 2！ = 2 * 1！
+	// 1！ = 1 * 0！   0！ = 0
+	
+	// 以前的函数这样用递归写
+	function factorial(n){
+		if(n == 1 || n ==0){
+			return 1;
+		}
+		return n * factorial(n-1);
+	}
+	// 下面写一个包含有函数记忆的函数，此后每个函数引用该函数都会成为含有记忆的函数
+	function memorize(fn){
+		var cache = {};
+		return function (){
+			var key = arguments.length + Array.prototype.join.call(arguments);
+			if(cache[key]){
+				return cache[key];
+			}else{
+				cache[key] = fn.apply(this,arguments);
+				return cache[key];
+			}
+		}
+	}
+	var newF = memorize(factorial);
+	newF(5);
+</script>
+</html>

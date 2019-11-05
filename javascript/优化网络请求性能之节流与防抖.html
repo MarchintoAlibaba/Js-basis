@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网络性能优化之节能</title>
+</head>
+<body>
+	<div class="oDiv">0</div>
+	<button class="oBtn">click</button>
+	<br><br>
+	<input type="text">
+</body>
+<script>
+	var oDiv = document.getElementsByClassName('oDiv')[0],
+		oBtn = document.getElementsByClassName('oBtn')[0];
+	//节能就是控制一定时间段内用户点击或请求数据的次数
+	function buy(e){
+		oDiv.innerText = parseInt(oDiv.innerText) +1;
+	}
+	function throttle(handler,waiting){
+		var lastTime = 0;
+		return function(e){
+			var nowTime = new Date().getTime();
+			if(nowTime - lastTime > waiting){
+				handler.call(this,e);
+				lastTime = nowTime;
+			}
+		}
+	}
+	oBtn.onclick = throttle(buy,1000);
+
+	// 防抖主要运用在输入框里的关键字搜索 让用户输入关键字后一秒再请求数据
+	var input = document.getElementsByTagName('input')[0];
+	function ajax(e){
+		console.log(e);
+	}
+	//现在我要对ajax函数进行防抖
+	function noMove(handler,waiting){
+		var timer = null;
+		return function(e){
+			var This = this;
+			var argu = arguments;
+			clearTimeout(timer);
+			timer = setTimeout(function(){
+				handler.apply(This,argu);
+			},waiting)
+		}
+	}
+	input.oninput = noMove(ajax,1000);
+</script>
+</html>

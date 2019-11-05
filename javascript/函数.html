@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// function test(a,b,c){
+	// 	var arr1 = [1,2,3];
+	// 	// var arr = Array.prototype.slice.call(arguments)
+	// 	arguments.__proto__=Array.prototype;
+	// 	var arr2 = arr1.slice();
+	// 	console.log(arr2);
+	// 	arguments.push(1);
+	// 	// console.log(arr);
+	// 	console.log(arguments.prototype);
+	// }
+	// test(2,3,4);
+	// console.log(test.prototype);
+	// 1.写一个函数，功能是告诉你输入的小动物的叫声
+	function knowVioce(animal){
+		switch(animal){
+			case('鸭子'):
+			console.log("嘎嘎嘎");
+			break;
+			case('鸟儿'):
+			console.log('叽叽叽叽');
+			break;
+			case('小狗'):
+			console.log('汪汪汪')
+			break;
+		}
+	}
+	// 2.写一个函数，实现加法计时器
+	function sum(){
+		var total = 0;
+		if(arguments){
+			var sumLength = arguments.length;
+			for(var i = 0;i<sumLength;i++){
+				total += arguments[i];
+			}
+		}
+		return total;
+	}
+	// 3.写一个函数，输入数字，逆转并输出汉字
+	function reverse(num){
+		var num1 = String(num);
+		var num1Length = num1.length;
+		var arr = [];
+		for(var i = 0;i < num1Length;i ++){
+			arr.push(num1[i]);
+		}
+		var arr1 = arr.reverse();
+		var arr1Length = arr1.length;
+		console.log(arr1[0]==="3");
+		var finalString = "";
+		for(var j = 0;j < arr1Length;j ++){
+			switch(Number(arr1[j])){
+				case 1:
+				finalString += "一";
+				console.log(finalString)
+				continue;
+				case 2:
+				finalString += '二';
+				continue;
+				case 3:
+				finalString += '三';
+				continue;
+				case 4:
+				finalString += '四';
+				continue;
+				case 5:
+				finalString += '五';
+				continue;
+				case 6:
+				finalString += '六';
+				continue;
+				case 7:
+				finalString += '七';
+				continue;
+				case 8:
+				finalString += '八';
+				continue;
+				case 9:
+				finalString += '九';
+				continue;
+				case 0:
+				finalString += '零';
+				continue;
+			}
+			console.log(finalString)
+		}
+		return finalString;
+	}
+	// 4.写一个函数，实现n的阶乘
+	function nFactorial(a,b){
+		var totalnum = 1;
+		for(var i = 0;i < b;i ++){
+			totalnum *= a;
+		}
+		return totalnum;
+	}
+	// 5.写一个函数，实现斐波那契额列表 1 1 2 3 5 8 13
+	function fblqList(num){
+		
+		var a = 1,b = 1,c = a+b;
+		var finalnum = a + ' ' + b + '';
+		while(c<num){
+			a = b;
+			b = c;
+			c = a + b;
+			finalnum += ' ' +c;
+		}
+		return finalnum;
+	}
+	function jc(n){
+		if(n==1){
+			return 1;
+		}
+		console.log(jc.length); //jc.length这是形参的长度
+		return n * jc(n-1)
+	}
+</script>
+</html>

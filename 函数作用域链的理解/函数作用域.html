@@ -7,24 +7,60 @@
 
 </body>
 <script type="text/javascript">
-	function aa(){
-		let a=1
-		console.log(11)
-		function bb(){
-			let firstdata='123'
-			console.log(firstdata)
-			// return firstdata
-		}
-		return bb
-	}
-	// aa()
-	// console.log(aa())
-var demo=aa()
-demo()
+// 	function aa(){
+// 		let a=1
+// 		console.log(11)
+// 		function bb(){
+// 			let firstdata='123'
+// 			console.log(firstdata)
+// 			// return firstdata
+// 		}
+// 		return bb
+// 	}
+// 	// aa()
+// 	// console.log(aa())
+// var demo=aa()
+// demo()
 
-var arr=[1,2,3,4]
-var ty=true
-console.log(typeof(arr))
-console.log(typeof(ty))
+// var arr=[1,2,3,4]
+// var ty=true
+// console.log(typeof(arr))
+// console.log(typeof(ty))
+
+
+// function a(){
+// 	var b = 1;
+// 	function c(){
+// 		b ++;
+// 		var d = 1;
+// 		d ++;
+// 		console.log(b + ' ' + d);
+// 	}
+// 	return c;
+// }
+// var hanshuc = a();
+// hanshuc();
+// hanshuc();
+
+// (aaz = function(){
+// 	console.log(11)
+// }())
+var arr = [];
+
+function test(){
+	for(var i = 0;i < 10;i ++){
+		arr[i] = function(){
+			console.log(i)
+		}
+	}
+	console.log(i)
+	return arr;
+}
+var arrfn = test();
+for(var i = 0;i < 10;i ++){
+	arrfn[i]();
+}
+console.log(zzc);
+var zzc = 10;
 </script>
 </html>

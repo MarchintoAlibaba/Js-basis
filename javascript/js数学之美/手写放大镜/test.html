@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>111</li>
+			<li>222</li>
+			<li>333</li>
+		</ul>
+	</div>
+</body>
+<script>
+	var li = document.getElementsByTagName('li'),
+		lilength = li.length;
+	for(var i = 0; i < lilength; i ++){
+		li[i].style.color = 'red';
+		li[i].style.width = '200px';
+		li[i].style.height = '200px';
+		li[i].style.background = 'url(img/1.jpg)';
+	}
+</script>
+</html>

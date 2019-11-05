@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数式编程之柯里化</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function keli(a,b,c){
+		return a + b + c;
+	}
+	var kelires = keli(1,2,3);
+	
+	var newAdd = Curry(keli);
+	newAdd(1)(2)(3);
+</script>
+</html>

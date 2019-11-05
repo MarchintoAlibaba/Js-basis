@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝轮播</title>
+</head>
+<style>
+	*{
+		padding:0;
+		margin:0;
+	}
+	.lunbo{
+		width:320px;
+		height:153px;
+		overflow: hidden;
+		position: relative;
+	}
+	.lunbo>ul>li{
+		float:left;
+		width:320px;
+		list-style:none;
+		height:153px;
+	}
+	.lunbo>ul{
+		position: absolute;
+		width:1600px;
+		height:153px;
+		left:0;
+		top:0;
+	}
+	.lunbodian{
+		position: absolute;
+		bottom:0;
+		left:50%;
+		transform: translateX(-50%);
+		display: inline-block;
+		background:red;
+	}
+	.lunbodian ul li{
+		padding:6px;
+		background:white;
+		border-radius:50%;
+		margin-left:6px;
+		list-style:none;
+		float:left;
+	}
+	.lunbodian ul li:first-child{
+		margin-left:0;
+	}
+</style>
+<body>
+	<div class="lunbo">
+		<ul class="lunboul" style="left:0px">
+			<li><img width="100%" src="img/1.jpg" alt=""></li>
+			<li><img width="100%" src="img/2.jpg" alt=""></li>
+			<li><img width="100%" src="img/3.jpg" alt=""></li>
+			<li><img width="100%" src="img/4.jpg" alt=""></li>
+			<li><img width="100%" src="img/1.jpg" alt=""></li>
+		</ul>
+		<div class="lunbodian">
+			<ul class="lunbodiandian">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	// lunboul=document.getElementsByClassName("lunboul")[0];
+	// (function(){
+	// 	var timer,timer1,
+	// 		lunboul=document.getElementsByClassName("lunboul")[0];
+	// 	timer=setInterval(function(){
+	// 		let timedate=0;
+			
+	// 		timer1=setInterval(function(){
+	// 			lunboul.style.left=parseInt(lunboul.style.left)-10+'px';
+	// 			timedate+=10;
+	// 			if(timedate==320){
+	// 				clearInterval(timer1)
+	// 			}
+	// 		},10)
+	// 		if(parseInt(lunboul.style.left)+parseInt(window.getComputedStyle(lunboul,null).width)-320<=0){
+	// 				lunboul.style.left="0px";
+	// 		}
+	// 	},2000)
+	// 	function first(){
+	// 		console.log(1)
+	// 	}
+	// })()
+var lunbodiandian=document.getElementsByClassName("lunbodiandian")[0];
+var li=lunbodiandian.getElementsByTagName("li");
+var len=li.length;
+for(var i=0;i<len;i++){
+	(function(i){
+		li[i].addEventListener('click',function(){
+			console.log(i)
+		},false)
+	})(i)
+}
+
+</script>
+</html>

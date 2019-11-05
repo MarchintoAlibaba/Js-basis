@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自写获取元素的方法</title>
+</head>
+<body>
+	<div class="aa">
+		<p></p>
+		<p></p>
+		<span>
+			<i></i>
+		</span>
+		<!-- dadf -->
+		<i></i>
+		<b></b>
+
+	</div>
+	<section></section>
+</body>
+<script>
+	
+	function allchild(ele){
+		ele=ele.getElementsByTagName("*");
+		return ele;
+	}
+	var p=document.getElementsByTagName("p")[0],newele=document.createElement("div");
+	var div=document.getElementsByTagName("div")[0]
+	// 1. 将div里面的元素倒序
+	Element.prototype.reverseele=function(){
+		let len=this.children.length;
+		for(let i=1;i<=len;i++){
+			this.appendChild(this.children[len-i])
+		}
+		return 1
+	}
+</script>
+</html>

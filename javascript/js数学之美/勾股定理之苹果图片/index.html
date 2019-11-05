@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>勾股定理之苹果图片扩大</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.wrapper{
+			width:700px;
+			height:200px;
+			position: absolute;
+			bottom:50px;
+			left:100px;
+			text-align: center;
+			background:red;
+		}
+		.wrapper img{
+			width:64px;
+			height:64px;
+			border-radius: 50%;
+			overflow: hidden;
+			margin-top:68px;
+		}
+		a{
+			text-decoration:none;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<a href="javascript:void(0)">
+			<img src="img/1.jpg" alt="">
+		</a>
+		<a href="javascript:void(0)">
+			<img src="img/2.jpg" alt="">
+		</a>
+		<a href="javascript:void(0)">
+			<img src="img/3.jpg" alt="">
+		</a>
+		<a href="javascript:void(0)">
+			<img src="img/4.jpg" alt="">
+		</a>
+		<a href="javascript:void(0)">
+			<img src="img/5.jpg" alt="">
+		</a>
+		<a href="javascript:void(0)">
+			<img src="img/6.jpg" alt="">
+		</a>
+		<a href="javascript:void(0)">
+			<img src="img/7.jpg" alt="">
+		</a>
+	</div>
+</body>
+<script>
+	function init(){
+		var wrapper = document.getElementsByClassName('wrapper')[0],
+			wrapperTop = wrapper.offsetTop,
+			warpperLeft = wrapper.offsetLeft,
+			boxImg = document.getElementsByTagName('img'),
+			boxImgW = boxImg[0].offsetWidth,
+			boxImgH = boxImg[0].offsetHeight,
+			boxImgLength = boxImg.length;
+		wrapper.onmousemove = function(e){
+			var event = e || window.event;
+			for(var i = 0 ; i < boxImgLength; i ++){
+				var changeW = ((200 - Math.min(getDistance(event,boxImg[i]),200)) / 200) * boxImgW + boxImgW,
+					changeH = ((200 - Math.min(getDistance(event,boxImg[i]),200)) / 200) * boxImgH + boxImgH;
+				// console.log(Math.min(getDistance(event,boxImg[i]),200))
+				boxImg[i].style.width = changeW + 'px';
+				boxImg[i].style.height = changeH + 'px';
+			}
+		}
+		function getDistance(e,dom){
+			var disX = Math.abs((dom.offsetLeft + warpperLeft + boxImgW / 2) - (e.clientX)),
+				disY = Math.abs(e.clientY - (wrapperTop + dom.offsetTop + boxImgH / 2)),
+				disAll = Math.floor(Math.sqrt(Math.pow(disX,2) + Math.pow(disY,2)));
+			return disAll;
+		}
+	}
+	init();
+</script>
+</html>

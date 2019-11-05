@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery选择元素</title>
+	<script src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+	<div class="aa">
+		<div class="bb">
+			<div class="cc" data-cid="10"></div>
+		</div>
+	</div>
+	<div class="aa">
+		<div class="bb">
+			<div class="cc" data-cid="9"></div>
+		</div>
+	</div>
+	<div class="aa">
+		<div class="bb">
+			<div class="cc" data-cid="8"></div>
+		</div>
+	</div>
+</body>
+<script>
+	var ele=$(".aa .bb .cc");
+	ele.each(function(){
+		console.log($(this))
+		console.log($(this).data("cid"))
+	})
+	var size=4,num=15;
+	var str=Array(1).join("0");
+	console.log(str)
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>展开收起功能</title>
+</head>
+<style>
+	*{
+		padding:0;
+		margin:0;
+	}
+	.aa{
+		height:800px;
+		background: red;
+	}
+	.bb{
+		height:200px;
+		background: yellow;
+	}
+	.cc{
+		height:10000px;
+		background:blue;
+	}
+</style>
+<body>
+	<!-- <div class="aa"></div>
+	<div class="bb"></div>
+	<div class="cc"></div> -->
+	<ul>
+		<li>111</li>
+		<li>222</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</ul>
+</body>
+<script>
+	// var bb = document.getElementsByClassName('bb')[0];
+	// var count = 0;
+	// var beginTop;
+	// bb.onclick = function (){
+	// 	count ++;
+	// 	if(count % 2 == 1){
+	// 		bb.style.height = 600 + 'px';
+	// 		beginTop = window.pageYOffset;
+	// 		console.log(beginTop)
+	// 	}else{
+	// 		bb.style.height = 200 + 'px';
+	// 		console.log(beginTop)
+	// 		window.scrollTo(0,beginTop);
+	// 	}
+	// }
+
+	var li = document.getElementsByTagName('li'),
+		len = li.length;
+	for(var i = 0; i < len; i ++){
+		(function(i){
+			li[i].addEventListener('click',function(){
+				console.log(i);
+			},false)
+		}(i))
+	}
+</script>
+</html>

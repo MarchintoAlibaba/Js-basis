@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es3与es5的区别</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//我们现在的代码都是基于es3 + es5的新增方法 如果es3与es5发生冲突则用的是es3的方法
+	//怎么使用es5的严格模式呢 es5的严格模式是什么
+	//在代码块的最前面加 'use strict'后面的代码则是用的是es5的严格模式
+	//es5的严格模式是es3 + es5 的新增方法 如果es3 与 es5发生冲突则用的是es5的方法
+	//es3与es5有哪些不同的地方 例：
+	//1. 在es5的严格模式下不能使用 arguments.calee和arguments.caller
+	'use strict'
+	// function test(){
+	// 	console.log(arguments.caller)
+	// }
+	// test()
+	// 2.在es5去掉了es3中的with方法 原因是with方法改变了原有的作用域链 是程序运行缓慢
+	// var obj = {
+	// 	name : 'David'
+	// }
+	// with(obj){
+	// 	console.log(name) //———> David
+	// }
+	// 3.变量声明的时候前面必须加 var 不然会报错 （在es3中 不加var的话系统会认为是全局变量）
+	// 4.this指向 在块作用域里this不再指向window 必须要给this赋值 不然this是undefined
+	function demo(){
+		console.log(this) // --undefined
+	}
+	demo.call(1245); //严格模式下this可以是原始值 但es3里系统会自动转化为包装类
+	// 5.拒绝重复属性和参数
+	
+</script>
+</html>

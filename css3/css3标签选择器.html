@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3标签选择器</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		/*属性选择器*/
+		div[name="aa"]{
+			color:red;
+		}
+		[v-cloak]{
+			color:green;
+		}
+		div[class*='a']{
+			color:gray;
+		}
+		body{
+			height: 2000px;
+		}
+		.aa1{
+			position: absolute;
+			top:500px;
+		}
+		.aa2{
+			position: absolute;
+			top:1000px;
+		}
+		.aa3{
+			position: absolute;
+			top:1500px;
+		}
+		.aa2:target{ /*被选中的目标元素的样式*/
+			background:black;
+			color:red;
+		}
+		li:first-child{
+			color:red;
+		}
+		ul li:last-child span{
+			color:green;
+		}
+		li:nth-child(2){
+			color:yellow;
+		}
+		li:nth-of-type(4){
+			color:blue;
+		}
+		input:checked +span{
+			width:30px;
+			height:30px;
+			color:red;
+		}
+		body:last-child{
+			width:200px;
+			color:skyblue;
+		}
+		.words:first-line{
+			color:red;
+		}
+		.words:first-letter{
+			font-size:40px;
+		}
+		.wrapper{
+			width:300px;
+			border:1px solid black;
+			overflow: hidden;
+		}
+		.card{
+			display: none;
+			float:left;	
+			width:300px;
+			height:200px;
+		}
+		.a1{
+			background:red;
+		}
+		.a2{
+			background:gray;
+		}
+		.a3{
+			background:yellow;
+		}
+		input[name='card']:checked + div{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div name="aa" class="aazz">属性选择器</div>
+	<div v-cloak>vue</div>
+	<div class="aacc">4153</div>
+	<ul>
+		<li>1
+			<span>span1</span>
+		</li>
+		<li>2
+			<span>span2</span>
+		</li>
+		<li>3
+			<span>span3</span>
+		</li>
+		<li>4
+			<span>span4</span>
+		</li>
+		<li>5
+			<span>span5</span>
+		</li>
+	</ul>
+	<a href="#aa1">click1</a>
+	<a href="#aa2">click2</a>
+	<a href="#aa3">click3</a>
+	<div class="aa1" id="aa1">1</div>
+	<div class="aa2" id="aa2">2</div>
+	<div class="aa3" id="aa3">3</div>
+	<input type="checkbox">
+	<span>+check</span>
+	<p class="words">的就看了的开房记录看的非健康的减肥了肯定是减肥的路口附近的时空裂缝恐龙当家分离式的开发克鲁赛德解放了肯定是分开了电视剧弗兰克时代峻峰</p>
+
+	<div class="wrapper">
+		<input type="radio" name='card' checked>
+		<div class="card a1">1</div>
+		<input type="radio" name='card'>
+		<div class="card a2">2</div>
+		<input type="radio" name='card'>
+		<div class="card a3">3</div>
+	</div>
+</body>
+</html>

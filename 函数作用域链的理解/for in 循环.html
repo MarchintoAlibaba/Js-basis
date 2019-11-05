@@ -13,10 +13,28 @@
 		sex:'sex',
 		age:'18',
 		height:'20',
-		weight:'75'
+		weight:'75',
+		__proto__:{
+			lastName:"jin"
+		},
+		prototype:{
+			firstName:"dong"
+		},
+		way:function(){
+			console.log(1)
+		}
 	}
+	// console.log(Ad[name])
 	for(var aa in Ad){
-		console.log(aa)
+		// console.log(aa)
+		//在枚举里面访问对象的属性必须这样写
+		//
+		// console.log(Ad[aa])
+
+		// 任何一个函数都有hasOwnProperty的方法，判断函数或对象自己是否有这个属性 这里是只打印Ad自己有的属性 不打印——proto——里面的属性
+		if(Ad.hasOwnProperty(aa)){
+			console.log(Ad[aa])
+		}
 	}
 </script>
 </html>

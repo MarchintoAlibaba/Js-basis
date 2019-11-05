@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节流</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.box{
+			width:300px;
+			height:300px;
+			background:yellow;
+			color:red;
+			font-size:30px;
+			text-align:center;
+			line-height: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">0</div>
+</body>
+ <script>
+ 	var box = document.getElementsByClassName('box')[0];
+ 	// 方法一：用时间戳做节流  节流是没隔一定时间执行一次
+ 	
+ 	box.onmousemove = throttle_other_way(aa,100);
+ 	function aa(aa,bb){
+ 		console.log(aa,bb);
+ 		aa.innerHTML = ++ aa.innerHTML;
+ 	}
+ 	function throttle(fn,w_time){
+ 		var lastTime = 0;
+ 		return function(){
+ 			var nowTime = +new Date();
+ 			if(nowTime - lastTime > w_time){
+ 				fn(this,arguments);
+ 				lastTime = nowTime;
+ 			}
+ 		}
+ 	}
+ 	// 方法二：用计时器做节流
+ 	function throttle_other_way(fn,w_time){
+ 		var timer = null; //用闭包函数 得到私有化变量
+ 		return function(){
+ 			var This = this,argu = arguments;
+ 			if(!timer){
+	 			timer = setTimeout(function(){
+	 				fn(This,argu);
+	 				timer = null;
+	 			},w_time);
+ 			}
+ 		}
+ 	}
+ </script>
+</html>

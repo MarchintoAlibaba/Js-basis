@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数组与其方法</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 改变数组的方法 push pop shift unshift sort reverse splice
+	// 1.push方法就是往原有数组的最后一位增加一条索引 列
+	var arr=[]
+	arr.push(1);arr.push(1,2,3);
+	// 模仿浏览器的数组的push方法，重写一个
+	Array.prototype.push=function(){
+		
+		for(var i=0;i<arguments.length;i++){
+			this[this.length]=arguments[i]
+		}
+		return this.length
+	}
+	arr.push(4,5,6)
+
+	// pop方法是删除数组的最后一条数据并返回最后一位索引的值 pop里面不接受参数
+	 var arr1=[1,2,3]
+	 var num=arr1.pop()
+	 //shift方法是删除数组的第一位数据，也不接受参数
+	 //unshift方法是往数组的最前面添加数据，参数是要添加的索引值
+	 //
+	 //
+	 //splice方法里面可以传三个参数，前面两个是必填项，第三项是可填项  splice(从第几位开始截取(-1表示最后一位)，要截取的个数，在前面的切口处添加新的数据)  例
+	 var arr2=[1,2,3]
+	 arr2.splice(1,1,4)
+	 //reverse方法是逆转，就是把调反原来的数组的方向例 [1,2,3] --> [3,2,1]
+	 //sort方法是将一个数组排序，升序、降序、乱序任你自己写 需要两个参数a、b,如果a-b>0 则a b调换顺序，小于0则不变
+	 var arr3=[1,23,5,9,3,67,4]
+	 arr3.sort(function(a,b){
+	 	if(a-b>0){
+	 		return 1
+	 	}else{
+	 		return -1
+	 	}
+	 	//这里可以简化为 return a-b 降序则相反为 return b-a 乱序则是 return Math.random()-0.5
+	 })
+	// 不改变数组的方法 concat join split toString slice
+	// concat方法是将两个数组连接起来并返回连接后的数组，不改变原数组
+	// slice方法是截取数组，里面有2个参数（从第几位开始截取，截取到第几位索引（不包括这位），）没有参数是将整个数组截取下来
+	// toString该方法数组重写了，就是将一个数组转化为字符串
+	// join方法是将数组里面的数组以参数给的符号拼接到一起成字符串 例
+	var arr4=[1,2,3,4]
+	// arr4.join("/") -->"1/2/3/4"
+	// split方法是字符串的 其作用域join相反 是将字符串以参数的符号分隔成数组的每一项 例
+	var string="1234"
+	var arr5=string.split("")
+</script>
+</html>

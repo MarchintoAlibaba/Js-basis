@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>应用数组方法写搜索</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		ul{
+			list-style: none;
+		}
+		.wrapper{
+			width:500px;
+			border:1px solid black;
+			border-radius: 4px;
+			margin:100px auto 0;
+		}
+		.search input{
+			width:200px;
+			height:30px;
+			border:1px solid gray;
+			padding:0 10px;
+			margin:10px;
+		}
+		.search p{
+			display: inline-block;
+		}
+		.search p span{
+			padding:4px 6px;
+			background:skyblue;
+			color:white;
+			border-radius: 6px;
+			cursor:pointer;
+		}
+		.search p span.active{
+			background:green;
+		}
+		.user-list ul li{
+			padding:10px;
+			border-bottom:1px solid gray;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="search">
+			<input type="text">
+			<p class="choose" placeholder='请输入你要查找的关键字'>
+				<span>male</span>
+				<span>female</span>
+				<span class="active">all</span>
+			</p>
+		</div>
+		<div class="user-list">
+			<ul>
+				<!-- <li>
+					<p>王成</p>
+					<p>年轻有为</p>
+				</li>
+				<li>
+					<p>王五</p>
+					<p>年轻漂亮</p>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	var userArr = [
+		{name:'王成',words:'年轻有为',sex:'male',age:'24'},
+		{name:'王五',words:'年轻漂亮',sex:'female',age:'23'},
+		{name:'刘梦',words:'可爱美丽',sex:'female',age:'24'},
+		{name:'刘大炮',words:'活泼阳光',sex:'male',age:'22'},
+		{name:'刘莹',words:'天真美丽',sex:'female',age:'23'},
+		{name:'王天成',words:'阳光帅气',sex:'male',age:'24'},
+	];
+	var input = document.getElementsByClassName('search')[0].getElementsByTagName('input')[0],
+		choose = document.getElementsByClassName('choose')[0],
+		userContent = '',
+		timer = null,
+		conditionsstatus = {
+			'name':'',
+			'sex':'all'
+		},
+		ul = document.getElementsByClassName('user-list')[0].getElementsByTagName('ul')[0];
+	//将数组里面的数据渲染到html页面
+	function writeUser(userArr){
+		userContent = '';
+		userArr.forEach(function(ele,index){
+			userContent += '<li>\
+							<p>' + ele.name + '</p>\
+							<p>' + ele.words +'</p>\
+							</li>'
+		})
+		ul.innerHTML = userContent;
+	}
+	writeUser(userArr);
+	input.oninput = function(){
+		clearTimeout(timer);
+		timer = setTimeout(function(){
+			conditionsstatus.name = input.value;
+			writeUser(allfilter({name:filterName,sex:filterSex},userArr));
+		},300)
+	}
+	choose.onclick = function(e){
+		var event = e || window.even;
+		if(event.target.nodeName == 'SPAN'){
+			document.getElementsByClassName('active')[0].className = '';
+			event.target.className = 'active';
+			conditionsstatus.sex = event.target.innerText;
+			writeUser(allfilter({name:filterName,sex:filterSex},userArr));
+		}
+	}
+	//筛选名字
+	function filterName(text,arr){
+		return arr.filter(function(ele,index){
+			if(ele.name.indexOf(text) != -1){
+				return true;
+			}else{
+				return false;
+			}
+		})
+	}
+	//筛选性别
+	function filterSex(text,arr){
+		return arr.filter(function(ele,index){
+			if(text == 'all' || text == ''){
+				return true;
+			}else{
+				return ele.sex == text;
+			}
+		})
+	}
+	// 添加筛选条件,返回一个经过全部筛选的数组
+	function allfilter(obj,arr){
+			var lastArr = arr;
+			for(var prop in obj){
+				lastArr = obj[prop](conditionsstatus[prop],lastArr);
+			}
+			return lastArr;
+		}
+	// var lastArr = allfilter({name:filterName,sex:filterSex},userArr);
+</script>
+</html>

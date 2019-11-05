@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>栅栏布局的3种方法</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		/*.title{
+			background:yellow;
+		}*/
+		/*.title .left,.title .right{
+			position: absolute;
+			width:300px;
+			height:300px;
+			background:blue;
+		}
+		.title .left{
+			left:0;
+		}
+		.title .right{
+			right:0;
+			top:0;
+		}
+		.title .middle{
+			height:300px;
+			background:red;
+			margin:0 300px 0;
+		}*/
+
+		/*.title2{
+			background:#f40;
+		}
+		.title2 .left,.title2 .right{
+			width:300px;
+			height:300px;
+			background:skyblue;
+		}
+		.title2 .left{
+			float:left;
+		}
+		.title2 .right{
+			float:right;
+		}
+		.title2 .middle{
+			margin:0 300px 0;
+			background:gray;
+			height:300px;
+		}*/
+
+		.title3{
+			background:green;
+			display:flex;
+			align-items:center;
+			/*justify-content:center;*/
+		}
+		.title3 .left,.title3 .right{
+			width:300px;
+			height:300px;
+			background:orange;
+		}
+		.title3 .middle{
+			flex:1;
+			height:200px;
+			background:red;
+		}
+	</style>
+</head>
+<body>
+	<!-- numberone way 定位-->
+	<!-- <div class="title">
+		<div class="left">left</div>
+		<div class="middle">middle</div>
+		<div class="right">right</div>
+	</div> -->
+	<!-- number-two way 浮动-->
+	<!-- <div class="title2">
+		<div class="left">left</div>
+		<div class="right">right</div>
+		<div class="middle">middle</div>
+	</div> -->
+	<!-- number-three way 弹性盒模型布局-->
+	<div class="title3">
+		<div class="left">left1</div>
+		<div class="middle">middle</div>
+		<div class="right">right</div>
+	</div>
+</body>
+</html>

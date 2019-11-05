@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>立方体的制作</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.cube{
+			margin:300px;
+			width:100px;
+			height:100px;
+			position: relative;
+			transform-style:preserve-3d;
+			animation:mymove 5s ease 1;
+		}
+		@keyframes mymove{
+			to{
+				transform:rotateZ(7200deg);
+			}
+		}
+		.cube div{
+			position: absolute;
+			width:100px;
+			height:100px;
+			text-align: center;
+			line-height: 100px;
+			font-size:40px;
+			color:#f30;
+			/*opacity: 0.9;*/
+		}
+		.item1{
+			background:red;
+			transform:rotateX(90deg) translate3d(0,0,50px);
+		}
+		.item2{
+			background:black;
+			transform:rotateX(-90deg) translate3d(0,0,50px);
+		}
+		.item3{
+			background:green;
+			transform: rotateY(-90deg) translate3d(0,0,50px);
+		}
+		.item4{
+			background:yellow;
+			transform:rotateX(180deg) translate3d(0,0,50px);
+		}
+		.item5{
+			background:skyblue;
+			transform:rotateY(90deg) translate3d(0,0,50px);
+		}
+		.item6{
+			background:gray;
+			transform: rotate(0deg) translate3d(0,0,50px);
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="cube">
+			<div class="item1">上面</div>
+			<div class="item2">下面</div>
+			<div class="item3">左边</div>
+			<div class="item4">后面</div>
+			<div class="item5">右边</div>
+			<div class="item6">前面</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js加载时间线</title>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			for(var i = 0; i < 5000000000; i ++);
+				console.log(1)
+		},false)
+	</script>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.test{
+			width:300px;
+			height:300px;
+			background: red;
+		}
+		.test-one{
+			width:200px;
+			height:300px;
+			background: green;
+		}
+		.test-two{
+			width:400px;
+			height:300px;
+			background: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="test">printf("%3d",a[i][j]);三条执行语句，想把他们都包括到循环体内就必须用大括号括起来，作为一个复合语句出现。
+for语句还有空循环模式，就是没有执行语句，如：
+for(i=0;str[i]!='\0';i++);此句后就有分号，表示为空循环，没有执行语句，它的功能就是为了得到i的值。</div>
+	<div class="test-one">方法	描述
+Math.ceil(x)	对数进行上舍入。（向上取整；大于等于x的最小整数）
+Math.floor(x)	对数进行下舍入。（小于等于x的最大整数）
+Math.max(x,y)	返回 x 和 y 中的最高值。（返回x、y中的最大值；可以传入多个参数，用逗号隔开）
+Math.min(x,y)	返回 x 和 y 中的最低值。（返回x、y中的最小值；可以传入多个参数，用逗号隔开）
+Math.random()	返回 0 ~ 1 之间的随机数。（此方法可扩展，如：取一定范围内的随机整数…）
+Math.round(x)	把数四舍五入为最接近的整数。（对x四舍五入）
+Math.acos(x)	返回数的反余弦值。
+Math.asin(x)	返回数的反正弦值。
+Math.atan(x)	以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。
+Math.atan2(y,x)	返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）。
+Math.cos(x)	返回数的余弦。
+Math.exp(x)	返回 e 的指数。
+Math.log(x)	返回数的自然对数（底为e）。
+Math.pow(x,y)	返回 x 的 y 次幂。
+Math.sin(x)	返回数的正弦。
+Math.sqrt(x)	返回数的平方根。
+Math.tan(x)	返回角的正切。
+Math.toSource()	返回该对象的源代码。
+Math.valueOf()	返回 Math 对象的原始值。
+--------------------- 
+作者：littlebearGreat 
+来源：CSDN 
+原文：https://blog.csdn.net/littlebearGreat/article/details/78414501 
+版权声明：本文为博主原创文章，转载请附上博文链接！</div>
+	<div class="test-two">方法	描述
+Math.ceil(x)	对数进行上舍入。（向上取整；大于等于x的最小整数）
+Math.floor(x)	对数进行下舍入。（小于等于x的最大整数）
+Math.max(x,y)	返回 x 和 y 中的最高值。（返回x、y中的最大值；可以传入多个参数，用逗号隔开）
+Math.min(x,y)	返回 x 和 y 中的最低值。（返回x、y中的最小值；可以传入多个参数，用逗号隔开）
+Math.random()	返回 0 ~ 1 之间的随机数。（此方法可扩展，如：取一定范围内的随机整数…）
+Math.round(x)	把数四舍五入为最接近的整数。（对x四舍五入）
+Math.acos(x)	返回数的反余弦值。
+Math.asin(x)	返回数的反正弦值。
+Math.atan(x)	以介于 -PI/2 与 PI/2 弧度之间的数值来返回 x 的反正切值。
+Math.atan2(y,x)	返回从 x 轴到点 (x,y) 的角度（介于 -PI/2 与 PI/2 弧度之间）。
+Math.cos(x)	返回数的余弦。
+Math.exp(x)	返回 e 的指数。
+Math.log(x)	返回数的自然对数（底为e）。
+Math.pow(x,y)	返回 x 的 y 次幂。
+Math.sin(x)	返回数的正弦。
+Math.sqrt(x)	返回数的平方根。
+Math.tan(x)	返回角的正切。
+Math.toSource()	返回该对象的源代码。
+Math.valueOf()	返回 Math 对象的原始值。
+--------------------- 
+作者：littlebearGreat 
+来源：CSDN 
+原文：https://blog.csdn.net/littlebearGreat/article/details/78414501 
+版权声明：本文为博主原创文章，转载请附上博文链接！</div>
+</body>
+<script>
+	// 1.创建Document对象，开始解析web页面。该阶段的document.readyState = 'loading';
+	// 2.遇到link的外部css，创建新线程异步加载该css，继续解析文档
+	// 3.遇到外部script的js，看有木有设置async，浏览器加载，并阻塞，等到改js下载并执行完后继续解析页面
+	// 4.遇到外部script标签的js，如果有设置async，创建新线程，并且异步加载该js，继续解析文档，加载完js后并执行
+	// 5.遇到img标签，先正常解析dom，浏览器异步加载src里面的文件，继续解析文档
+	// 6.当文档解析完成之后，document.readyState = 'interactive'
+	// 7.document对象触发DOMContentLoaded事件，在这之后页面上所以的操作（点击、拖拽）都将被相应
+	// 8.当所有异步加载的js都执行完、img标签的文件都已经下载完后，document.readyState = 'complete' 并且window对象触发load事件
+	// 9.从此，以异步相应的方式处理用户输入、网络事件
+	console.log(document.readyState);
+	document.onreadystatechange = function(){
+		console.log(document.readyState)
+	}
+	//当文档解析完成是会触发DOMContentLoaded事件，此事件只能由addEventListener来监听 次方法与jq的ready一样比window.onload好一百倍
+	// document.addEventListener('DOMContentLoaded',function(){
+	// 	console.log(1)
+	// },false)
+	
+</script>
+</html>

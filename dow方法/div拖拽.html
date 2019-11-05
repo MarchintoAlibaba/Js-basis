@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>div拖拽</title>
+</head>
+<body>
+	<input type="text" placeholder="请输入用户名">
+	<a href="http://www.baidu.com">a标签</a>
+	<!-- <div style="width:100px;height:100px;background:red;padding:0;margin:0;position: absolute;left:0;top:0;"></div> -->
+</body>
+<script>
+	// var div=document.getElementsByTagName("div")[0];
+	// div.onmousedown=function(e){
+	// 	var event=e||window.event;
+	// 	var firstLeft=event.clientX-parseInt(div.style.left),firstTop=event.clientY-parseInt(div.style.top),leftX,topY;
+	// 	document.onmousemove=function(e){
+	// 		var e=e||window.event;
+	// 		leftX=e.clientX-firstLeft;
+	// 		topY=e.clientY-firstTop;
+	// 		console.log(leftX)
+	// 		div.style.left=leftX+'px';
+	// 		div.style.top=topY+'px';
+	// 	}
+	// 	document.onmouseup=function(){
+	// 		document.onmousemove=null;
+	// 	}
+	// }
+	var a=document.getElementsByTagName("a")[0];
+	a.onclick=function(e){
+		e.preventDefault();
+	}
+</script>
+</html>	

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>魔方正六边形</title>
+	<style>
+		*{
+			margin:0;
+			 padding:0;
+		}
+		/*现在我们需要利用css写一个正六边形，每天边的长度为100px*/
+		/*这个正六边形是有一个长方形加两个三角形拼接而成的，根据初中数学求得此长方形的长为173.2px 三角形的高度为50px*/
+		.box{
+			width:173.2px;
+			height:100px;
+			background:red;
+			margin:100px;
+			position: relative;
+		}
+		.box:before{
+			position: absolute;
+			top:-50px;
+			content:'';
+			display: block;
+			border-bottom:50px solid red;
+			border-left:86.6px solid transparent;
+			border-right:86.6px solid transparent;
+		}
+		.box:after{
+			position: absolute;
+			bottom:-50px;
+			content:'';
+			display: block;
+			border-top:50px solid red;
+			border-left:86.6px solid transparent;
+			border-right:86.6px solid transparent;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>

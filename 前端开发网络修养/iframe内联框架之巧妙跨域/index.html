@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<iframe src="demo.html" frameborder="0"></iframe>
+</body>
+<script>
+	var oIframe = document.getElementsByTagName('iframe')[0];
+	var newWindow = oIframe.contentWindow;
+	oIframe.onload = function(){
+		console.log(newWindow.age)
+	}
+	//只有在同源的情况下，才可以得到oIframe.contentWindow里面的值
+	//iframe的跨域方法有两种
+	//1.将父页面的数据以哈希值的方式加在iframe的src的链接后面，子页面可以通过window.parent.location.hash得到
+	//2.利用window.name的值在同一窗口下可以访问的方式，在iframe里面先引用一个不同源的链接，不同源的那个页面将数据赋予个window.name, 在将其换成同源的文件，就可以得到
+</script>
+</html>

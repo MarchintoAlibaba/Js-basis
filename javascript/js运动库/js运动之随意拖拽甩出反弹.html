@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js拖拽之随意甩出反弹</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		.odiv{
+			position: absolute;
+			left:0;
+			top:0;
+			width:100px;
+			height:100px;
+			background:yellow;
+		}
+		.smallspan{
+			width:5px;
+			height:5px;
+			background:red;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="odiv"></div>
+</body>
+<script>
+	//第一步仿div在屏幕内随意碰撞到边框后反弹
+	//第二步：模拟跳跳球的坠落过程
+	//第三步：实现鼠标拖拽
+	var oDiv = document.getElementsByClassName('odiv')[0],
+		timer,
+		startX,
+		allspanLength,
+		allspan,
+		startY;
+	oDiv.onmousedown = function(e){
+		clearInterval(timer);
+		var event = e || window.event;
+		var divX = event.clientX - oDiv.offsetLeft,
+			divY = event.clientY - oDiv.offsetTop;
+		document.onmousemove = function(e){
+			var event = e || window.event;
+			oDiv.style.left = event.clientX - divX + 'px';
+			oDiv.style.top = event.clientY - divY + 'px';
+			var span = document.createElement('span');
+			span.className = 'smallspan';
+			span.style.top = event.clientY + 'px';
+			span.style.left = event.clientX + 'px';
+			document.body.appendChild(span);
+		}
+		document.onmouseup = function (){
+			document.onmousemove = null;
+			allspan = document.getElementsByClassName('smallspan');
+			allspanLength = allspan.length;
+			startX = allspan[allspanLength - 1].offsetLeft - allspan[allspanLength - 2].offsetLeft;
+			startY = allspan[allspanLength - 1].offsetTop - allspan[allspanLength - 2].offsetTop;
+			divMove();
+		}
+	}
+	function divMove(){
+		console.log(startX,startY);
+		av = 10;
+		clearInterval(timer);
+		timer = setInterval(function(){
+			startY += av;
+			oDiv.style.left = oDiv.offsetLeft + startX + 'px';
+			oDiv.style.top = oDiv.offsetTop + startY + 'px';
+			if(oDiv.offsetTop >= (document.documentElement.clientHeight - oDiv.offsetHeight)){
+				startY = startY * (-0.8);
+				startX *= 0.9;
+				oDiv.style.top = document.documentElement.clientHeight - oDiv.offsetHeight + 'px';
+				
+			}
+			if(oDiv.offsetLeft >= (document.documentElement.clientWidth - oDiv.offsetWidth)){
+				startX *= -0.8;
+				oDiv.style.left = document.documentElement.clientWidth - oDiv.offsetWidth + 'px';
+			}
+			if(oDiv.offsetTop <= 0){
+				startY *= -1;
+				oDiv.style.top = 0 + 'px';
+			}
+			if(oDiv.offsetLeft <= 0){
+				startX *= -0.8;
+				oDiv.style.left = 0 + 'px';
+			}
+			if(Math.abs(startX) <= 1 && Math.abs(startY) <= 5 && oDiv.offsetTop == document.documentElement.clientHeight - oDiv.offsetHeight){
+				clearInterval(timer);
+				console.log(allspanLength)
+				for(var i = 0; i < allspanLength; i ++){
+					console.log(1)
+					document.body.removeChild(allspan[0]);
+				}
+			}
+		},30)
+	}
+		
+
+</script>
+</html>

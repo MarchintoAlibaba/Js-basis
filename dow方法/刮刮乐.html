@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>刮刮乐</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		ul{
+			list-style:none;
+			width:200px;
+			height:200px;
+			position: relative;
+		}
+		ul>div>li{
+			box-sizing:border-box;
+			width:10px;
+			float:left;
+			height:10px;
+			background:rgba(255,255,0,1);
+		}
+		ul>div.money{
+			width:100px;
+			height:100px;
+			position: absolute;
+			left:50%;
+			top:50%;
+			margin-left:-50px;
+			margin-top:-50px;
+			color:#ffff00;
+			text-align: center;
+			line-height: 100px;
+			font-size:30px;
+		}
+		ul>div.box{
+			position: absolute;
+			z-index: 1;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+			
+		<div class="box">
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		<li id="0" data-a='1'></li>
+		</div>
+		<div class="money">200元</div>
+	</ul>
+</body>
+<script>
+	var box = document.getElementsByClassName('box')[0];
+	box.onmouseover = function (e){
+		var event = e || window.event;
+		var target = event.target || event.srcElement;
+		console.log(target)
+		target.style.background = "rgba(255,255," + target.getAttribute('id') + ',' + target.getAttribute('data-a') + ")";
+		target.setAttribute('id',parseInt(target.getAttribute('id')) + 50);
+		target.setAttribute('data-a',parseInt(target.getAttribute('data-a')) - 0.1);
+	}
+</script>
+</html>

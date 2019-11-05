@@ -1,0 +1,1 @@
+getData({"name":"dg","age":"18","words":"handsome"});

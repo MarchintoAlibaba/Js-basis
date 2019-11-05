@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jsonp跨域写百度搜索引擎</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+			list-style:none;
+		}
+		.wrapper{
+			width:400px;
+			margin:100px auto;
+		}
+		.wrapper input{
+			box-sizing:border-box;
+			width:400px;
+			height:30px;
+		}
+		.wrapper ul{
+			box-sizing:border-box;
+			display: none;
+			width:400px;
+			border:1px solid #757570;
+		}
+		.wrapper ul li{
+			height:30px;
+			line-height: 30px;
+			cursor:pointer;
+		}
+		.wrapper ul li>a{
+			display:inline-block;
+			width:100%;
+			height:100%;
+			text-decoration:none;
+			color:black;
+		}
+		.wrapper ul li:hover{
+			background:gray;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<input type="text">
+		<ul>
+			
+		</ul>
+	</div>
+</body>
+<script>
+	var oInput = document.getElementsByTagName('input')[0],
+		oScript,
+		oUl = document.getElementsByTagName('ul')[0];
+	oInput.oninput = function(){
+		var value = oInput.value;
+		oScript = document.createElement('script');
+		oScript.src = 'https://www.baidu.com/sugrec?prod=pc&wd=' + value + '&cb=aab'; //此链接是在百度搜索框里调试找到的
+		document.body.appendChild(oScript);
+		document.body.removeChild(oScript);
+	}
+	function aab(data){
+		var ss_data = data.g,
+			str = '';
+		if(ss_data){
+			for(var i =0;i < 4;i ++){
+				str += '<li><a href=https://www.baidu.com/s?wd=' + ss_data[i].q + '>' + ss_data[i].q + '</a></li>';
+			}
+			oUl.innerHTML = str;
+			oUl.style.display = 'block';
+		}else{
+			oUl.style.display = 'none';
+		}
+	}
+</script>
+<script></script>
+</html>

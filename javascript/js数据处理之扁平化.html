@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js数据处理之扁平化</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//数据扁平化处理就是将一个多维数组或陷套很深的数据使起编程一维数组或只有一层陷套的数据例：
+	//arr = [1,2,[1],[[[[[[4,5,6]]]]]],{},[[20]]] 变成这样-->[1,2,1,4,5,6,{},20]
+	var arr = [1,2,[[3]],[[[[4]]]],2];
+	// 方法一：
+	// function changeData(arr){
+	// 	var arr = arr || [],
+	// 		newarr = [];
+	// 		arr.forEach(function(item){
+	// 			if(Object.prototype.toString.call(item) == "[object Array]"){
+	// 				newarr = newarr.concat(changeData(item));
+	// 			}else{
+	// 				newarr.push(item);
+	// 			}
+	// 		})
+	// 		return newarr;
+	// }
+	// 方法二：在原型链上编程
+	Array.prototype.changeData = function(){
+		var newarr = [];
+		this.forEach(function(item){
+			Object.prototype.toString.call(item) == '[object Array]'? newarr = newarr.concat(item.changeData(item)) : newarr.push(item);
+		})
+		return newarr;
+	}
+</script>
+</html>

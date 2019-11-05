@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>克隆（拷贝）</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//克隆又叫拷贝 起分为深度克隆和浅度克隆 就是把a对象上的属性克隆到b对象上面
+	//浅度拷贝假如拷贝的是引用值的话会有一个问题，就是 原来的值改变拷贝后的值也会改变 而深度拷贝就不会
+	//深度拷贝用的方法是递归
+	//首先步骤 1.判断原对象的属性是原始值还是引用值
+	//2.如果是引用值 判断是数组还是对象
+	//3.是对象就建立{}是数组就建立[]然后递归
+	var obj = {
+		name:'xiaozhang',
+		age:'22',
+		card:[1,2,3],
+		life:{
+			adreen:'chinese',
+			trval:{
+				placeone:'beijing',
+				placetwo:'shanghai'
+			}
+		}
+	}
+	var obj1={};
+	function deepClone(origin,target){
+		var target = target || {};
+		for (var prop in origin){
+			if(origin.hasOwnProperty(prop)){ //判断origin上的属性是不是自己身上的 只拷贝自己对象上的属性与方法
+				if(typeof(origin[prop]) !== 'null' && typeof(origin[prop]) === 'object'){ //判断origin上的属性是否为原始值
+					if(Object.prototype.toString.call(origin[prop]) === '[object Array]'){ //判断该应用是是数组还是对象
+						target[prop] = [];
+					}else{
+						target[prop] = {};
+					}
+					deepClone(origin[prop],target[prop]); //递归
+				}else{	
+					target[prop] = origin[prop];
+				}
+			}
+		}
+		return target;
+	}
+	deepClone(obj,obj1);
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

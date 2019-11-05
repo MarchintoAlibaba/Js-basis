@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3让页面动起来</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.wrapper{
+			margin:100px;
+		}
+		.box{
+			width:100px;
+			height:100px;
+			background:red;
+			transform:translate3d(-45px,-20px,45px);
+		}
+		.outbox{
+			display: inline-block;
+			border:1px solid black;
+		}
+		.dial-circle{
+			width:120px;
+			height:120px;
+			border-radius:50%;
+			border:1px solid black;
+			position: relative;
+			
+		}
+		.dial-circle>ul>li{
+			position: absolute;
+			top:0;
+			left:50%;
+			margin-left:-2px;
+			width:4px;
+			height:14px;
+			background:black;
+			list-style: none;
+			transform-origin:50% 60px;  /*用百分比的话就是以li的50%，用60px就是以dial-circle在y轴上往下60px*/
+		}
+		.dial-circle>ul>li:nth-of-type(2){
+			transform: rotateZ(30deg);
+		}
+		.dial-circle>ul>li:nth-of-type(3){
+			transform:rotateZ(60deg);
+		}
+		.dial-circle>ul>li:nth-of-type(4){
+			transform:rotateZ(90deg);
+		}
+		.dial-circle>ul>li:nth-of-type(5){
+			transform:rotateZ(120deg);
+		}
+		.dial-circle>ul>li:nth-of-type(6){
+			transform:rotateZ(150deg);
+		}
+		.dial-circle>ul>li:nth-of-type(7){
+			transform:rotateZ(180deg);
+		}
+		.dial-circle>ul>li:nth-of-type(8){
+			transform:rotateZ(210deg);
+		}
+		.dial-circle>ul>li:nth-of-type(9){
+			transform:rotateZ(240deg);
+		}
+		.dial-circle>ul>li:nth-of-type(10){
+			transform:rotateZ(270deg);
+		}
+		.dial-circle>ul>li:nth-of-type(11){
+			transform:rotateZ(300deg);
+		}
+		.dial-circle>ul>li:nth-of-type(12){
+			transform:rotateZ(330deg);
+		}
+		.trans{
+			width:100px;
+			height:100px;
+			background:red;
+			transition: all 2s linear;
+		}
+		.trans:hover{
+			width:300px;
+			height:400px;
+			background:green;
+		}
+		.anima{
+			width:100px;
+			height:100px;
+			background:blue;
+			animation:move 2s linear 1s backwards infinite paused;
+		}
+		@keyframes move{
+			0%{
+				width:200px;
+			}
+			50%{
+				width:300px;
+			}
+			100%{
+				width:500px;
+			}
+		}
+		.pointer{
+			width:400px;
+			height:20px;
+			border-top-right-radius:100%;
+			border-bottom-right-radius:100%;
+			background:red;
+			transform-origin:0px 0px;
+			transition:all 2s;
+			transform:rotateZ(20deg);
+			z-index:100;
+		}
+		.move-circle{
+			margin-top:50px;
+			width:200px;
+			height:200px;
+			background:gray;
+			border-radius:50%;
+			text-align:center;
+			line-height: 200px;
+			font-size:30px;
+			animation:rotatemove 2s linear infinite paused;
+		}
+		@keyframes rotatemove{
+			to{
+				transform:rotateZ(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="outbox">
+			<div class="box"></div>
+		</div>
+		<!-- 画表盘 -->
+		<div class="dial">
+			<div class="dial-circle">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<div class="transition">
+			<div class="trans" id="trans"></div>
+		</div>
+		<div class="animation">
+			<div class="anima" id="anima"></div>
+		</div>
+		<!-- 做一个网易云音乐的转盘播放样式 -->
+		<div class="music">
+			<div class="pointer" id="pointer"></div>
+			<div class="move-circle" id="move_circle">转起来</div>
+		</div>
+	</div>
+</body>
+<script>
+	trans.onclick = function(){
+		this.style.width = '500px';
+	}
+	anima.onclick = function(){
+		this.style.animationPlayState = 'paused';
+	}
+	var flag = true;
+	move_circle.onclick = function(){
+		if(flag){
+			flag = false;
+			this.innerText = '暂停';
+			pointer.style.transform = 'rotateZ(40deg)';
+			this.style.animationPlayState = 'running';
+		}else{
+			flag = true;
+			this.innerText = '转起来';
+			pointer.style.transform = 'rotateZ(20deg)';
+			this.style.animationPlayState = 'paused';
+		}
+	}
+</script>
+</html>

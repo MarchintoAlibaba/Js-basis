@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算两个div的覆盖面积</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.box1{
+			width:100px;
+			height:100px;
+			position: absolute;
+			left:0;
+			top:0;
+			background:#f30;
+			z-index: 1;
+		}
+		.box2{
+			width:100px;
+			height:100px;
+			position: absolute;
+			left:50%;
+			top:50%;
+			margin-left:-50px;
+			margin-top:-50px;
+			background:skyblue;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+</body>
+<script>
+	//可以用两个div的覆盖面积解决很多事情 所以我们需要现在做一个这样的事情
+	function coverArea(){
+		var box1 = document.getElementsByClassName('box1')[0],
+			box2 = document.getElementsByClassName('box2')[0],
+			box1Left,box1Top,
+			valve = false,
+			coverX = 0,
+			coverY = 0;
+		box1.onmousedown = function(e){
+			var event = e || window.event;
+			valve = true;
+			box1Left = event.clientX - box1.offsetLeft;
+			box1Top = event.clientY - box1.offsetTop;
+		}
+		document.onmousemove = function(e){
+			var event = e || window.event;
+			if(valve){
+				box1.style.left = (event.clientX - box1Left) + 'px';
+				box1.style.top = (event.clientY - box1Top) + 'px';
+				if(box1.offsetLeft + box1.offsetWidth > box2.offsetLeft && box1.offsetLeft < box2.offsetLeft + box2.offsetWidth && box1.offsetTop + box1.offsetHeight > box2.offsetTop && box1.offsetTop < box2.offsetTop + box2.offsetHeight){
+					coverX = box1.offsetWidth - Math.abs(box2.offsetLeft - box1.offsetLeft);
+					coverY = box1.offsetHeight - Math.abs(box2.offsetTop - box1.offsetTop);
+				}else{
+					coverX = 0;
+					coverY = 0;
+				}
+				console.log(coverX * coverY)
+			}
+			
+		}
+		document.onmouseup = function(){
+			valve = false;
+		}
+	}
+	coverArea();
+</script>
+</html>

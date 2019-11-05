@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6新增语法糖</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//增强的字符串
+	var b = 'dfjdd';
+	var obj = `"{
+		'aa':'a',
+		'bb':b
+	}"`;
+	console.log(obj)
+	var name = 'xiaoming',age='18';
+	var info = `name:${name} age:${age}`;//${变量名}
+	//字符串里面可以嵌套字符串 例：
+	var arr = [1,2,3];
+	// `${arr.map(function(item,index){
+	// 	`${console.log(item)}`
+	// })}`
+	
+	// `${aa()}`;
+	function aa(age){
+		console.log(age)
+	}
+	aa`22`; //函数执行 22是实参
+	console.log(info);
+
+	//函数的扩展
+	function test(x,y=4){
+		console.log(x,y)
+	}
+	test(1);//es6的默认y值为4
+
+	// 解构赋值
+	function f1({x = 0,y = 0} = {}){ //这里的默认参数是x=0,y=0
+		console.log(x,y);
+	}
+	f1({x:'44'});
+	function f2({x,y} = {x:0,y:0}){ //这里是x,y赋值为x=0,y=0;
+		console.log(x,y)
+	}
+	f2({x:'77'})
+	//在es6里
+	function show_parameter(...arg){
+		console.log(...arg);
+	}
+	show_parameter(1,2,3);
+	//es6的箭头函数
+	var new_style = (...arg) => console.log(...arg); //箭头函数里面只有一排内容不需要大括号
+	new_style('a','b','c');
+	var new_style2 = num => { //箭头函数有参数直接写参数 没参数必要要有括号
+		num ++;
+		console.log(num);
+		
+	}
+	new_style2(8);
+//箭头函数不同点：1.里面没有参数列表 arguments 2.箭头函数里面的this总是指向window
+</script>
+</html>

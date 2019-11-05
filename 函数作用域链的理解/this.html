@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>this指向</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var x=1,y=2,z=3
+	function add(n){
+		return n=n+1
+	}
+	y=add(x); z=add(x)
+	function add(x){
+		return x=x+3
+	}
+	
+	function ab(){
+		bar.apply(this,arguments)
+	}
+	function bar(){
+		console.log(arguments)
+	}
+	ab(1,2,3)
+
+	//typeof一共返回的值有 string boolean number undefind function object
+	var a="aa",b=true,c=1,d,e=function(){},f={name:'aa'},g=null,h="NaN"
+
+var cc=1
+
+	if(function dd(){}){
+		cc+= typeof dd
+	}
+	var obj={}
+	var cc=Number("hh")
+	var xy="abc"
+
+
+	//this指向
+	//1.函数预编译过程this指向window
+	//2.全局作用域里this指向window
+	//3.call和apply会改变this的指向
+	//4.obj.fun(),fun()里面的this会指向obj，遵从谁调用 this指向谁
+	//
+	var time="25s"
+	var Time=setInterval(function(){
+		var time="30s"
+		console.log(this.time)
+	},3000)
+//这里的this指向是window，由于没人调用它，所以指向window
+
+
+	var tt="dd"
+	var obj={
+		tt:'aa',
+		allway:{
+			tt:'cc',
+			waya:function(){
+				console.log(this.tt)
+			},
+			wayb:function(){
+				console.log(2)
+			}
+		}
+	}
+	// obj.allway.waya() ---> cc
+	//这里是allway调用了waya方法，所以这里的this指向的是allway
+	//
+	var foo="123"
+	function print(){
+		this.foo="456"
+		console.log(this.foo)
+	}
+	// print()
+	var print=new print()
+
+	var ua=5
+	function test(){
+		var ua=0
+		console.log(ua)
+		console.log(this.ua)
+		// var ua
+		console.log(ua)
+		console.log(this.ua)
+	}
+	test()
+
+
+ var arr=[1,2,3,4];
+ console.log(toString.call([]))
+
+</script>
+
+</html>

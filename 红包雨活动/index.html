@@ -264,7 +264,9 @@ var app = new Vue({
     },
     mounted(){
     	var This=this
+    	console.log(this)
     	this.timmertwo=setInterval(function(){
+    		console.log(this)
     		This.getdate()
     	},1000)
     },

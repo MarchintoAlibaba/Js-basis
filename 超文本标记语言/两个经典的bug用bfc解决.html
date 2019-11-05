@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>两个经典问题及bfc</title>
+	<style>
+	/*解释：bfc布局可以改变盒模型的一丁点布局结构；恰好这点布局结构能解决margin塌陷问题*/
+	/*什么是margin塌陷问题：即在父子布局中；子元素的margin-top的css样式 但是父元素也会跟着子元素向下移动；此时元素的margin就塌陷了*/
+		*{
+			padding:0;
+			margin:0;
+		}
+		/*触发盒子bfc布局的方法，在父元素里添加*/
+		/*overflow:hidden;
+		float:left/right;
+		display:inline-block;
+		position:absolute*/
+
+		.wrapper{
+			width:200px;
+			height:200px;
+			background:red;
+			margin-top:100px;
+			overflow: hidden;
+		}
+		.content{
+			width:100px;
+			height:100px;
+			background:black;
+			margin-top:50px;
+		}
+		.left{
+			width:100px;
+			height:100px;
+			background:gray;
+			margin-bottom:100px;
+		}
+		.right{
+			margin-top:100px;
+			width:100px;
+			height:100px;
+			background:pink;
+		}
+		/*.wrapperright{
+			overflow: hidden;
+		}*/
+		/*此时left元素的margin-bottom与right元素的margin-top合并了(区域公用了)，这里我们可以用bfc的方法来解决，但是必须要改变元素结构 所以我们选择不结局 在布局的时候直接margin-bottom：200px*/
+	</style>
+</head>
+<body>
+	<!-- 两个经典问题：margin塌陷 与 合并问题 -->
+	<!-- margin塌陷问题 -->
+	<div class="wrapper">
+		<div class="content"></div>
+	</div>
+	<!-- margin合并问题 -->
+	<div class="left"></div>
+	<!-- <div class="wrapperright"> -->
+		<div class="right"></div>
+	<!-- </div> -->
+</body>
+<!-- css里面的三大模型：1、盒模型 2、层模型（position:absolute）3、浮动模型（float:left）
+3、浮动模型：浮动元素产生了浮动流的特点如下
+1.所以浮动流的元素，只有块积元素看不到他们
+其他的产生了bfc元素、文本元素、和文本都可以看到他们（这是他们与层模型不一样的地方（层模型的元素 所有的元素文本都看不到 因为他们不在一个层面））
+
+
+
+下面解释哈千年纠结问题
+1.伪类：伪类是一个类 是标签选择器如：div:last-child、div:nth-child(-n+3)
+2.伪元素：是一个元素，每个元素都有伪元素，为before和after，它是一个行内元素；而且我们必须操作它不然就就看不见
+ div::before是css选择了div的伪元素然后就可以操作了例
+  div::before{
+  	content:"";content里面可以为空也可以写文本，但必须要有
+  	display:inline-block;由于伪元素是行内元素，我们要让他展现出来必须让它先变成行内块或者块积元素，其设置的宽高才有效 -->
+}
+</html>

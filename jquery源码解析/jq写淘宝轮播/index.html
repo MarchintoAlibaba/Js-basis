@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jq写淘宝轮播</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		ul{
+			list-style: none;
+		}
+		.wrapper{
+			width:960px;
+			height:299px;
+			margin:100px auto 0;
+			overflow: hidden;
+			position: relative;
+		}
+		.wrapper>ul{
+			position: absolute;
+			left:0;
+			width:5760px;
+			height:299px;
+			font-size:0;
+		}
+		.wrapper>ul>li{
+			width:960px;
+			display: inline-block;
+		}
+		.wrapper>ul>li img{
+			width:100%;
+		}
+		.wrapper:hover .left-right{
+			display: block;
+		}
+		.left-right{
+			text-align: center;
+			line-height: 30px;
+			color:white;
+			font-size:30px;
+			cursor:pointer;
+			display: none;
+		}
+		.btn-left{
+			position: absolute;
+			width:20px;
+			height:30px;
+			top:50%;
+			margin-top:-10px;
+			left:0;
+			background:rgba(0,0,0,0.5);
+		}
+		.btn-right{
+			position: absolute;
+			width:20px;
+			height:30px;
+			top:50%;
+			margin-top:-10px;
+			right:0;
+			background:rgba(0,0,0,0.5);
+		}
+		.btn-bottom{
+			position: absolute;
+			bottom:30px;
+			width:100px;
+			height:20px;
+			left:50%;
+			margin-left:-50px;
+			text-align:center;
+		}
+		.btn-bottom ul{
+			display: inline-block;
+			background:;
+		}
+		.btn-bottom ul li{
+			width:14px;
+			height:14px;
+			background:rgba(255,255,255,.38);
+			display: inline-block;
+			border-radius:50%;
+			cursor:pointer;
+		}
+		.btn-bottom ul li.active{
+			background:white;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<ul>
+			<li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/5.jpg" alt=""></li>
+			<li><img src="img/1.jpg" alt=""></li>
+		</ul>
+		<div class="left-right">
+			<div class="btn-left"><</div>
+			<div class="btn-right">></div>
+		</div>
+		<div class="btn-bottom">
+			<ul>
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script src='js/jquery.js'></script>
+<script>
+	(function (){
+		var realDirection,nowIndex = 0,timer,flag = true;
+		init();
+		function init(){
+			shuffling();
+			timing();
+			mouse();
+		}
+		function shuffling(){
+			$('.btn-left').add($('.btn-right')).add($('.btn-bottom ul li')).on('click',function(){
+				clearTimeout(timer);
+				if($(this).attr('class') == 'btn-left'){
+					realDirection = 'btn-left';
+				}else if($(this).attr('class') == 'btn-right'){
+					realDirection = 'btn-right';
+				}else{
+					realDirection = $(this).index();
+				}
+				if(flag){
+					imgMove(realDirection);
+				}
+			})
+		}
+		function imgMove(direction){
+			flag = false;
+			if(direction == 'btn-right'){
+				nowIndex ++;
+				if(nowIndex == 5){
+					$('.wrapper ul').animate({left:-nowIndex * $('.wrapper').width()},500,function(){
+						$('.wrapper ul').css('left','0');
+						timing();
+						flag = true;
+					});
+					nowIndex = 0;
+				}else{
+					$('.wrapper ul').animate({left:-nowIndex * $('.wrapper').width()},500,function(){
+						timing();
+						flag = true;
+					});
+				}
+			}else if(direction == 'btn-left'){
+				nowIndex --;
+				if(nowIndex == -1){
+					$('.wrapper ul').css('left',-($('.wrapper>ul>li').length - 1) * $('.wrapper').width() + 'px');
+					nowIndex = 4;
+				}
+				$('.wrapper ul').animate({left:-nowIndex * $('.wrapper').width()},500,function(){
+					timing();
+					flag = true;
+				});
+			}else{
+				$('.wrapper ul').animate({left:-direction * $('.wrapper').width()},500,function(){
+					timing();
+					flag = true;
+				});
+				nowIndex = direction;
+			}
+			$('.btn-bottom>ul>li.active').attr('class','');
+			$('.btn-bottom>ul>li').eq(nowIndex).attr('class','active');
+		}
+		function timing(){
+			clearTimeout(timer);
+			timer = setTimeout(function(){
+				imgMove('btn-right');
+			},2000)
+		}
+		function mouse(){
+			$('.wrapper ul')
+				.on('mouseenter',function(){
+				clearTimeout(timer);
+				})
+				.on('mouseleave',function(){
+					timing();
+				})
+		}
+	}())
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数组与字符串的一些方法</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// 1.一个字符串有a-z组成，请找出改字符串第一个只出现一次的字母
+	// 2.数组去重
+	var date="adfddddddddddddddddddddddddddddddddddddddddddddddddfdfasdfdsfdfdfdfdfsadoasdfdfadadsslpemvzxqwe",len=date.length,arr=[],OOb={};
+	for(let e=0;e<len;e++){
+		OOb[e]=date[e]
+	}
+	for(let i=0;i<len;i++){
+		for(let j=(i+1);j<len;j++){
+			if(date[i]==date[j]){
+				delete OOb[j]
+				delete OOb[i]
+				// console.log(OOb)
+			}
+		}
+	}
+	for(let f in OOb){
+		arr.push(OOb[f])
+	}
+	console.log(arr[0])
+	// 2.数组去重
+	// 
+	var arr1=[1,2,2,2,2,2,2,1,1,1,1,1,1,2,2,5,5,4,]
+	Array.prototype.unique=function(){
+		let Ounique={},len=this.length,arr2=[];
+		for(let i=0;i<len;i++){
+			if(!Ounique[this[i]]){
+				Ounique[this[i]]="abc"
+				arr2.push(this[i])
+			}
+		}
+		return arr2
+	}
+</script>
+</html>

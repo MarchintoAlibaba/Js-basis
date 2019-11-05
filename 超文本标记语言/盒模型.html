@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>盒模型</title>
+	<style>
+	*{
+		padding:0;
+		margin:0;
+	}
+		/*div{
+			width:100px;
+			height:100px;
+			background:red;
+			border:5px solid black;
+			padding:20px;
+		}
+		span{
+			padding:20px;
+			background:green;
+		}*/
+	.a{
+		position: relative;
+		top:200px;
+		/*width:100px;*/ 	
+		/*height:100px;*/
+	}
+	.b{
+		position: absolute;
+		width:100px;
+		height:100px;
+		background:red;
+	}
+	.d{
+		position: absolute;
+		width:110px;
+		height:110px;
+		background:yellow;
+	}
+	.c{
+		width:150px;
+		height:150px;
+		background:green;
+	}
+	</style>
+</head>
+<body>
+	<!-- 盒模型(可见方块的大小)就是 border+padding+content -->
+	<div class="a">
+		<div class="b"></div>
+		<div class="d"></div>
+	</div>
+	<div class="c"></div>
+	<!-- <span>2121</span> -->
+
+</body>
+当给行级元素定位或浮动（position:absolute或float：left）后，
+该行内元素就可以设置宽高了，
+原因是该行级元素在内部添加了 display：inline-block,变成了行内块元素
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跨域的几种方法</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 现在常用的跨域方法
+	// 1.服务器代理中转
+	// 由于浏览器的同源策略即--浏览器向服务器请求资源时，要与服务器的请求协议 域名 端口都相同的情况下才可以获得资源
+	// 服务器中转是利用服务器与服务器之间拿资源没有这样的限制而产生的 即 A页面想要得到不同域名的B服务器的资源 A页面可以先向C服务器发送请求，C服务器向B服务器请求资源并返回资源给C服务器 C服务器再将资源给A页面，这样A页面就拿到资源了，从而间接的实现了跨域
+	// 
+	// 2.运用jsonp的方式跨域 成功理论
+	// 1.由于script标签不受同源策略的限制，（实际是凡事有src属性的标签都不受同源策略的限制如 img iframe）
+	// 
+	// 
+	// 3.document.domain(此方法针对的是基础域名相同的情况)例：
+	// bj.58.com 向tj.58.com请求资源 可以在这两个域名同时设置
+	// document.domain = '58.com' 就可以相互访问资源了
+	
+
+	//jsonp具体实现方法 jsonp其实相当于是一个get请求
+	
+	var oScript = document.createElement("script"); //创建一个script标签
+	oScript.src = "./get-data.php?cb=getData"; //在src里面写上请求资源的url 后面再跟上回调函数名(这里需要跟后端协调好，将资源以参数的方式写在回调函数的里面)  用回调函数的理由是此时的script标签是异步请求的而且这样写简单方便
+	document.body.appendChild(oScript); //将创建好的script标签添加到body标签里面，请求资源
+	function getData(data){
+		console.log(data)
+	}
+	//获取天气1:33：06
+	//jsonp免费接口 https://www.bejson.com/knownjson/webInterface/
+</script>
+</html>

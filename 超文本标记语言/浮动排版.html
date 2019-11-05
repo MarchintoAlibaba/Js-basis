@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浮动排版</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.left{
+			float:left;
+		}
+		/*.left li{
+			float:left;
+		}*/
+		.right{
+			width:200px;
+			height:100px;
+			background:red;
+			float:right;
+			
+		}
+		.right span{
+			float:right;
+			/*float:left;*/
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<ul class="left">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<ul class="right">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+		</ul>
+	</div>
+</body>
+</html>

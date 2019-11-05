@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>活动倒计时</title>
+</head>
+<script>
+	console.log(window.innerWidth)
+</script>
+<body>
+	
+</body>
+<script>
+	// var date = new Date();
+	// var beginTime = date.setMinutes(30);
+	// console.log(date);
+	// setInterval(function(){
+	// 	if(date.getTime() - new Date().getTime() < 1000){
+	// 		console.log('seccess');
+	// 	}
+	// },1000)
+	// 1.封装一个函数，要求打印出几年几月几日星期几 几时几分几秒
+	function getTime(){
+		var date = new Date(),
+			year = date.getFullYear(),
+			months = date.getMonth() + 1,
+			day = date.getDate(),
+			week = date.getDay(),
+			hours = date.getHours(),
+			minutes = date.getMinutes(),
+			seconds = date.getSeconds();
+		if(week == 0){
+			week = 7;
+		}
+		return year + '年' + months + '月' + day + '日' + '星期' + week + ' ' + hours + '时' + minutes + '分' + seconds + '秒';
+	}
+	var timer = setTimeout(function(){
+		console.log(11)
+	},15000)
+</script>
+</html>

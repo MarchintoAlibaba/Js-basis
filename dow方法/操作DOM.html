@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>操作dom</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		div{
+			position: absolute;
+			font-size:50px;
+			display: none;
+			left:100px;
+		}
+		.div-active{
+			display: block;
+		}
+		.button-active{
+			background:red;
+		}
+	</style>
+</head>
+<body>
+	<button class='button-active aa'>111</button>
+	<button>222</button>
+	<button>333</button>
+	<div class="div-active">111</div>
+	<div>222</div>
+	<div>333</div>
+</body>
+<script>
+	var firefoxInnerText = document.body.getElementsByClassName("aa")[0]
+	var div = document.getElementsByTagName('div'),
+		button = document.getElementsByTagName('button'),
+		len = button.length;
+		div[0].style.left = 200 + 'px';
+	for(var i = 0;i < len;i ++){
+		(function(n){
+			button[n].onclick = function(){
+				for(var j = 0;j <len;j ++){
+					button[j].className = '';
+					this.className = "button-active";
+					div[j].className = '';
+				}
+				div[n].className = 'div-active';
+			}
+		}(i))
+	}
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js运动之来回晃动</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		ul{
+			list-style: none;
+		}
+		.nav{
+			width:306px;
+			height:62px;
+			margin:100px auto;
+			position: relative;
+		}
+		.navli{
+			width:100px;
+			height:60px;
+			/*border:1px solid black;*/
+			text-align: center;
+			line-height: 60px;
+			color:red;
+			cursor:pointer;
+			float:left;
+		}
+		.bg{
+			position: absolute;
+			top:1px;
+			left:1px;
+			width:100px;
+			height:60px;
+			opacity:0.5;
+			background:#f40;
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<ul>
+			<li class="navli">es6</li>
+			<li class="navli">vue</li>
+			<li class="navli">node</li>
+			<li class="bg"></li>
+		</ul>
+	</div>
+</body>
+<script>
+	var navLi = document.getElementsByClassName('navli'),
+		navLiL = navLi.length,
+		timer,
+		bg = document.getElementsByClassName('bg')[0];
+	var arrnav = Array.prototype.slice.call(navLi);
+	arrnav.forEach(function(ele,index){
+		ele.onmouseenter = function(){
+			startMove(bg,this);
+		}
+	})
+	// for(var i = 0; i < navLiL; i ++){
+	// 	navLi[i].onmouseenter = function(){
+	// 		clearInterval(timer);
+	// 		startMove(bg,this);
+	// 	}
+	// }
+	function startMove(dom,target){
+		clearInterval(timer)
+		var startSpeed = 4,
+			changespeed = 0;
+		timer = setInterval(function(){
+			changespeed = (changespeed + (target.offsetLeft - dom.offsetLeft) / 10) * 0.86;
+			startSpeed *= 0.96;
+			dom.style.left = dom.offsetLeft + startSpeed + changespeed + 'px';
+			if(startSpeed < 0.01 && (target.offsetLeft - dom.offsetLeft) < 1){
+				dom.style.left = target.offsetLeft + 'px';
+				clearInterval(timer);
+			}
+		},30)
+	}
+</script>
+</html>

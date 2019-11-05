@@ -1,0 +1,41 @@
+*{
+	padding:0;
+	margin:0;
+}
+body{
+	background:black;
+}
+.wrapper{
+	font-size:0;
+}
+ul{
+	list-style: none;
+}
+.wrapper>ul>li{
+	width:25%;
+	display: inline-block;
+	box-sizing:border-box;
+	border:1px solid black;
+	overflow: hidden;
+}
+.wrapper>ul>li>img{
+	width:100%;
+	height:100%;
+	opacity:0;
+}
+.cover{
+	display: none;
+	position: absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	background:black;
+}
+.cover img{
+	position: absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+	opacity: 0;
+}

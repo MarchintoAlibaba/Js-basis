@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dom操作练习</title>
+</head>
+<body>
+	<div>
+		<span></span>
+		<i>11</i>
+		<em></em>
+		<strong></strong>
+		<a href=""></a>
+		<del></del>
+	</div>
+</body>
+<script>
+	// var div = document.createElement("div"),
+	// 	span = document.createElement('span');
+	// document.body.appendChild(div);
+	// div.setAttribute('class','demo');
+	// div.appendChild(span);
+	// span.innerText = 'hello world';
+	// 1.封装函数insertAfter();功能类似于insertBefore(); 在原型链上编程
+	var span = document.getElementsByTagName('span')[0],
+		i = document.querySelector("i"),
+		em = document.querySelectorAll('em')[0],
+		div = document.body.getElementsByTagName('div')[0];
+	Element.prototype.insertAfter = function (a,b){
+		if(b.nextElementSibling){
+			b.parentElement.insertBefore(a,b.nextElementSibling);
+		}else{
+			b.parentElement.appendChild(a);
+		}
+	}
+	// 2.将目标节点内部的节点顺序逆序
+	Element.prototype.reverseElement = function(){
+		var len = this.children.length - 1;
+		for(var i = 0;i < len; i ++){
+			this.insertBefore(this.children[i + 1],this.children[0])
+		}
+		return this;
+	}
+</script>
+</html>

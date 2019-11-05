@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>switch case</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var someDay = 'monday';
+	switch(someDay){
+		case 'monday':
+			console.log('today is monday');
+			break;
+		case 'tuesday':
+			console.log('today is tuesday');
+			break;
+		case 'wednesday':
+			console.log('today is wednesday');
+			break;
+	} 
+	// break与continue
+	// break必须写在循环里面一旦出现break终止整个循环；
+	// continue也必须写在循环里面，出现continue只终止本次循环
+	// 循环1到100的数，去除10；
+	for(var i=0;i<100;i++){
+		if(i==10){
+			continue;
+		}
+		console.log(i);
+	}
+</script>
+</html>

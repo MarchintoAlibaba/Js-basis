@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>防抖和节流</title>
+</head>
+<body>
+	<input type="text" id="input">
+	<button id="button">取消</button>
+</body>
+<script>
+	var actiona = throttling(aa,3000,false)
+	input.oninput = actiona;
+	button.onclick = actiona.cancel;
+	//封装一个防抖的函数 防抖是在用户频繁触发事件后只执行一次 节流是每隔多少时间执行一次
+	//一般的防抖是用户操作完后延迟一定时间后执行
+	//还有种情况是，操作后先执行
+	//还有一个情况是用户操作完后取消相应的执行
+	function  throttling(fn,wait_time,flag){
+		var timer = null; //闭包的私有化变量
+		var throttled = function(){
+			let This = this;
+			var args = arguments;
+			clearTimeout(timer);
+			if(flag){ //有种情况是当用户频繁触发时有些需求是要先执行一次，
+				if(!timer){
+					fn.apply(this,arguments);
+				}
+				timer = setTimeout(function(){
+					timer = null;
+				},wait_time)
+			}else{ //当用户停止触发后执行
+				timer = setTimeout(function(){
+					fn.apply(This,args);
+				},wait_time);
+			}
+		}
+		throttled.cancel = function(){
+			clearTimeout(timer);
+		}
+		return throttled;
+	}
+	function aa(aa){
+		console.log(this,aa)
+	}
+</script>
+</html>

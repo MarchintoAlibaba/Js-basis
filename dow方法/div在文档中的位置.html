@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>div在文档中的位置</title>
+</head>
+<style>
+	*{
+		padding:0;
+		margin:0;
+	}
+</style>
+<body>
+	<div style="border:50px solid red;width:500px;height:500px">
+		<div style="position: relative;left:100px;top:100px;border:5px solid black;height:200px;width:200px">
+			<div style="position: absolute;border:50px solid red;width:150px;height:150px;left:50px;">
+				<div style="position: absolute;left:100px;top:100px;width:50px;height:50px;background:red;" class="aa">11</div>
+			</div>
+		</div>
+	</div>
+	<div style="width:100%;height:500px;background:black"></div>
+	<div style="width:100%;height:400px;background:red;"></div>
+	<div style="width:100%;height:300px;background:green;"></div>
+	<div style="position: fixed;right:10px;bottom:100px;background:blue;width:50px;height:50px" onclick="startread()">start</div>
+	<div style="position: fixed;right:10px;bottom:50px;background:blue;width:50px;height:50px" onclick="stopread()">stop</div>
+</body>
+<script>
+	//写一个方法用offsetLeft或offsetTop求该div在文档中的具体位置
+	let aa=document.getElementsByClassName("aa")[0];
+	function getdivadress(bb){
+		let zz=0,mm=0;
+		let x=bb.offsetLeft,y=bb.offsetTop;
+		while(bb.offsetParent){
+			bb=bb.offsetParent;
+			zz=bb.style.borderWidth==""?0:parseInt(bb.style.borderWidth);
+			mm=bb.style.borderWidth==""?0:parseInt(bb.style.borderWidth);
+			x+=bb.offsetLeft+zz;
+			y+=bb.offsetTop+mm;
+			console.log(x)
+			console.log(zz)
+		}
+		return {
+			x:x,
+			y:y
+		}
+	}
+	var leftnum=getdivadress(aa);
+	var timer;
+	var aacc=true;
+	// 写一个自动阅读器
+	function startread(){
+		if(aacc){
+			timer=setInterval(function(){
+				window.scrollBy(0,10)
+			},100)
+		}
+		aacc=false;
+		console.log(timer)
+	}
+	function stopread(){
+		clearInterval(timer)
+		aacc=true;
+		// timer=0
+		console.log(timer)
+	}
+</script>
+</html>

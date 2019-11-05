@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery手写放大镜</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		ul{
+			list-style:none;
+		}
+		.wrapper{
+			width:1100px;
+			margin:50px;
+		}
+		.wrapper:after{
+			content:"";
+			display: block;
+			clear:both;
+		}
+		.content{
+			width:500px;
+			height:500px;
+			position: relative;
+			float:left;
+			background:url(img/1.jpg) no-repeat center center;
+			background-size:100% 100%;
+			margin-right:50px;
+		}
+		.bigImg{
+			width:500px;
+			height:500px;
+			float:left;
+			border:1px solid black;
+			overflow: hidden;
+			visibility: hidden;
+		}
+		.smallMove{
+			background:#eee;
+			opacity:0.3;
+			z-index:1;
+			cursor:move;
+			display: none;
+			position: absolute;
+		}
+		.listImg{
+			width:500px;
+			padding:0;
+			margin:0;
+			float:left;
+		}
+		.listImg ul li{
+			width:100px;
+			height:100px;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="content">
+			<div class="smallMove"></div>
+		</div>
+		
+		<div class="bigImg"></div>
+		<div class="listImg">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+</body>
+<script src='jquery.js'></script>
+<script>
+	function init(){
+		var content = $('.content'),
+			biger = 2,
+		    smallMove = $('.smallMove'),
+		    wrapper = $('.wrapper'),
+		    listImg = $('li'),
+		    ul = $('ul'),
+		    bigImg = $('.bigImg'),
+		    listImgLilength = listImg.length;
+		for(var i = 0; i < listImgLilength; i ++){
+			listImg[i].style.background = 'url(img/' + (i + 1) + '.jpg)';
+			listImg[i].style.backgroundSize = '100% 100%';
+		}
+		content.on('mouseenter',function(event){
+			enter(event,biger)
+		})
+		content.on('mouseleave',function(){
+			smallMove.css("display","none");
+			bigImg.css('visibility','hidden');
+		})
+		content.on('mousemove',function(event){
+			move(event,biger)
+		})
+		console.log(ul)
+		ul.on('click',function(event){
+			var target = event.target,
+			    targetB = target.style.backgroundImage;
+			content.css({
+				'backgroundImage':targetB
+			})
+		})
+		function move(e,biger){
+			var smallMoveL = e.clientX - wrapper.offset().left - (smallMove.width() / 2),
+				smallMoveT = e.clientY - wrapper.offset().top - (smallMove.height() / 2),
+				smallMoveEL = smallMoveL > 0 ? smallMoveL < (content.width() - smallMove.width()) ? smallMoveL : (content.width() - smallMove.width()) : 0,
+				smallMoveET = smallMoveT > 0 ? smallMoveT < (content.height() - smallMove.height()) ? smallMoveT : (content.height() - smallMove.height())  : 0;
+			smallMove.css({
+				left:smallMoveEL,
+				top:smallMoveET
+			})
+			var bigImgmoveDL = -smallMoveEL * biger,
+				bigImgmoveDT = -smallMoveET * biger;
+			console.log(bigImgmoveDT)
+			bigImg.css({
+				'background-position':bigImgmoveDL + 'px ' + bigImgmoveDT + 'px'
+			})
+		}		function enter(e,multiple){
+			smallMove.css({
+				width:content.width() / multiple,
+				height:content.height() / multiple,
+				display:'block'
+			})
+			var contentB = content.css("backgroundImage"),
+				backgroundSize = content.css("backgroundSize") * multiple,
+				reg = /img.+jpg/,
+				bSize = 100 * multiple,
+			    matchingresult = reg.exec(contentB);
+			bigImg.css({
+				'visibility':'visible',
+				'background-image':'url(' + matchingresult + ')',
+				'background-size':bSize + '% ' + bSize + '%',
+				'background-repeat':'no-repeat'
+			})
+		}
+					
+	}
+	init();
+</script>
+</html>

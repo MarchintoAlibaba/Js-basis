@@ -7,10 +7,51 @@
 
 </body>
 <script type="text/javascript">
-	const data="你晒的恐惧感大姐夫"
-	let m=data.split("|")
-	var wx_index = Math.floor((Math.random()*m.length));
-	let code=m[wx_index]
-	console.log(code)
+	// 正则表达式的两种创建方法 1 跟数组对象类似 var arr = []   var obj = {}
+	var reg = /abc/; //匹配含有abc字符的字符串  /abc/i 后面加个i是不区分大小写 g是全局匹配 m是多行匹配 跟\n一起用的才有意义
+					 // /^abc/ 前面加^表示以abc开头的字符 与之相反的是$以什么结尾
+	var str = 'abckddf';
+	//第二种创建方法
+	var reg = new RegExp('abc'); //new RegExp('abc','i')
+	//RegExp的使用方法有：
+	reg.test(str)  //这是正则上的方法 返回的是true或false
+	str.match(reg) //这是字符串上的方法 返回的是匹配的结果
+	var reg1 = /[0123456789]/ //[]里面表示的是表达式意思是只要满足数字0-9中的任意以为即可匹配 也可以写成[0-9] 在表达式里面写^ 如[^a] 不是a
+
+	// 元字符
+	// \w 单词字符 相当于[0-9A-z_] 是words的缩写 \W 是[^\w]
+	// \d 数字字符 相当于[0-9] 是date的数学 \D 是 [^\d]
+	// \s 空白字符 相当于[\t\n\r\v\f ] \S 是[^\s]
+	// \b 边界字符 \B是[^\b]
+	var str1 = 'abc 121ddf ee';
+	var reg1 = /\b[\d]{3}/;
+	var aa = str1.match(reg1)
+	console.log(reg1.test(str1));
+	console.log(aa);
+	//量词 n{1,2}表示一个或两个 以贪婪原则匹配 n表示元字符
+	//n+ {1,}表示1到正无穷    n* {0,} 表示0到正无穷   n? {0,1} 
+	// | 表示或 例
+	var reg2 = /^\d|\d$/  //检测字符串首或尾含有数字
+
+
+	// 正则表达最常用的一个方法
+	var str3 = 'aabb'; 
+	var reg3 = /(\w)\1(\w)\2/; //匹配一个XXYY的字符串 \1是第一个表达式重复 \2是第二个表达式重复
+	console.log(str3.replace(reg3,'$2$2$1$1')); //$1表示第一个括号里表达式匹配到的 $2表示第二个括号里表达式匹配到的把aabb变成bbaa
+
+	var str4 = 'the-first-name';
+	var reg4 = /-(\w)/g; //把the-first-name变成theFirstName
+	console.log(str4.replace(reg4,function($,$1){ //$是等于str4 $1是第一个括号里的表达是匹配到的
+		return $1.toUpperCase();
+	}))
+
+	//正向预查 或 正向断言 
+	var str5 = 'abaaaaa';
+	var reg5 = /a(?=b)/g; //这是找的是后面跟着b的a 与/a(?!b)/ 相反 这个是找后面没有b的a
+	console.log(str5.match(reg5));
+
+	var str6 = '1000000000000';
+	var reg6 = /(?=(0{3})+$)/g;
+	console.log(str6.replace(reg6,'.'))
 </script>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BOM操作浏览器及相关方法</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//BOM是操作浏览器的 DOM是操作dom的 BOM包含了window，windom包含了dom，所以dom只是BOM的一部分
+	var bool = confirm('我很帅');
+	if(bool){
+		alert('我也这样认为')
+	}else{
+		close();
+	}
+	//BOM对象包含以下内容
+	//window  javascript层级中的顶层对象，表示浏览器窗口
+	//Navigator  包含客户端浏览器信息
+	//History  包含浏览器窗口访问过的url
+	//Location  包含当前url的信息
+	//Screen  包含了客户端显示屏的信息
+	location.reload('force')  //重新加载文档
+	location.reload()  // 重新加载文档 去的是浏览器缓存里面的数据
+	navigator.appVersion //返回客户端浏览器信息
+	navigator.onLine  //返回true和false true:浏览器有网路 false:浏览器没网
+	history.back() //返会上一个浏览页面
+	history.forward() //前进一个页面
+</script>
+</html>

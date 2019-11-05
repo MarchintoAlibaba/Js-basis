@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分页插件</title>
+	<style>
+		*{
+			padding:0;
+			margin:0;
+		}
+		.wrapper{
+			margin:200px;
+		}
+		.prev,.next{
+			display: inline-block;
+			padding:4px 8px;
+			background:gray;
+			cursor:pointer;
+		}
+		.center{
+			display: inline-block;
+		}
+		.wrapper .center>ul>li{
+			list-style: none;
+			padding:4px 8px;
+			background:gray;
+			color:#fff;
+			cursor:pointer;
+			display: inline-block;
+			margin:0 2px;
+		}
+		.wrapper .center>ul>li.active{
+			background:blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="prev">前一页</div>
+		<div class="center">
+			<ul class="center-ul">
+				<!-- <li class="active">1</li>
+				<li>2</li>
+				<li>3</li> -->
+			</ul>
+		</div>
+		<div class="next">后一页</div>
+	</div>
+</body>
+<script>
+	//分页基本功能
+	(function(number,count){
+		var prev = document.getElementsByClassName('prev')[0],
+			next = document.getElementsByClassName('next')[0],
+			li,
+			iCount = 0,
+			center_ul = document.getElementsByClassName('center-ul')[0];
+		//生成页数
+		function makepage(number,activeIndex){
+			var str = '';
+			for(var i = 0;i <= count; i++){
+				iCount ++;
+				if(i == activeIndex){
+					str = '<li class="active">1</li>';
+				}else{
+					str += '<li>' + iCount + '</li>';
+					if(iCount > count -1){
+						str += '<li>...</li><li>' + number + '</li>';
+						iCount = 0;
+						break;
+					}
+				}
+			}
+			center_ul.innerHTML = str;
+		}
+		makepage(number,0);
+		//页数点击
+		function clickPage(){
+			center_ul.onclick = function(e){
+				var active = document.getElementsByClassName('active')[0],
+					event = e || window.event,
+					target = event.target || window.srcElement;
+				if(target.nodeName == 'LI'){
+					active.className = '';
+					target.className = 'active';
+				}
+			}
+		}
+		clickPage();
+		//获取当前页的索引
+		function getIndex(){
+			li = center_ul.getElementsByTagName('li');
+			var	liL = li.length;
+			for(var i = 0;i < liL;i ++){
+				if(li[i].className == 'active'){
+					return i;
+				}
+			}
+		}
+		//点击前一页后一页
+		function clickPrevNext(){
+			prev.onclick = function(){
+				var index = getIndex();
+				if(getIndex() == 0){
+					return;
+				}else{
+					var active = document.getElementsByClassName('active')[0];
+					active.className = '';
+					li[-- index].className = 'active';
+				}
+			}
+			next.onclick = function(){
+				var index = getIndex();
+				if(index >= count / 2 + 1){ //如果显示的数据大于显示的页数
+					iCount ++;
+					makepage(number,5);
+
+					if(getIndex() >= count - 1){
+						
+					}
+				}else{
+					var active = document.getElementsByClassName('active')[0];
+					active.className = '';
+					li[++ index].className = 'active';
+				}
+			}
+		}
+		clickPrevNext();
+	}(10,8))
+	//第一个参数是有多少条数据，第二个参数是能显示多少页数(必须是偶数)
+</script>
+</html>

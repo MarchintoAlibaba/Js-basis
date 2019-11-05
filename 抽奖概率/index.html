@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>抽奖概率</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var manay;
+	var a=0;
+	//随机数留俩位小数
+	function random(min,max){
+	　　return (Math.random()*(max-min) + min).toFixed(2);    
+	}
+	//(1)10000代表总概率，小于9900时代表概率为99%;
+	//(2)10000代表总概率，小于9990时代表概率为0.9%;
+	//(2)10000代表总概率，小于9999时代表概率为0.01%;
+	function num(){
+	　　if(random(0,100)<99){
+	    　　manay=random(1,2);
+	    }else if(random(0,100)<99.9){
+	        manay=random(2,49);
+	    }else if(random(0,100)==99.99){
+	        manay=50;
+	    }
+	    return parseFloat(manay);
+	}
+</script>
+</html>
