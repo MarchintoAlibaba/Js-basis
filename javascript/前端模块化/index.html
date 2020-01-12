@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>前端模块化</title>
+</head>
+<body>
+
+</body>
+<script>
+// 前端模块化现在用的主要框架就是 commonJS或amd 
+// commonJS的核心思想就是通过require方法来同步加载所要依赖的其他模块，然后通过exports或module.exports来导出需要暴露的接口 例：
+// //index.js
+// var module = require('module.js');//导入
+// module.aa('hello');
+
+// //module.js
+// module.exports = {//暴露自己  导出
+// 	aa:function(str){
+// 		console.log(str)
+// 	}
+// }
+// commonJS是为服务器端而生 采用的是同步加载模式 不适用于浏览器 因为浏览器的所有文件都来自与服务器需要网络加载时间 所有浏览器更希望用异步加载的方式；
+// amd规范是异步加载 允许指定回调函数 等模块异步加载完成后即可调用回调函数；
+// amd最得意的产出就是require.js
+
+amd的核心思想就是通多define定义一个模块 然后使用require加载另一个模块 例：
+ 
+//index.js
+require(['jquery','math'],function($,math){//数组里面是需要依赖的模块 等各个模块加载完之后就是执行回调函数 模块就是一个js文件 math以参数的形式导入
+	math.add(1,2);
+})
+
+//math.js
+define(function(){//导出
+	function add(a,b){
+		return a + b;
+	}
+	return {
+		add:add
+	}
+})
+// cmd异步加载 
+// amd是依赖前置 提前加载依赖而
+// cmd是就近加载 按需加载 产物 seaJS 跟requirejs相似
+// es6自带模块化 
+// 可以使用import 关键字引入模块 通过export关键字导出模块 功能比较强大 建议直接用es6的模块化 但是es6的模块化在浏览器不支持 所以只能通过babel将不支持的import编译为当前广受支持的requireJS
+</script>
+</html>

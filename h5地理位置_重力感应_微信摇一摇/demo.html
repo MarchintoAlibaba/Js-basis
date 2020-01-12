@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="aa"></div>
+<div id="bb"></div>
+</body>
+<script>
+  function suc(pos){
+    bb.innerHTML = pos;
+  }
+  function err(err){
+    console.log(err.code)
+  }
+  let options = {
+    enableHighAccuracy:true,//是否需要高精度位置 默认为false
+    timeout:10,//单位ms 请求超时时间 默认infinity
+    maximumAge:1000,//单位ms watchPosition方法不停地获取用户的地理信息，
+  }
+  let id = window.navigator.geolocation.getCurrentPosition(suc,err,options)
+  
+	window.addEventListener('devicemotion',function(e){
+    if(e.accelerationIncludingGravity.z > 10){
+		  aa.innerHTML = e.accelerationIncludingGravity.x + '-' + e.accelerationIncludingGravity.y + '-' + e.accelerationIncludingGravity.z;
+    }
+	})
+</script>
+</html>

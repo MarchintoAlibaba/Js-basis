@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="aa">11</div>
+</body>
+<script>
+	// deviceorientation 监听手机设备在方向上的变化
+	window.addEventListener('deviceorientation',function(event){
+		console.log(event)
+		aa.innerHTML = event.alpha;
+	},false)
+	// alpha z方向上的角度
+	// beta x轴方向上的角度
+	// gamma y轴方向上的角度
+</script>
+</html>

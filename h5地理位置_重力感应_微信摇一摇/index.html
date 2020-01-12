@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script>
+	function suc(pos){
+		console.log(pos)
+	}
+	function err(err){
+		console.log(err)
+	}
+	let options = {
+		enableHighAccuracy:true,//是否需要高精度位置 默认为false
+		timeout:1000,//单位ms 请求超时时间 默认infinity
+		maximumAge:1000,//单位ms watchPosition方法不停地获取用户的地理信息，
+	}
+	let id = window.navigator.geolocation.getCurrentPosition(suc,err,options) //getCurrentPosition获取位置信息有三个参数 第一个是成功的回调，第二个是失败的回调，第三个是参数
+	window.navigator.geolocation.watchPostion(fu) //用于注册监听器，在设备的地理位置发生变化的时候自动被调用 参数与getCurrentPositin相同
+	window.navigator.geolocation.clearWatch(id)//清除watchPosition的监听
+	window.addEventListener('devicemotion',function(event){//监听加速度变化
+		console.log(event)
+	})
+	// devicemotion事件所包含的属性
+	// 1.accelerationIncludingGravity重力加速度
+	// 2.acceleration 重力加速度（需要陀螺仪支持）
+	// 3.rotationRate(alpha,beta,gamma)旋转速率
+	// 4.interval//获取的时间间隔
+	// 以上属性均为只读属性
+</script>
+</html>

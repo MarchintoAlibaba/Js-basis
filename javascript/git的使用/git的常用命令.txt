@@ -1,0 +1,55 @@
+1.首先安装好git 并通过git bash打开命令
+2.找一个空文件夹运行 git init -- 回产生一个git的初始化文件
+3.运行 ssh-Keygen 生成一个本地密钥 并把本地密钥配置在远程
+4.在本地登录你的git账号
+运行 git config -global user.name 'xxx' 
+运行 git config -global user.name 'xxx'
+5.现在github上创建一个新项目（页面下中部的选项要勾上）并复制download地址
+6.本地分支与远程分支建立关联
+运行 git remote add origin 'xxx'  github上的download的地址 
+
+
+
+拉取远端的代码 
+运行 git pull origin master
+上传本地的新代码 
+运行 git push origin master
+
+暂存区的作用是：当你的功能模块还没开发好有避免其丢失的时候用 如果你直接上传仓库 你为完成的功能可能导致整个项目不能运行
+
+将代码更新到暂存区 （每次修改了已经提交了的文件都需要这步）
+运行 git add 'xxx'  文件名字  将所有修改了的代码更新到暂存区 运行 git add .
+工作区表示本地敲的代码 暂缓区是在仓库之前
+更新代码的相关日志 提交代码到仓库
+运行 git commit -m 'xxx' 具体日志内容（更行了什么什么）
+查看当前的文件状态（修改了为提交或者新创建的文件）
+运行 git status
+
+撤销工作区本次修改了的文件xxx
+运行 git checkout -- xxx
+
+暂缓区文件撤销
+git reset HEAD^
+
+每个commit都是一个版本 跟svn的commit一样
+查看工作区 暂缓区的区别
+运行 git diff
+查看暂缓区与仓库的区别
+运行 git diff --cached
+查看版本日志
+git log 
+查看历史操作记录
+git reflog
+
+什么是分支：分支就是leader创建了一个master主分支；然后回创建几个分支供下面的人在此基础上开发功能 最后合并代码
+下面是关于分支的操作
+查看分支
+git branch 
+新建一个分支 后面跟上分支名
+git branch xxx
+删除分支 后面跟上分支名
+git branch -d xxx
+切换分支  后面跟上分支名
+git checkout xxx
+
+ 
